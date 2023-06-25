@@ -26,7 +26,7 @@ struct CryptoApp: App {
     var body: some Scene {
         WindowGroup {
             //ContentView(contentViewData: ContentViewModel(), singleViewData: SingleCoinViewModel())
-            LogInView()
+            LogInView(errorViewModel: ErrorViewModel(), loginViewModel: LogInViewModel())
         }
     }
 }

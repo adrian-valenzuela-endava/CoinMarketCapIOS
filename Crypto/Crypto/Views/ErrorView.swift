@@ -37,7 +37,6 @@ struct ErrorView : View {
                                 .padding(.vertical)
                                 .frame(width: UIScreen.main.bounds.width - 120)
                         }
-                        .sync($errorViewModel.alert, with: $alert)
                         .background(Color("MainColor"))
                         .cornerRadius(10)
                         .padding(.top, 25)

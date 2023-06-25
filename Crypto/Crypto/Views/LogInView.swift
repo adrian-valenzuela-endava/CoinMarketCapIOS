@@ -10,12 +10,10 @@ import Combine
 
 
 struct LogInView: View {
-    @State private var email = ""
-    @State private var password = ""
     @State var color = Color.white
     @State var visible = false
-    @ObservedObject var errorViewModel = ErrorViewModel()
-    @State var alert = false
+    @ObservedObject var errorViewModel : ErrorViewModel
+    @ObservedObject var loginViewModel : LogInViewModel
     
     var body: some View {
         ZStack{
@@ -33,27 +31,27 @@ struct LogInView: View {
                                 .cornerRadius(15)
                         }
                         Form{
-                            TextField("Your email", text: $email)
+                            TextField("Your email", text: loginViewModel.email)
                                 .padding()
-                                .background(RoundedRectangle(cornerRadius: 4).stroke(self.email != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                                .background(RoundedRectangle(cornerRadius: 4).stroke(loginViewModel.email != "" ? Color("MainColor") : self.color, lineWidth: 2))
                             HStack{
                                 VStack{
                                     if self.visible{
-                                        TextField("Your password", text: self.$password)
+                                        TextField("Your password", text: loginViewModel.password)
                                     }
                                     else{
-                                        SecureField("Your password", text: $password)
+                                        SecureField("Your password", text: loginViewModel.password)
                                     }
                                 }
                                 Button(action: {
-                                    
+                                    self.visible.toggle()
                                 }){
                                     Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
                                         .foregroundColor(Color("MainColor"))
                                 }
                             }
                             .padding()
-                            .background(RoundedRectangle(cornerRadius: 4).stroke(self.password != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                            .background(RoundedRectangle(cornerRadius: 4).stroke(loginViewModel.password != "" ? Color("MainColor") : self.color, lineWidth: 2))
                             
                             HStack{
                                 Spacer()
@@ -72,63 +70,39 @@ struct LogInView: View {
                                 Spacer()
                                 
                                 Button(action:  {
-                                    self.verify()
+                                    loginViewModel.verify()
                                 }
                                 ){
                                     Text("Login")
                                 }
-                                .sync($errorViewModel.alert, with: $alert)
                                 .padding(.horizontal, 20.0)
                                 .padding(.vertical,15)
                                 .foregroundColor(.white)
                                 .background(Color("MainColor"))
                                 .cornerRadius(15)
+                                .alert(isPresented: errorViewModel.$alert) {
+                                    Alert(
+                                        ErrorView()
+                                    )
+                                }
                                 Spacer()
-                                
                             }
 
                         }
                     }
                 }
             }
-            
-            if self.alert{
-                ErrorView()
-            }
-        }
-           
-            
-    }
-    
-    func verify(){
-        if self.email != "" && self.password != ""{
-            
-        }
-        else {
-            errorViewModel.toggleError()
         }
     }
 }
-
-
 
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
-        LogInView()
+        LogInView(errorViewModel: ErrorViewModel(), loginViewModel: LogInViewModel())
     }
 }
 
-extension View{
-    func sync(_ published: Binding<Bool>, with binding: Binding<Bool>) -> some View{
-        self
-            .onChange(of: published.wrappedValue){published in
-                binding.wrappedValue = published
-            }
-            .onChange(of: binding.wrappedValue){binding in
-                published.wrappedValue = binding
-            }
-    }
-}
+
 
 
 
