@@ -13,7 +13,10 @@ struct LogInView: View {
     @State var color = Color.white
     @State var visible = false
     @ObservedObject var errorViewModel : ErrorViewModel
-    @ObservedObject var loginViewModel : LogInViewModel
+    @StateObject var loginViewModel : LogInViewModel
+    @State private var showAlert : Bool = false
+    @State private var password : String = ""
+    @State private var email: String = ""
     
     var body: some View {
         ZStack{
@@ -31,18 +34,19 @@ struct LogInView: View {
                                 .cornerRadius(15)
                         }
                         Form{
-                            TextField("Your email", text: loginViewModel.email)
+                            TextField("Your email", text: $email)
                                 .padding()
-                                .background(RoundedRectangle(cornerRadius: 4).stroke(loginViewModel.email != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                                .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                                
                             HStack{
                                 VStack{
                                     if self.visible{
-                                        TextField("Your password", text: loginViewModel.password)
+                                           TextField("Your password", text: $password)
+                                        }
+                                        else{
+                                        SecureField("Your password", text: $password)
+                                        }
                                     }
-                                    else{
-                                        SecureField("Your password", text: loginViewModel.password)
-                                    }
-                                }
                                 Button(action: {
                                     self.visible.toggle()
                                 }){
@@ -51,26 +55,25 @@ struct LogInView: View {
                                 }
                             }
                             .padding()
-                            .background(RoundedRectangle(cornerRadius: 4).stroke(loginViewModel.password != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                            .background(RoundedRectangle(cornerRadius: 4).stroke(password != "" ? Color("MainColor") : self.color, lineWidth: 2))
                             
                             HStack{
                                 Spacer()
                                 Button (action:
-                                {
-                                    
+                                            {
+                                    loginViewModel.onNewCredential(validatePassword: password, validateEmail: email)
                                 }) {
                                     Text("Forget password?")
                                         .fontWeight(.bold)
                                         .foregroundColor(Color("MainColor"))
                                 }
-
+                                
                             }.padding(.top,10)
-                            
                             HStack{
                                 Spacer()
                                 
                                 Button(action:  {
-                                    loginViewModel.verify()
+                                    self.loginViewModel.verify()
                                 }
                                 ){
                                     Text("Login")
@@ -80,18 +83,23 @@ struct LogInView: View {
                                 .foregroundColor(.white)
                                 .background(Color("MainColor"))
                                 .cornerRadius(15)
-                                .alert(isPresented: errorViewModel.$alert) {
-                                    Alert(
-                                        ErrorView()
-                                    )
-                                }
                                 Spacer()
                             }
-
+                            
                         }
+                        
+                            
                     }
                 }
             }
+        }.onReceive(self.errorViewModel.$alert){alert in
+            print(alert)
+            showAlert = alert
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text(errorViewModel.error)
+            )
         }
     }
 }
@@ -101,6 +109,8 @@ struct LogInView_Previews: PreviewProvider {
         LogInView(errorViewModel: ErrorViewModel(), loginViewModel: LogInViewModel())
     }
 }
+        
+        
 
 
 

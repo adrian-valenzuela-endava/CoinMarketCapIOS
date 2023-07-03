@@ -19,11 +19,17 @@ class LogInViewModel: ObservableObject{
     }
     
     func verify(){
-        if self.email != "" && self.password != ""{
-            
-        }
-        else {
+        if self.email.isEmpty || self.password.isEmpty{
             errorViewModel.toggleError()
         }
+        else {
+            print("error")
+        }
+    }
+    
+    public func onNewCredential(validatePassword: String, validateEmail: String){
+        password = validatePassword
+        email = validateEmail
+        
     }
 }
