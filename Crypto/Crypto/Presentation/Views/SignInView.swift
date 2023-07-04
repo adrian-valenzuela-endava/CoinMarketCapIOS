@@ -25,7 +25,7 @@ struct SignInView: View {
                         IconView()
                             .padding()
                         HStack(alignment: .center){
-                            Text("Welcome to Crypto")
+                            Text("Sign In")
                                 .font(.title)
                                 .padding()
                                 .foregroundColor(.white)
