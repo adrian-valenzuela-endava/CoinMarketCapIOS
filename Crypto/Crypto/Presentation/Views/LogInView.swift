@@ -37,16 +37,16 @@ struct LogInView: View {
                             TextField("Your email", text: $email)
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
-                                
+                            
                             HStack{
                                 VStack{
                                     if self.visible{
-                                           TextField("Your password", text: $password)
-                                        }
-                                        else{
-                                        SecureField("Your password", text: $password)
-                                        }
+                                        TextField("Your password", text: $password)
                                     }
+                                    else{
+                                        SecureField("Your password", text: $password)
+                                    }
+                                }
                                 Button(action: {
                                     self.visible.toggle()
                                 }){
@@ -88,7 +88,7 @@ struct LogInView: View {
                             
                         }
                         
-                            
+                        
                     }
                 }
             }
@@ -109,8 +109,8 @@ struct LogInView_Previews: PreviewProvider {
         LogInView(errorViewModel: ErrorViewModel(), loginViewModel: LogInViewModel())
     }
 }
-        
-        
+
+
 
 
 
