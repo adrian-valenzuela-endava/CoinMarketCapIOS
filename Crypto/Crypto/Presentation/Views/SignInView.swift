@@ -11,7 +11,6 @@ import Combine
 struct SignInView: View {
     @State var color = Color.white
     @State var visible = false
-    @ObservedObject var errorViewModel : ErrorViewModel
     @StateObject var signInViewModel : SignInViewModel
     @State private var showAlert : Bool = false
     @State private var firstPassword : String = ""
@@ -117,13 +116,13 @@ struct SignInView: View {
                     }
                 }
             }
-        }.onReceive(self.errorViewModel.$alert){alert in
+        }.onReceive(self.signInViewModel.$alert){alert in
             print(alert)
             showAlert = alert
         }
         .alert(isPresented: $showAlert) {
             Alert(
-                title: Text(errorViewModel.error)
+                title: Text(signInViewModel.error)
             )
         }
     }
@@ -131,6 +130,6 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView(errorViewModel: ErrorViewModel(), signInViewModel: SignInViewModel())
+        SignInView(signInViewModel: SignInViewModel())
     }
 }

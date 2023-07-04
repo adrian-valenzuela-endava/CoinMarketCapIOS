@@ -10,23 +10,26 @@ import SwiftUI
 import Firebase
 
 class LogInViewModel: ObservableObject{
-    @ObservedObject var errorViewModel = ErrorViewModel()
     @ObservedObject var mainViewModel = MainViewModel(state: MainViewModelState.initialMainView)
     @Published var password: String
     @Published var email: String
     @Published var status: Bool
-    @State var logInError: String
+    @Published var error: String
+    @Published var alert: Bool
+    @Published var logInError: String
     
     init() {
         password = ""
         email = ""
         status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
+        error = ""
+        alert = false
         logInError = ""
     }
     
     func verify(){
         if self.email.isEmpty || self.password.isEmpty {
-            errorViewModel.toggleError()
+            self.alert.toggle()
         }
         else {
             Auth.auth().signIn(withEmail: email, password: password){ (response,
@@ -34,7 +37,8 @@ class LogInViewModel: ObservableObject{
                 
                 if err != nil{
                     self.logInError = err!.localizedDescription
-                    self.errorViewModel.setMessageError(newMessageError: self.logInError)
+                    self.error = "You can´t send an empty field"
+                    self.alert.toggle()
                 }
                 
                 if self.status{

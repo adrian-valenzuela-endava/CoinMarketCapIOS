@@ -10,13 +10,14 @@ import SwiftUI
 import Firebase
 
 class SignInViewModel: ObservableObject{
-    @ObservedObject var errorViewModel = ErrorViewModel()
     @ObservedObject var mainViewModel = MainViewModel(state: MainViewModelState.initialMainView)
     @Published var firstFieldPassword: String
     @Published var secondFieldPassword: String
     @Published var email: String
     @Published var status: Bool
     @State var signInError: String
+    @Published var error: String
+    @Published var alert: Bool
     
     init() {
         firstFieldPassword = ""
@@ -24,16 +25,18 @@ class SignInViewModel: ObservableObject{
         email = ""
         status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
         signInError = ""
+        error = ""
+        alert = false
     }
     
     func verify(){
         if self.email.isEmpty || self.firstFieldPassword.isEmpty || self.secondFieldPassword.isEmpty {
-            errorViewModel.setMessageError(newMessageError: "You can´t send an empty field")
-            errorViewModel.toggleError()
+            error = "You can´t send an empty field"
+            alert.toggle()
         }
         else if self.firstFieldPassword != self.secondFieldPassword {
-            errorViewModel.setMessageError(newMessageError: "The passwords are not equeals")
-            errorViewModel.toggleError()
+            error = "The passwords are not equeals"
+            alert.toggle()
         }
         
         else {
@@ -42,7 +45,7 @@ class SignInViewModel: ObservableObject{
                 
                 if err != nil{
                     self.signInError = err!.localizedDescription
-                    self.errorViewModel.setMessageError(newMessageError: self.signInError)
+                    self.error = self.signInError
                 }
                 
                 if self.status{

@@ -17,7 +17,7 @@ struct MainView: View {
         VStack {
             switch(mainViewModel.state){
             case .initialMainView:
-                LogInView(errorViewModel: ErrorViewModel(), loginViewModel: LogInViewModel())
+                LogInView(loginViewModel: LogInViewModel())
             case .mainViewHomeScreen:
                 ContentView(contentViewData: ContentViewModel(), singleViewData: SingleCoinViewModel())
             }
