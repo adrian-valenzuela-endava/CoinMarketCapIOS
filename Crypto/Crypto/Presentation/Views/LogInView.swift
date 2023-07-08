@@ -12,16 +12,32 @@ import Combine
 struct LogInView: View {
     @State var color = Color.white
     @State var visible = false
+    @EnvironmentObject var mainViewModel : MainViewModel
     @ObservedObject var loginViewModel : LogInViewModel
     @State private var showAlert : Bool = false
     @State private var password : String = ""
     @State private var email: String = ""
+    @State private var isSignInViewPresented = false
+    @State private var logInStateApprobed = false
     
     var body: some View {
         ZStack{
             ZStack(alignment: .topTrailing){
                 GeometryReader{_ in
                     VStack{
+                        HStack{
+                            Spacer()
+                            Button(action: {
+                                // Handle button action
+                                self.isSignInViewPresented.toggle()
+                            }) {
+                                Text("Register")
+                                .fontWeight(.bold)
+                                .foregroundColor(Color("MainColor"))
+                                .padding(.trailing)
+                                .padding(.top)
+                            }
+                        }
                         IconView()
                             .padding()
                         HStack(alignment: .center){
@@ -32,18 +48,22 @@ struct LogInView: View {
                                 .background(Color("MainColor"))
                                 .cornerRadius(15)
                         }
+                        HStack{
+                            Spacer()
+                            
+                        }
                         Form{
-                            TextField("Your email", text: $email)
+                            TextField("Your email", text: $loginViewModel.email)
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
                             
                             HStack{
                                 VStack{
                                     if self.visible{
-                                        TextField("Your password", text: $password)
+                                        TextField("Your password", text: $loginViewModel.password)
                                     }
                                     else{
-                                        SecureField("Your password", text: $password)
+                                        SecureField("Your password", text: $loginViewModel.password)
                                     }
                                 }
                                 Button(action: {
@@ -60,7 +80,7 @@ struct LogInView: View {
                                 Spacer()
                                 Button (action:
                                             {
-                                    loginViewModel.onNewCredential(validatePassword: password, validateEmail: email)
+
                                 }) {
                                     Text("Forget password?")
                                         .fontWeight(.bold)
@@ -84,21 +104,24 @@ struct LogInView: View {
                                 .cornerRadius(15)
                                 Spacer()
                             }
-                            
                         }
-                        
-                        
                     }
                 }
             }
         }.alert(isPresented: $showAlert) {
             Alert(
                 title: Text(loginViewModel.error)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color("MainColor"))
             )
         }
         .onReceive(self.loginViewModel.$alert){alert in
             showAlert = alert
-        }
+        }        
+        .sheet(isPresented: $isSignInViewPresented) {
+                    // Present the SignInView when isSignInViewPresented is true
+                    SignInView(signInViewModel: SignInViewModel())
+                }
     }
 }
 

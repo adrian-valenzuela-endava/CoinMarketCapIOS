@@ -9,20 +9,13 @@ import Foundation
 import SwiftUI
 
 class MainViewModel: ObservableObject{
+    @Published var logInViewModelState : Bool
     
-    @Published var state: MainViewModelState
-    
-    init(state: MainViewModelState) {
-        self.state = state
+    init() {
+        self.logInViewModelState = false
     }
     
     func logInApprobed(){
-        state = .mainViewHomeScreen
+        logInViewModelState = true
     }
-    
-}
-
-enum MainViewModelState{
-    case initialMainView
-    case mainViewHomeScreen
 }
