@@ -12,7 +12,6 @@ import Combine
 struct LogInView: View {
     @State var color = Color.white
     @State var visible = false
-    @EnvironmentObject var mainViewModel : MainViewModel
     @ObservedObject var loginViewModel : LogInViewModel
     @State private var showAlert : Bool = false
     @State private var password : String = ""
@@ -117,7 +116,7 @@ struct LogInView: View {
         }
         .onReceive(self.loginViewModel.$alert){alert in
             showAlert = alert
-        }        
+        }
         .sheet(isPresented: $isSignInViewPresented) {
                     // Present the SignInView when isSignInViewPresented is true
                     SignInView(signInViewModel: SignInViewModel())
@@ -128,6 +127,7 @@ struct LogInView: View {
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
         LogInView(loginViewModel: LogInViewModel())
+            .environmentObject(AppState())
     }
 }
 

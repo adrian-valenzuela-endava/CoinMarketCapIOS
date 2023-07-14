@@ -19,7 +19,7 @@ struct YourApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView(mainViewModel: MainViewModel())
+            ContentView(contentViewData: ContentViewModel(), singleViewData: SingleCoinViewModel())
         }
     }
 }

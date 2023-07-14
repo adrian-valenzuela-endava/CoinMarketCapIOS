@@ -13,10 +13,10 @@ struct MainView: View {
     
     var body: some View {
         VStack {
-            if logInApprobed{
-                ContentView(contentViewData: ContentViewModel(), singleViewData: SingleCoinViewModel())
-            }
-            LogInView(loginViewModel: LogInViewModel())
+            //if logInApprobed{
+            ContentView(contentViewData: ContentViewModel(), singleViewData: SingleCoinViewModel())
+            //}
+            //LogInView(loginViewModel: LogInViewModel())
             
         }.onReceive(self.mainViewModel.$logInViewModelState){state in
             logInApprobed = state

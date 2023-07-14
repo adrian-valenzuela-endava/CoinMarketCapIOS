@@ -10,22 +10,19 @@ import SwiftUI
 import Firebase
 
 class LogInViewModel: ObservableObject{
+    @EnvironmentObject var appState: AppState
     @Published var password: String
     @Published var email: String
-    @Published var logInState: Bool
     @Published var error: String
     @Published var alert: Bool
     @Published var logInError: String
-    @ObservedObject var mainModel: MainViewModel
     
     init() {
         password = ""
         email = ""
-        logInState = false
         error = ""
         alert = false
         logInError = ""
-        mainModel = MainViewModel()
     }
     
     func verify(){
@@ -49,8 +46,7 @@ class LogInViewModel: ObservableObject{
                 
                 else{
                     print("Login successfull")
-                    //self.logInState = true
-                    self.mainModel.logInApprobed()
+                    self.appState.isLoggedIn = true
                 }
                 
             }
