@@ -11,6 +11,7 @@ import FirebaseCore
 
 @main
 struct YourApp: App {
+    @StateObject private var appState = AppState()
 
     init(){
         FirebaseApp.configure()
@@ -20,6 +21,7 @@ struct YourApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(contentViewData: ContentViewModel(), singleViewData: SingleCoinViewModel())
+                .environmentObject(appState)
         }
     }
 }

@@ -76,6 +76,8 @@ struct ContentView: View {
                             }
                         }
                     }
+                    LogInView(loginViewModel: LogInViewModel())
+                                            .environmentObject(appState)
                 }
             }
             .onAppear{
@@ -83,8 +85,10 @@ struct ContentView: View {
             }
             .navigationBarTitle(Text("Dashboard"))
         }
-        LogInView(loginViewModel: LogInViewModel())
-            .environmentObject(appState)
+        else{
+            LogInView(loginViewModel: LogInViewModel())
+                .environmentObject(appState)
+        }
     }
 }
 
