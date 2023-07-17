@@ -17,14 +17,14 @@ struct SingleCoinChip: View {
 
 struct SingleCoin<T>: View{
     let item: T
-    let getIcon: ((T) -> String)
+    let getSymbol: ((T) -> String)
     let getName: ((T) -> String)
     let getPrice: ((T) -> Float)
     let getDate: ((T) -> Date)
     
     var body: some View{
         HStack{
-            Image(getIcon(item))
+            Image(getSymbol(item))
                 .resizable()
                 .frame(width: 64,height: 64)
                 .clipShape(Circle())
@@ -34,7 +34,12 @@ struct SingleCoin<T>: View{
             Text(getName(item))
             Text("$\(getPrice(item).rounded(.up))")
         }
-        .background(Color("lightGrey"))
+        .frame(width: .infinity,height: 60)
+        .padding(10)
+        .overlay(RoundedRectangle(cornerRadius: 8)
+            .stroke(Color("lightGrey"))
+        )        .background(Color("lightGrey"))
+            .cornerRadius(8)
         
     }
     
@@ -42,6 +47,6 @@ struct SingleCoin<T>: View{
 
 struct SingleCoinChip_Previews: PreviewProvider {
     static var previews: some View {
-        SingleCoin<Coin> (item: Coin( name: "Bitcoin", price: 54.384,icon: "Icon", date: formatter(date: "09/10/2023")), getIcon:{item in return item.icon} ,getName:{ item in return item.name},getPrice:{ item in return item.price}, getDate: {item in return item.date})
+        SingleCoin<Coin> (item: Coin( name: "Bitcoin", price: 54.384,symbol: "Icon", date: formatter(date: "09/10/2023")), getSymbol:{item in return item.symbol} ,getName:{ item in return item.name},getPrice:{ item in return item.price}, getDate: {item in return item.date})
     }
 }

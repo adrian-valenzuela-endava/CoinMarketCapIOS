@@ -51,7 +51,7 @@ struct ContentView: View {
                                 coin in
                                 NavigationLink(destination: SIngleCoinView(singleViewData: SingleCoinViewModel(), coinData:contentViewData.myWallet)){
                                     HStack{
-                                        Image(coin.icon)
+                                        Image(coin.symbol)
                                         Text(coin.name)
                                         Spacer()
                                         Text("$\(coin.price.rounded(.up))")
@@ -67,20 +67,16 @@ struct ContentView: View {
                                 rate in
                                 NavigationLink(destination: SIngleCoinView(singleViewData: SingleCoinViewModel(), coinData:contentViewData.rates)){
                                     HStack{
-                                        Image(rate.icon)
-                                        Text(rate.name)
-                                        Spacer()
-                                        Text("$\(rate.price.rounded(.up))")
+                                        
                                     }
                                 }
                             }
                         }
                     }
-                    LogInView(loginViewModel: LogInViewModel())
-                                            .environmentObject(appState)
                 }
             }
             .onAppear{
+                contentViewData.fetchData()
                 contentViewData.chargeAllContentViewData()
             }
             .navigationBarTitle(Text("Dashboard"))

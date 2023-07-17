@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct Coin: Hashable,Identifiable {
-    let id = UUID()
+struct Coin: Codable, Hashable {
     let name: String
     let price: Float
-    let icon: String
+    let symbol: String
     let date : Date
 }
