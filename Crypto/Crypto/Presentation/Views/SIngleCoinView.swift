@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SIngleCoinView: View {
     @ObservedObject var singleViewData: SingleCoinViewModel
-    var coinData: [Coin]
+    var coinData: [Cryptocurrency]
     
     var body: some View {
         VStack{

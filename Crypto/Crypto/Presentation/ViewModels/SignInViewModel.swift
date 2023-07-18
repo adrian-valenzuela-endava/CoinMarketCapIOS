@@ -10,7 +10,6 @@ import SwiftUI
 import Firebase
 
 class SignInViewModel: ObservableObject{
-    @ObservedObject var mainViewModel = MainViewModel()
     @Published var firstFieldPassword: String
     @Published var secondFieldPassword: String
     @Published var email: String

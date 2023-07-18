@@ -10,22 +10,19 @@ import SwiftUI
 import Firebase
 
 class LogInViewModel: ObservableObject{
+    @EnvironmentObject var appState: AppState
     @Published var password: String
     @Published var email: String
-    @Published var logInState: Bool
     @Published var error: String
     @Published var alert: Bool
     @Published var logInError: String
-    @ObservedObject var mainModel: MainViewModel
     
     init() {
         password = ""
         email = ""
-        logInState = false
         error = ""
         alert = false
         logInError = ""
-        mainModel = MainViewModel()
     }
     
     func verify(){
@@ -38,7 +35,7 @@ class LogInViewModel: ObservableObject{
             alert = true
         }
         else {
-            Auth.auth().signIn(withEmail: email, password: password){ (response,
+            Auth.auth().signIn(withEmail: email, password: password){ [self] (response,
                                                                        err) in
                 
                 if err != nil{
@@ -49,12 +46,21 @@ class LogInViewModel: ObservableObject{
                 
                 else{
                     print("Login successfull")
-                    //self.logInState = true
-                    self.mainModel.logInApprobed()
+                    appState.isLoggedIn = true
                 }
                 
             }
         }
+    }
+    
+    func formatDate(_ dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        if let date = dateFormatter.date(from: dateString) {
+            dateFormatter.dateStyle = .medium
+            return dateFormatter.string(from: date)
+        }
+        return dateString
     }
     
     public func onNewCredential(validatePassword: String, validateEmail: String){
