@@ -60,6 +60,7 @@
 		52FC97402A664C710031217C /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC973F2A664C710031217C /* Quote.swift */; };
 		52FC97422A664C990031217C /* QuoteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC97412A664C990031217C /* QuoteDetail.swift */; };
 		52FC97442A664CD40031217C /* CryptocurrencyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC97432A664CD40031217C /* CryptocurrencyResponse.swift */; };
+		52FC97462A670AEE0031217C /* LineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC97452A670AEE0031217C /* LineViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		52FC973F2A664C710031217C /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		52FC97412A664C990031217C /* QuoteDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteDetail.swift; sourceTree = "<group>"; };
 		52FC97432A664CD40031217C /* CryptocurrencyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptocurrencyResponse.swift; sourceTree = "<group>"; };
+		52FC97452A670AEE0031217C /* LineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 				52D6B2082A5496F50006DDAD /* SignInViewModel.swift */,
 				52CDD6302A61981200FE1FCF /* AppState.swift */,
 				52FC97332A6624920031217C /* CoinListViewModel.swift */,
+				52FC97452A670AEE0031217C /* LineViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				52FC97442A664CD40031217C /* CryptocurrencyResponse.swift in Sources */,
 				52C2BB542A1EBBBB005E3F99 /* CryptoApp.swift in Sources */,
 				52E3AE542A2A78C500213BF1 /* LineView.swift in Sources */,
+				52FC97462A670AEE0031217C /* LineViewModel.swift in Sources */,
 				52E328062A40A4EF006F8146 /* ErrorView.swift in Sources */,
 				52FC97322A6624670031217C /* CoinListView.swift in Sources */,
 				52FC97422A664C990031217C /* QuoteDetail.swift in Sources */,

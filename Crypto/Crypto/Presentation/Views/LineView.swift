@@ -10,25 +10,27 @@ import Charts
 import Foundation
 
 struct LineView: View {
-    var historyCryptoAmount: [Amount] = []
+    @ObservedObject var lineViewModel = LineViewModel()
+    @State var historyCryptoAmount: [Amount]
 
     var body: some View {
         GeometryReader{
             reader in
             VStack{
-                Chart(historyCryptoAmount){coin in
+                Chart(lineViewModel.coinAmount){coin in
                     LineMark(x: .value("Date", coin.date),
                              y: .value("Price", coin.amount)
                     ).foregroundStyle(.red)
                 }.frame(width: reader.size.width,height: 200)
             }
+        }.onAppear{
+            lineViewModel.chargeCoinAmount(coin: historyCryptoAmount)
         }
-        
     }
 }
 
 struct LineView_Previews: PreviewProvider {
     static var previews: some View {
-        LineView()
+        LineView(historyCryptoAmount: [Amount(date: Date(), amount: 0.0)])
     }
 }
