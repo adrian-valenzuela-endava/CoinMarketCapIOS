@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class AppState: ObservableObject{
-    @Published var isLoggedIn = false
+    @Published var isLoggedIn = true
     
 }
 

@@ -7,28 +7,17 @@
 
 import SwiftUI
 
-func formatter(date: String) -> Date{
-    let formatter = DateFormatter()
-    formatter.dateFormat = "dd-MM-yyyy"
-    let newDate: Date = formatter.date(from: date)!
-    return newDate
-}
-
 
 struct ContentView: View {
     
-    @ObservedObject var contentViewData: ContentViewModel
-    @ObservedObject var singleViewData: SingleCoinViewModel
+    @ObservedObject var contentViewData = ContentViewModel()
     @EnvironmentObject var appState: AppState
-    
     @State var is360 = false
     
     var body: some View {
         if appState.isLoggedIn {
             NavigationView{
-                
                 VStack(){
-                    
                     Button(action: {
                         self.is360.toggle()
                     }){
@@ -36,48 +25,11 @@ struct ContentView: View {
                             .rotation3DEffect(.degrees(is360 ? 360 : 0), axis: (x: 0, y: 1, z: 1))
                             .animation(.easeIn, value: 0.7)
                     }
-                    SIngleCoinView(singleViewData: SingleCoinViewModel(), coinData: singleViewData.coinValues )
-                    
-                    
-                    Text("Your crypto balance")
                         .padding(.top,50)
-                    Text(contentViewData.total)
-                        .font(.largeTitle)
-                        .fontWeight(.heavy)
                     
-                    List(){
-                        Section(header: Text("MY WALLET")){
-                            ForEach(contentViewData.myWallet, id:\.self ) {
-                                coin in
-                                NavigationLink(destination: SIngleCoinView(singleViewData: SingleCoinViewModel(), coinData:contentViewData.myWallet)){
-                                    HStack{
-                                        Image(coin.symbol)
-                                        Text(coin.name)
-                                        Spacer()
-                                        Text("$\(coin.price.rounded(.up))")
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    
-                    List(){
-                        Section(header: Text("Current Prices")){
-                            ForEach(contentViewData.rates, id: \.self){
-                                rate in
-                                NavigationLink(destination: SIngleCoinView(singleViewData: SingleCoinViewModel(), coinData:contentViewData.rates)){
-                                    HStack{
-                                        
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    CoinListView()
                 }
-            }
-            .onAppear{
-                contentViewData.fetchData()
-                contentViewData.chargeAllContentViewData()
+            
             }
             .navigationBarTitle(Text("Dashboard"))
         }
@@ -90,7 +42,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(contentViewData: ContentViewModel(), singleViewData: SingleCoinViewModel())
+        ContentView()
             .environmentObject(AppState())
     }
 }

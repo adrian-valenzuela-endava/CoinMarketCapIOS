@@ -35,7 +35,7 @@ class LogInViewModel: ObservableObject{
             alert = true
         }
         else {
-            Auth.auth().signIn(withEmail: email, password: password){ (response,
+            Auth.auth().signIn(withEmail: email, password: password){ [self] (response,
                                                                        err) in
                 
                 if err != nil{
@@ -46,11 +46,21 @@ class LogInViewModel: ObservableObject{
                 
                 else{
                     print("Login successfull")
-                    self.appState.isLoggedIn = true
+                    appState.isLoggedIn = true
                 }
                 
             }
         }
+    }
+    
+    func formatDate(_ dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        if let date = dateFormatter.date(from: dateString) {
+            dateFormatter.dateStyle = .medium
+            return dateFormatter.string(from: date)
+        }
+        return dateString
     }
     
     public func onNewCredential(validatePassword: String, validateEmail: String){
