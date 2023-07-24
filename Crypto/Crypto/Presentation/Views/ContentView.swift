@@ -9,8 +9,7 @@ import SwiftUI
 
 
 struct ContentView: View {
-    
-    @ObservedObject var contentViewData = ContentViewModel()
+
     @EnvironmentObject var appState: AppState
     @State var is360 = false
     
@@ -28,6 +27,7 @@ struct ContentView: View {
                         .padding(.top,50)
                     
                     CoinListView()
+                    Spacer()
                 }
             
             }
