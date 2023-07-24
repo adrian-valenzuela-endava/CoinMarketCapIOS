@@ -10,17 +10,19 @@ import Foundation
 class SingleCoinViewModel: ObservableObject{
     
     @Published var coinValues: Cryptocurrency
-    @Published var myWallet: [Cryptocurrency]
     @Published var singleCoinValues: [Amount]
+    @Published var prices: [Double]
+    @Published var rate: Int
     
     init() {
         coinValues = Cryptocurrency(id: 0, name: "", symbol: "", slug: "", quote: Quote(USD: QuoteDetail(price: 0, volume_24h: 0, volume_change_24h: 0, percent_change_1h: 0, percent_change_24h: 0, percent_change_7d: 0, market_cap: 0, market_cap_dominance: 0, fully_diluted_market_cap: 0, last_updated: "")))
-        myWallet = []
         singleCoinValues = []
+        prices = []
+        rate = 0
     }
     
     private func getListOfAmounts(){
-        var amounts : [Amount] = []
+        var amounts: [Amount] = []
         let yesterdayAmount = Amount(date: yesterDay(), amount: priceDifference(cryptoCurrency: coinValues))
         amounts.append(yesterdayAmount)
         amounts.append(Amount(date: today(), amount: coinValues.quote.USD.price))
@@ -29,7 +31,11 @@ class SingleCoinViewModel: ObservableObject{
     
     func chargeCoinData(cryptocurrency: Cryptocurrency){
         coinValues = cryptocurrency
-        getListOfAmounts()
+        var priceList: [Double] = []
+        priceList.append(Double(coinValues.quote.USD.price))
+        priceList.append(Double(priceDifference(cryptoCurrency: coinValues)))
+        prices = priceList
+        rate = Int(coinValues.quote.USD.percent_change_24h)
     }
     
     func priceDifference(cryptoCurrency: Cryptocurrency) -> Double{

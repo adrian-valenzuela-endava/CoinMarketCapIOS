@@ -13,7 +13,7 @@ struct CoinListView: View {
     var body: some View {
         NavigationView {
             List(coinListViewModel.cryptocurrencies, id: \.id) { cryptocurrency in
-                NavigationLink(destination: SIngleCoinView( coinData: cryptocurrency)) {
+                NavigationLink(destination: SIngleCoinView( coinData: cryptocurrency, prices: [])) {
                     HStack{
                         Image(cryptocurrency.symbol)
                             .resizable()
@@ -28,7 +28,7 @@ struct CoinListView: View {
                                 .foregroundColor(.secondary)
                         }
                         Spacer()
-                        Text("USD Price: \(cryptocurrency.quote.USD.price, specifier: "%.2f")")
+                        Text("USD Price: \(cryptocurrency.quote.USD.price, specifier: "%.1f")")
                     }
                 }
             }
@@ -36,7 +36,6 @@ struct CoinListView: View {
         }
         .onAppear {
             coinListViewModel.fetchCryptocurrencyData()
-            
         }
     }
 }
