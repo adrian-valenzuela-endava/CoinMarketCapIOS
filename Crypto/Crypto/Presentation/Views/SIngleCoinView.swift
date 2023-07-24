@@ -29,7 +29,6 @@ struct SIngleCoinView: View {
             .padding(.bottom, -200)
             LineChartView(data: prices, title: "Last 24hs", legend: coinData.name, style: ChartStyle(backgroundColor: Color("MainView"), accentColor: Color.blue, secondGradientColor: .red, textColor: Color("MainView"), legendTextColor: Color.green, dropShadowColor:.yellow), form: ChartForm.extraLarge, rateValue: singleViewData.rate, dropShadow: false)
                 .padding(.bottom,300.0)
-                .chartXAxisLabel("Price")
         }
         .onAppear{
             singleViewData.chargeCoinData(cryptocurrency: coinData)
