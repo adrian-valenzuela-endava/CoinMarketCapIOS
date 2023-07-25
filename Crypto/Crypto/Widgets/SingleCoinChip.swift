@@ -15,18 +15,18 @@ struct SingleCoinChip: View {
     }
 }
 
-struct SingleCoin<T>: View{
+struct SingleCoin<T>: View {
     let item: T
     let getName: ((T) -> String)
     let getSymbol: ((T) -> String)
-    let getSlug: String
-    let getPrice: Float
-    
-    var body: some View{
-        HStack{
+    let getSlug: ((T) -> String)
+    let getQuote: ((T) -> Quote)
+
+    var body: some View {
+        HStack {
             Image(getSymbol(item))
                 .resizable()
-                .frame(width: 64,height: 64)
+                .frame(width: 64, height: 64)
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 1))
                 .shadow(radius: 10)
@@ -36,18 +36,17 @@ struct SingleCoin<T>: View{
                 Text(getSymbol(item))
                     .foregroundColor(.secondary)
             }
+            
             Spacer()
-            //Text("USD Price: \(getPrice(item), specifier: "%.2f")")
+            
+            Text("USD Price: \(getQuote(item).USD.price, specifier: "%.1f")")
         }
-        .frame(width: .infinity,height: 60)
+        .frame(width: .infinity, height: 60)
         .padding(10)
         .overlay(RoundedRectangle(cornerRadius: 8)
             .stroke(Color("lightGrey"))
-        )        .background(Color("lightGrey"))
-            .cornerRadius(8)
-        
+        )
+        .background(Color("lightGrey"))
+        .cornerRadius(8)
     }
-    
 }
-
-

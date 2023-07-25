@@ -15,20 +15,13 @@ struct CoinListView: View {
             List(coinListViewModel.cryptocurrencies, id: \.id) { cryptocurrency in
                 NavigationLink(destination: SIngleCoinView( coinData: cryptocurrency, prices: [])) {
                     HStack{
-                        Image(cryptocurrency.symbol)
-                            .resizable()
-                            .frame(width: 64,height: 64)
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color.white, lineWidth: 1))
-                            .shadow(radius: 10)
-                        VStack(alignment: .leading) {
-                            Text(cryptocurrency.name)
-                                .font(.headline)
-                            Text(cryptocurrency.symbol)
-                                .foregroundColor(.secondary)
-                        }
-                        Spacer()
-                        Text("USD Price: \(cryptocurrency.quote.USD.price, specifier: "%.1f")")
+                        SingleCoin<Cryptocurrency>(
+                            item: cryptocurrency,
+                            getName: { item in item.name }, // Corrected closure syntax
+                            getSymbol: { item in item.symbol },
+                            getSlug: { item in item.slug },
+                            getQuote: { item in item.quote }
+                        )
                     }
                 }
             }
