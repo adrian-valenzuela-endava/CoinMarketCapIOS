@@ -10,6 +10,6 @@ import Foundation
 struct Amount: Hashable,Identifiable {
     let id = UUID()
     let date : Date
-    let amount : Float
+    let amount : Double
 }
 

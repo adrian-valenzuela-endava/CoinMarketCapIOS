@@ -1,23 +1,22 @@
 //
-//  LogInView.swift
+//  SignInView.swift
 //  Crypto
 //
-//  Created by Orlando Nicolas Marchioli on 14/06/2023.
+//  Created by Orlando Nicolas Marchioli on 04/07/2023.
 //
 
 import SwiftUI
 import Combine
 
-
-struct LogInView: View {
+struct SignInView: View {
     @State var color = Color.white
     @State var visible = false
-    @ObservedObject var loginViewModel : LogInViewModel
+    @StateObject var signInViewModel : SignInViewModel
     @State private var showAlert : Bool = false
-    @State private var password : String = ""
+    @State private var firstPassword : String = ""
+    @State private var secondPassword : String = ""
     @State private var email: String = ""
-    @State private var isSignInViewPresented = false
-    @State private var logInStateApprobed = false
+    @State private var isLogInViewPresented = false
     
     var body: some View {
         ZStack{
@@ -25,44 +24,40 @@ struct LogInView: View {
                 GeometryReader{_ in
                     VStack{
                         HStack{
-                            Spacer()
                             Button(action: {
-                                // Handle button action
-                                self.isSignInViewPresented.toggle()
+                                self.isLogInViewPresented.toggle()
                             }) {
-                                Text("Register")
+                                Text("back")
                                 .fontWeight(.bold)
                                 .foregroundColor(Color("MainColor"))
-                                .padding(.trailing)
                                 .padding(.top)
+                                .padding(.leading)
                             }
+                            Spacer()
                         }
                         IconView()
                             .padding()
                         HStack(alignment: .center){
-                            Text("Welcome to Crypto")
+                            Text("Please enter your email and password")
                                 .font(.title)
+                                .fontWeight(.bold)
+                                .multilineTextAlignment(.center)
                                 .padding()
                                 .foregroundColor(.white)
                                 .background(Color("MainColor"))
                                 .cornerRadius(15)
                         }
-                        HStack{
-                            Spacer()
-                            
-                        }
                         Form{
-                            TextField("Your email", text: $loginViewModel.email)
+                            TextField("Your email", text: $signInViewModel.email)
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
-                            
                             HStack{
                                 VStack{
                                     if self.visible{
-                                        TextField("Your password", text: $loginViewModel.password)
+                                        TextField("Your password", text: $signInViewModel.firstFieldPassword)
                                     }
                                     else{
-                                        SecureField("Your password", text: $loginViewModel.password)
+                                        SecureField("Your password", text: $signInViewModel.firstFieldPassword)
                                     }
                                 }
                                 Button(action: {
@@ -73,28 +68,34 @@ struct LogInView: View {
                                 }
                             }
                             .padding()
-                            .background(RoundedRectangle(cornerRadius: 4).stroke(password != "" ? Color("MainColor") : self.color, lineWidth: 2))
-                            
+                            .background(RoundedRectangle(cornerRadius: 4).stroke(firstPassword != "" ? Color("MainColor") : self.color, lineWidth: 2))
                             HStack{
-                                Spacer()
-                                Button (action:
-                                            {
-
-                                }) {
-                                    Text("Forget password?")
-                                        .fontWeight(.bold)
+                                VStack{
+                                    if self.visible{
+                                        TextField("Repeat your password", text: $signInViewModel.secondFieldPassword)
+                                    }
+                                    else{
+                                        SecureField("Repeat your password", text: $signInViewModel.secondFieldPassword)
+                                    }
+                                }
+                                Button(action: {
+                                    self.visible.toggle()
+                                }){
+                                    Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
                                         .foregroundColor(Color("MainColor"))
                                 }
-                                
-                            }.padding(.top,10)
+                            }
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 4).stroke(secondPassword != "" ? Color("MainColor") : self.color, lineWidth: 2))
                             HStack{
                                 Spacer()
                                 
                                 Button(action:  {
-                                    self.loginViewModel.verify()
+                                    self.signInViewModel.verify()
                                 }
                                 ){
-                                    Text("Login")
+                                    Text("Sign In")
+                                    .fontWeight(.bold)
                                 }
                                 .padding(.horizontal, 20.0)
                                 .padding(.vertical,15)
@@ -103,37 +104,29 @@ struct LogInView: View {
                                 .cornerRadius(15)
                                 Spacer()
                             }
+                            
                         }
+                        
                     }
                 }
             }
-        }.alert(isPresented: $showAlert) {
-            Alert(
-                title: Text(loginViewModel.error)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color("MainColor"))
-            )
-        }
-        .onReceive(self.loginViewModel.$alert){alert in
+        }.onReceive(self.signInViewModel.$alert){alert in
+            print(alert)
             showAlert = alert
         }
-        .sheet(isPresented: $isSignInViewPresented) {
-                    // Present the SignInView when isSignInViewPresented is true
-                    SignInView(signInViewModel: SignInViewModel())
-                }
+        .sheet(isPresented: $isLogInViewPresented) {
+            LogInView(loginViewModel: LogInViewModel())
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text(signInViewModel.error)
+            )
+        }
     }
 }
 
-struct LogInView_Previews: PreviewProvider {
+struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        LogInView(loginViewModel: LogInViewModel())
-            .environmentObject(AppState())
+        SignInView(signInViewModel: SignInViewModel())
     }
 }
-
-
-
-
-
-
-

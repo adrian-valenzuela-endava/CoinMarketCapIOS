@@ -9,22 +9,23 @@ import SwiftUI
 
 struct MainView: View {
     @ObservedObject var mainViewModel: MainViewModel
-    @ObservedObject var logInViewModel: LogInViewModel
+    @State var logInApprobed: Bool = false
     
     var body: some View {
         VStack {
-            switch(mainViewModel.state){
-            case .initialMainView:
-                LogInView(errorViewModel: ErrorViewModel(), loginViewModel: LogInViewModel())
-            case .mainViewHomeScreen:
-                MainView(mainViewModel: MainViewModel(state: .mainViewHomeScreen), logInViewModel: LogInViewModel())
-            }
+            //if logInApprobed{
+            ContentView(contentViewData: ContentViewModel(), singleViewData: SingleCoinViewModel())
+            //}
+            //LogInView(loginViewModel: LogInViewModel())
+            
+        }.onReceive(self.mainViewModel.$logInViewModelState){state in
+            logInApprobed = state
         }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(mainViewModel: MainViewModel(state: .initialMainView), logInViewModel: LogInViewModel())
+        MainView(mainViewModel: MainViewModel())
     }
 }
