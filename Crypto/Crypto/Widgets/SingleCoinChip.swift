@@ -41,7 +41,7 @@ struct SingleCoin<T>: View {
             
             Text("USD Price: \(getQuote(item).USD.price, specifier: "%.1f")")
         }
-        .frame(width: .infinity, height: 60)
+        .frame( height: 60)
         .padding(10)
         .overlay(RoundedRectangle(cornerRadius: 8)
             .stroke(Color("lightGrey"))
