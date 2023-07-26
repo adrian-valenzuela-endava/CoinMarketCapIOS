@@ -43,6 +43,9 @@
 		52D6B2072A5492350006DDAD /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6B2062A5492350006DDAD /* SignInView.swift */; };
 		52D6B2092A5496F50006DDAD /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6B2082A5496F50006DDAD /* SignInViewModel.swift */; };
 		52D6B20B2A54A12D0006DDAD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52D6B20A2A54A12D0006DDAD /* GoogleService-Info.plist */; };
+		52E1D5552A7167CC0084A825 /* RatePercentajeChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E1D5542A7167CC0084A825 /* RatePercentajeChip.swift */; };
+		52E1D5572A71687F0084A825 /* Colours.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E1D5562A71687F0084A825 /* Colours.xcassets */; };
+		52E1D5592A7168A60084A825 /* RateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E1D5582A7168A60084A825 /* RateData.swift */; };
 		52E328062A40A4EF006F8146 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E328052A40A4EF006F8146 /* ErrorView.swift */; };
 		52E328082A40A60B006F8146 /* ErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E328072A40A60B006F8146 /* ErrorViewModel.swift */; };
 		52E3AE502A2960EE00213BF1 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3AE4F2A2960EE00213BF1 /* IconView.swift */; };
@@ -72,6 +75,9 @@
 		52D6B2062A5492350006DDAD /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		52D6B2082A5496F50006DDAD /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		52D6B20A2A54A12D0006DDAD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		52E1D5542A7167CC0084A825 /* RatePercentajeChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatePercentajeChip.swift; sourceTree = "<group>"; };
+		52E1D5562A71687F0084A825 /* Colours.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colours.xcassets; path = ../../../CryptoChallenge/CriptoCurrencyChallnge/CryptoService/Assets/Colours.xcassets; sourceTree = "<group>"; };
+		52E1D5582A7168A60084A825 /* RateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateData.swift; sourceTree = "<group>"; };
 		52E328052A40A4EF006F8146 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		52E328072A40A60B006F8146 /* ErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewModel.swift; sourceTree = "<group>"; };
 		52E3AE4F2A2960EE00213BF1 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
@@ -147,6 +153,7 @@
 		52C2BB522A1EBBBB005E3F99 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
+				52E1D5562A71687F0084A825 /* Colours.xcassets */,
 				52CDD62D2A5DD14D00FE1FCF /* Widgets */,
 				52D6B20A2A54A12D0006DDAD /* GoogleService-Info.plist */,
 				52D6B1C22A4F2BE30006DDAD /* Presentation */,
@@ -169,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				52CDD62E2A5DD17C00FE1FCF /* SingleCoinChip.swift */,
+				52E1D5542A7167CC0084A825 /* RatePercentajeChip.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -200,6 +208,7 @@
 				52FC973F2A664C710031217C /* Quote.swift */,
 				52FC97412A664C990031217C /* QuoteDetail.swift */,
 				52FC97432A664CD40031217C /* CryptocurrencyResponse.swift */,
+				52E1D5582A7168A60084A825 /* RateData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -326,6 +335,7 @@
 				52C2BB5B2A1EBBBD005E3F99 /* Preview Assets.xcassets in Resources */,
 				52C2BB582A1EBBBD005E3F99 /* Assets.xcassets in Resources */,
 				52D6B20B2A54A12D0006DDAD /* GoogleService-Info.plist in Resources */,
+				52E1D5572A71687F0084A825 /* Colours.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +353,7 @@
 				52C2BB562A1EBBBB005E3F99 /* ContentView.swift in Sources */,
 				52CDD62F2A5DD17C00FE1FCF /* SingleCoinChip.swift in Sources */,
 				52FC97402A664C710031217C /* Quote.swift in Sources */,
+				52E1D5592A7168A60084A825 /* RateData.swift in Sources */,
 				52FC973E2A664C3E0031217C /* Platform.swift in Sources */,
 				52CDD6312A61981200FE1FCF /* AppState.swift in Sources */,
 				52E3AE622A37DCA200213BF1 /* SingleCoinViewModel.swift in Sources */,
@@ -350,6 +361,7 @@
 				52E3AE502A2960EE00213BF1 /* IconView.swift in Sources */,
 				52E328082A40A60B006F8146 /* ErrorViewModel.swift in Sources */,
 				52D6B2092A5496F50006DDAD /* SignInViewModel.swift in Sources */,
+				52E1D5552A7167CC0084A825 /* RatePercentajeChip.swift in Sources */,
 				52FC97442A664CD40031217C /* CryptocurrencyResponse.swift in Sources */,
 				52C2BB542A1EBBBB005E3F99 /* CryptoApp.swift in Sources */,
 				52E328062A40A4EF006F8146 /* ErrorView.swift in Sources */,

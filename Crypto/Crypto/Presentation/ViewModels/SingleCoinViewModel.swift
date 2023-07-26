@@ -11,14 +11,14 @@ class SingleCoinViewModel: ObservableObject{
     
     @Published var coinValues: Cryptocurrency
     @Published var singleCoinValues: [Amount]
+    @Published  var rateData: RateData
     @Published var prices: [Double]
-    @Published var rate: Int
     
     init() {
         coinValues = Cryptocurrency(id: 0, name: "", symbol: "", slug: "", quote: Quote(USD: QuoteDetail(price: 0, volume_24h: 0, volume_change_24h: 0, percent_change_1h: 0, percent_change_24h: 0, percent_change_7d: 0, market_cap: 0, market_cap_dominance: 0, fully_diluted_market_cap: 0, last_updated: "")))
         singleCoinValues = []
         prices = []
-        rate = 0
+        rateData = RateData(image: "", rate: 0.0, backgroundColor: "")
     }
     
     private func getListOfAmounts(){
@@ -35,7 +35,12 @@ class SingleCoinViewModel: ObservableObject{
         priceList.append(Double(coinValues.quote.USD.price))
         priceList.append(Double(priceDifference(cryptoCurrency: coinValues)))
         prices = priceList
-        rate = Int(coinValues.quote.USD.percent_change_24h)
+        if coinValues.quote.USD.percent_change_24h > 0{
+            rateData = RateData(image: "arrow.up.right", rate: coinValues.quote.USD.percent_change_24h, backgroundColor: "PositiveRateBackgroundColor")
+        }
+        else if coinValues.quote.USD.percent_change_24h < 0{
+            rateData = RateData(image: "arrow.down.right", rate: coinValues.quote.USD.percent_change_24h, backgroundColor: "NegativeRateBackgroundColor")
+        }
     }
     
     func priceDifference(cryptoCurrency: Cryptocurrency) -> Double{
