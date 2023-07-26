@@ -10,7 +10,7 @@ import SwiftUI
 import Firebase
 
 class LogInViewModel: ObservableObject{
-    @EnvironmentObject var appState: AppState
+    @Published var appStateLogIn: Bool
     @Published var password: String
     @Published var email: String
     @Published var error: String
@@ -18,6 +18,7 @@ class LogInViewModel: ObservableObject{
     @Published var logInError: String
     
     init() {
+        appStateLogIn = false
         password = ""
         email = ""
         error = ""
@@ -46,7 +47,7 @@ class LogInViewModel: ObservableObject{
                 
                 else{
                     print("Login successfull")
-                    appState.isLoggedIn = true
+                    appStateLogIn = true
                 }
                 
             }

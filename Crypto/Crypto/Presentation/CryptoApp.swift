@@ -20,9 +20,9 @@ struct YourApp: App {
     
     var body: some Scene {
         WindowGroup {
+            
             ContentView()
                 .environmentObject(appState)
-            //TestViewView()
         }
     }
 }

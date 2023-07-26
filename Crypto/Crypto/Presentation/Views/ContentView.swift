@@ -25,7 +25,6 @@ struct ContentView: View {
                             .animation(.easeIn, value: 0.7)
                     }
                         .padding(.top,50)
-                    
                     CoinListView()
                     Spacer()
                 }
@@ -34,8 +33,7 @@ struct ContentView: View {
             .navigationBarTitle(Text("Dashboard"))
         }
         else{
-            LogInView(loginViewModel: LogInViewModel())
-                .environmentObject(appState)
+            LogInView()
         }
     }
 }
