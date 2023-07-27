@@ -25,6 +25,7 @@ struct ContentView: View {
                             .animation(.easeIn, value: 0.7)
                     }
                         .padding(.top,50)
+                    
                     CoinListView()
                     Spacer()
                 }
@@ -34,6 +35,7 @@ struct ContentView: View {
         }
         else{
             LogInView()
+                .environmentObject(appState)
         }
     }
 }
@@ -41,6 +43,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(AppState())
+            .environmentObject(AppState(isLoggedIn: false))
     }
 }

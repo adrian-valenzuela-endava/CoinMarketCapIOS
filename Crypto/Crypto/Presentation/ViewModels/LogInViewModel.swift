@@ -10,6 +10,7 @@ import SwiftUI
 import Firebase
 
 class LogInViewModel: ObservableObject{
+    @Published var appState: AppState
     @Published var appStateLogIn: Bool
     @Published var password: String
     @Published var email: String
@@ -19,6 +20,7 @@ class LogInViewModel: ObservableObject{
     
     init() {
         appStateLogIn = false
+        appState = AppState(isLoggedIn: false)
         password = ""
         email = ""
         error = ""
@@ -47,11 +49,15 @@ class LogInViewModel: ObservableObject{
                 
                 else{
                     print("Login successfull")
-                    appStateLogIn = true
+                    appState.isLoggedIn = true
                 }
                 
             }
         }
+    }
+    
+    func chargeLogInAppState(appState: Bool){
+        appStateLogIn = appState
     }
     
     func formatDate(_ dateString: String) -> String {

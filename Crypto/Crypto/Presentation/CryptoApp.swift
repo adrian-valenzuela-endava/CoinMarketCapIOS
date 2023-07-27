@@ -11,7 +11,7 @@ import FirebaseCore
 
 @main
 struct YourApp: App {
-    @StateObject var appState: AppState = AppState()
+    @StateObject var appState: AppState = AppState(isLoggedIn: Bool())
 
     init(){
         FirebaseApp.configure()

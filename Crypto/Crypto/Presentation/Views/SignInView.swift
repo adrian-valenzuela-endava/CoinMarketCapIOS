@@ -115,7 +115,7 @@ struct SignInView: View {
             showAlert = alert
         }
         .sheet(isPresented: $isLogInViewPresented) {
-            LogInView(loginViewModel: LogInViewModel())
+            LogInView()
         }
         .alert(isPresented: $showAlert) {
             Alert(

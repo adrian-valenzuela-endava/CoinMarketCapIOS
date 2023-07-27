@@ -10,7 +10,7 @@ import Combine
 
 
 struct LogInView: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var appState : AppState
     @State var color = Color.white
     @State var visible = false
     @ObservedObject var loginViewModel = LogInViewModel()
@@ -28,7 +28,6 @@ struct LogInView: View {
                         HStack{
                             Spacer()
                             Button(action: {
-                                // Handle button action
                                 self.isSignInViewPresented.toggle()
                             }) {
                                 Text("Register")
@@ -118,11 +117,10 @@ struct LogInView: View {
         .onReceive(self.loginViewModel.$alert){alert in
             showAlert = alert
         }
-        .onReceive(self.loginViewModel.$appStateLogIn){state in
-            appState.isLoggedIn = state
+        .onAppear(){
+            self.loginViewModel.chargeLogInAppState(appState: appState.isLoggedIn)
         }
         .sheet(isPresented: $isSignInViewPresented) {
-                    // Present the SignInView when isSignInViewPresented is true
                     SignInView(signInViewModel: SignInViewModel())
                 }
     }
@@ -131,7 +129,7 @@ struct LogInView: View {
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
         LogInView()
-            .environmentObject(AppState())
+            .environmentObject(AppState(isLoggedIn: false))
     }
 }
 

@@ -17,7 +17,7 @@ struct CoinListView: View {
                     HStack{
                         SingleCoin<Cryptocurrency>(
                             item: cryptocurrency,
-                            getName: { item in item.name }, // Corrected closure syntax
+                            getName: { item in item.name },
                             getSymbol: { item in item.symbol },
                             getSlug: { item in item.slug },
                             getQuote: { item in item.quote }
