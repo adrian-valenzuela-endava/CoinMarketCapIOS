@@ -11,7 +11,8 @@ import FirebaseCore
 
 @main
 struct YourApp: App {
-    @StateObject var appState: AppState = AppState(isLoggedIn: Bool())
+    @StateObject var contentViewModel = CoinListViewModel()
+    @StateObject var loginViewModel = LogInViewModel()
 
     init(){
         FirebaseApp.configure()
@@ -21,8 +22,13 @@ struct YourApp: App {
     var body: some Scene {
         WindowGroup {
             
-            ContentView()
-                .environmentObject(appState)
+            if loginViewModel.isLoggedInogIn{
+                ContentView()
+                    .environmentObject(contentViewModel)
+            }else {
+                LogInView()
+                    .environmentObject(loginViewModel)
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ import Firebase
 
 class LogInViewModel: ObservableObject{
     @Published var appState: AppState
-    @Published var appStateLogIn: Bool
+    @Published var isLoggedInogIn: Bool
     @Published var password: String
     @Published var email: String
     @Published var error: String
@@ -19,8 +19,8 @@ class LogInViewModel: ObservableObject{
     @Published var logInError: String
     
     init() {
-        appStateLogIn = false
-        appState = AppState(isLoggedIn: false)
+        isLoggedInogIn = false
+        appState = AppState()
         password = ""
         email = ""
         error = ""
@@ -49,15 +49,11 @@ class LogInViewModel: ObservableObject{
                 
                 else{
                     print("Login successfull")
-                    appState.isLoggedIn = true
+                    isLoggedInogIn = true
                 }
                 
             }
         }
-    }
-    
-    func chargeLogInAppState(appState: Bool){
-        appStateLogIn = appState
     }
     
     func formatDate(_ dateString: String) -> String {

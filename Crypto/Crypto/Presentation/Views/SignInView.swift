@@ -9,9 +9,9 @@ import SwiftUI
 import Combine
 
 struct SignInView: View {
+    @StateObject var signInViewModel : SignInViewModel
     @State var color = Color.white
     @State var visible = false
-    @StateObject var signInViewModel : SignInViewModel
     @State private var showAlert : Bool = false
     @State private var firstPassword : String = ""
     @State private var secondPassword : String = ""

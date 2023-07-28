@@ -9,10 +9,6 @@ import Foundation
 import SwiftUI
 
 class AppState: ObservableObject{
-    @Published var isLoggedIn: Bool
-    
-    init(isLoggedIn: Bool) {
-        self.isLoggedIn = false
-    }
+    @Published var isLoggedIn = false
 }
 
