@@ -2,13 +2,11 @@
 //  ContentViewModel.swift
 //  Crypto
 //
-//  Created by Orlando Nicolas Marchioli on 08/06/2023.
+//  Created by Orlando Nicolas Marchioli on 28/07/2023.
 //
+
 import Foundation
-import SwiftUI
 
-class ContentViewModel: ObservableObject {
+class ContentViewModel: ObservableObject{
     
-
 }
-

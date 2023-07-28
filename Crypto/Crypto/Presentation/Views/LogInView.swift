@@ -10,14 +10,13 @@ import Combine
 
 
 struct LogInView: View {
+    @EnvironmentObject var loginViewModel: LogInViewModel
     @State var color = Color.white
     @State var visible = false
-    @ObservedObject var loginViewModel : LogInViewModel
     @State private var showAlert : Bool = false
     @State private var password : String = ""
     @State private var email: String = ""
     @State private var isSignInViewPresented = false
-    @State private var logInStateApprobed = false
     
     var body: some View {
         ZStack{
@@ -27,14 +26,13 @@ struct LogInView: View {
                         HStack{
                             Spacer()
                             Button(action: {
-                                // Handle button action
                                 self.isSignInViewPresented.toggle()
                             }) {
                                 Text("Register")
-                                .fontWeight(.bold)
-                                .foregroundColor(Color("MainColor"))
-                                .padding(.trailing)
-                                .padding(.top)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color("MainColor"))
+                                    .padding(.trailing)
+                                    .padding(.top)
                             }
                         }
                         IconView()
@@ -79,7 +77,7 @@ struct LogInView: View {
                                 Spacer()
                                 Button (action:
                                             {
-
+                                    
                                 }) {
                                     Text("Forget password?")
                                         .fontWeight(.bold)
@@ -118,15 +116,14 @@ struct LogInView: View {
             showAlert = alert
         }
         .sheet(isPresented: $isSignInViewPresented) {
-                    // Present the SignInView when isSignInViewPresented is true
-                    SignInView(signInViewModel: SignInViewModel())
-                }
+            SignInView(signInViewModel: SignInViewModel())
+        }
     }
 }
 
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
-        LogInView(loginViewModel: LogInViewModel())
+        LogInView()
             .environmentObject(AppState())
     }
 }
