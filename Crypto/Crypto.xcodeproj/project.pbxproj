@@ -48,6 +48,8 @@
 		52E1D5592A7168A60084A825 /* RateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E1D5582A7168A60084A825 /* RateData.swift */; };
 		52E328062A40A4EF006F8146 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E328052A40A4EF006F8146 /* ErrorView.swift */; };
 		52E328082A40A60B006F8146 /* ErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E328072A40A60B006F8146 /* ErrorViewModel.swift */; };
+		52E34DB22A7C25C300205EE0 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E34DB12A7C25C300205EE0 /* ForgotPasswordView.swift */; };
+		52E34DB42A7C25D200205EE0 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E34DB32A7C25D200205EE0 /* ForgotPasswordViewModel.swift */; };
 		52E3AE502A2960EE00213BF1 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3AE4F2A2960EE00213BF1 /* IconView.swift */; };
 		52E3AE562A2D511600213BF1 /* SIngleCoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3AE552A2D511600213BF1 /* SIngleCoinView.swift */; };
 		52E3AE5E2A356F3700213BF1 /* Amount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3AE5D2A356F3700213BF1 /* Amount.swift */; };
@@ -80,6 +82,8 @@
 		52E1D5582A7168A60084A825 /* RateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateData.swift; sourceTree = "<group>"; };
 		52E328052A40A4EF006F8146 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		52E328072A40A60B006F8146 /* ErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewModel.swift; sourceTree = "<group>"; };
+		52E34DB12A7C25C300205EE0 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		52E34DB32A7C25D200205EE0 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		52E3AE4F2A2960EE00213BF1 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		52E3AE552A2D511600213BF1 /* SIngleCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIngleCoinView.swift; sourceTree = "<group>"; };
 		52E3AE5D2A356F3700213BF1 /* Amount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amount.swift; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 				52E328052A40A4EF006F8146 /* ErrorView.swift */,
 				52D6B2062A5492350006DDAD /* SignInView.swift */,
 				52FC97312A6624660031217C /* CoinListView.swift */,
+				52E34DB12A7C25C300205EE0 /* ForgotPasswordView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				52D6B2082A5496F50006DDAD /* SignInViewModel.swift */,
 				52FC97332A6624920031217C /* CoinListViewModel.swift */,
 				52E16FEA2A744A0400E1BAA5 /* ContentViewModel.swift */,
+				52E34DB32A7C25D200205EE0 /* ForgotPasswordViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -352,10 +358,12 @@
 				52E78EDA2A3A09F900DF35BA /* LogInViewModel.swift in Sources */,
 				52C2BB562A1EBBBB005E3F99 /* ContentView.swift in Sources */,
 				52CDD62F2A5DD17C00FE1FCF /* SingleCoinChip.swift in Sources */,
+				52E34DB42A7C25D200205EE0 /* ForgotPasswordViewModel.swift in Sources */,
 				52FC97402A664C710031217C /* Quote.swift in Sources */,
 				52E1D5592A7168A60084A825 /* RateData.swift in Sources */,
 				52E16FEB2A744A0400E1BAA5 /* ContentViewModel.swift in Sources */,
 				52FC973E2A664C3E0031217C /* Platform.swift in Sources */,
+				52E34DB22A7C25C300205EE0 /* ForgotPasswordView.swift in Sources */,
 				52E3AE622A37DCA200213BF1 /* SingleCoinViewModel.swift in Sources */,
 				52E3AE5E2A356F3700213BF1 /* Amount.swift in Sources */,
 				52E3AE502A2960EE00213BF1 /* IconView.swift in Sources */,

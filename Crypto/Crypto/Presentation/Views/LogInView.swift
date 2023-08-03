@@ -76,25 +76,13 @@ struct LogInView: View {
                                 .background(RoundedRectangle(cornerRadius: 4).stroke(password != "" ? Color("MainColor") : self.color, lineWidth: 2))
                                 
                                 HStack{
-                                    Spacer()
-                                    Button (action:
-                                                {
-                                        loginViewModel.sendPasswordResetEmail(for: loginViewModel.email) { error in
-                                                if let error = error {
-                                                    // Handle the error (e.g., show an alert)
-                                                    print("Error sending password reset email: \(error.localizedDescription)")
-                                                } else {
-                                                    // Password reset email sent successfully, show a confirmation message
-                                                    print("Password reset email sent successfully.")
-                                                }
-                                            }
-                                        
-                                    }) {
-                                        Text("Forgot password?")
-                                            .fontWeight(.bold)
-                                            .foregroundColor(Color("MainColor"))
+                                    NavigationLink(destination: ForgotPasswordView(forgotPasswordViewModel: ForgotPasswordViewModel())) {
+                                        HStack{
+                                            Text("Forgot password?")
+                                                .fontWeight(.bold)
+                                                .foregroundColor(Color("MainColor"))
+                                        }
                                     }
-                                    
                                 }.padding(.top,10)
                                 HStack{
                                     Spacer()
