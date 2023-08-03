@@ -17,25 +17,12 @@ struct SignInView: View {
     @State private var firstPassword : String = ""
     @State private var secondPassword : String = ""
     @State private var email: String = ""
-    @State private var isLogInViewPresented = false
     
     var body: some View {
         ZStack{
             ZStack(alignment: .topTrailing){
                 GeometryReader{_ in
                     VStack{
-                        HStack{
-                            Button(action: {
-                                self.isLogInViewPresented.toggle()
-                            }) {
-                                Text("Back")
-                                .fontWeight(.bold)
-                                .foregroundColor(Color("MainColor"))
-                                .padding(.top)
-                                .padding(.leading)
-                            }
-                            Spacer()
-                        }
                         IconView()
                             .padding()
                         HStack(alignment: .center){
@@ -116,9 +103,6 @@ struct SignInView: View {
         }
         .onReceive(self.signInViewModel.$error){err in
             error = err
-        }
-        .sheet(isPresented: $isLogInViewPresented) {
-            LogInView()
         }
         .alert(isPresented: $showAlert) {
             Alert(

@@ -20,108 +20,114 @@ struct LogInView: View {
     @State private var isSignInViewPresented = false
     
     var body: some View {
-        ZStack{
-            ZStack(alignment: .topTrailing){
-                GeometryReader{_ in
-                    VStack{
-                        HStack{
-                            Spacer()
-                            Button(action: {
-                                self.isSignInViewPresented.toggle()
-                            }) {
-                                Text("Register")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color("MainColor"))
-                                    .padding(.trailing)
-                                    .padding(.top)
-                            }
-                        }
-                        IconView()
-                            .padding()
-                        HStack(alignment: .center){
-                            Text("Welcome to Crypto")
-                                .font(.title)
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(Color("MainColor"))
-                                .cornerRadius(15)
-                        }
-                        HStack{
-                            Spacer()
-                            
-                        }
-                        Form{
-                            TextField("Your email", text: $loginViewModel.email)
-                                .padding()
-                                .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
-                            
-                            HStack{
-                                VStack{
-                                    if self.visible{
-                                        TextField("Your password", text: $loginViewModel.password)
-                                    }
-                                    else{
-                                        SecureField("Your password", text: $loginViewModel.password)
-                                    }
-                                }
-                                Button(action: {
-                                    self.visible.toggle()
-                                }){
-                                    Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
-                                        .foregroundColor(Color("MainColor"))
-                                }
-                            }
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 4).stroke(password != "" ? Color("MainColor") : self.color, lineWidth: 2))
-                            
+        NavigationView{
+            ZStack{
+                ZStack(alignment: .topTrailing){
+                    GeometryReader{_ in
+                        VStack{
                             HStack{
                                 Spacer()
-                                Button (action:
-                                            {
-                                    
+                                Button(action: {
+                                    self.isSignInViewPresented.toggle()
                                 }) {
-                                    Text("Forget password?")
+                                    Text("Register")
                                         .fontWeight(.bold)
                                         .foregroundColor(Color("MainColor"))
+                                        .padding(.trailing)
+                                        .padding(.top)
                                 }
-                                
-                            }.padding(.top,10)
+                            }
+                            IconView()
+                                .padding()
+                            HStack(alignment: .center){
+                                Text("Welcome to Crypto")
+                                    .font(.title)
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(Color("MainColor"))
+                                    .cornerRadius(15)
+                            }
                             HStack{
                                 Spacer()
                                 
-                                Button(action:  {
-                                    self.loginViewModel.verify()
+                            }
+                            Form{
+                                TextField("Your email", text: $loginViewModel.email)
+                                    .padding()
+                                    .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                                
+                                HStack{
+                                    VStack{
+                                        if self.visible{
+                                            TextField("Your password", text: $loginViewModel.password)
+                                        }
+                                        else{
+                                            SecureField("Your password", text: $loginViewModel.password)
+                                        }
+                                    }
+                                    Button(action: {
+                                        self.visible.toggle()
+                                    }){
+                                        Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
+                                            .foregroundColor(Color("MainColor"))
+                                    }
                                 }
-                                ){
-                                    Text("Login")
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 4).stroke(password != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                                
+                                HStack{
+                                    Spacer()
+                                    Button (action:
+                                                {
+                                        
+                                    }) {
+                                        Text("Forgot password?")
+                                            .fontWeight(.bold)
+                                            .foregroundColor(Color("MainColor"))
+                                    }
+                                    
+                                }.padding(.top,10)
+                                HStack{
+                                    Spacer()
+                                    
+                                    Button(action:  {
+                                        self.loginViewModel.verify()
+                                    }
+                                    ){
+                                        Text("Login")
+                                    }
+                                    .padding(.horizontal, 20.0)
+                                    .padding(.vertical,15)
+                                    .foregroundColor(.white)
+                                    .background(Color("MainColor"))
+                                    .cornerRadius(15)
+                                    Spacer()
                                 }
-                                .padding(.horizontal, 20.0)
-                                .padding(.vertical,15)
-                                .foregroundColor(.white)
-                                .background(Color("MainColor"))
-                                .cornerRadius(15)
-                                Spacer()
                             }
                         }
                     }
                 }
+                NavigationLink(
+                    destination: SignInView(signInViewModel: SignInViewModel()),
+                    isActive: $isSignInViewPresented,
+                    label: {
+                        EmptyView()
+                    })
+                .hidden()
+            }.alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text(error)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color("MainColor"))
+                )
             }
-        }.alert(isPresented: $showAlert) {
-            Alert(
-                title: Text(error)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color("MainColor"))
-            )
+            .onReceive(self.loginViewModel.$alert){alert in
+                showAlert = alert
+            }
+            .onReceive(self.loginViewModel.$error){err in
+                error = err
+            }
         }
-        .onReceive(self.loginViewModel.$alert){alert in
-            showAlert = alert
-        }
-        .onReceive(self.loginViewModel.$error){err in
-            error = err
-        }
-        //.sheet(isPresented: $isSignInViewPresented) {
-        //    SignInView(signInViewModel: SignInViewModel())
-        //}
     }
 }
 
