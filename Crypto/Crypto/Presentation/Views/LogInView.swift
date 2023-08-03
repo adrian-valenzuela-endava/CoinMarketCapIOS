@@ -14,6 +14,7 @@ struct LogInView: View {
     @State var color = Color.white
     @State var visible = false
     @State private var showAlert : Bool = false
+    @State private var error : String = ""
     @State private var password : String = ""
     @State private var email: String = ""
     @State private var isSignInViewPresented = false
@@ -107,7 +108,7 @@ struct LogInView: View {
             }
         }.alert(isPresented: $showAlert) {
             Alert(
-                title: Text(loginViewModel.error)
+                title: Text(error)
                     .fontWeight(.bold)
                     .foregroundColor(Color("MainColor"))
             )
@@ -115,16 +116,18 @@ struct LogInView: View {
         .onReceive(self.loginViewModel.$alert){alert in
             showAlert = alert
         }
-        .sheet(isPresented: $isSignInViewPresented) {
-            SignInView(signInViewModel: SignInViewModel())
+        .onReceive(self.loginViewModel.$error){err in
+            error = err
         }
+        //.sheet(isPresented: $isSignInViewPresented) {
+        //    SignInView(signInViewModel: SignInViewModel())
+        //}
     }
 }
 
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
         LogInView()
-            .environmentObject(AppState())
     }
 }
 

@@ -28,41 +28,46 @@ class SignInViewModel: ObservableObject{
         signInState = false
     }
     
-    func verify(){
-        if self.email.isEmpty || self.firstFieldPassword.isEmpty || self.secondFieldPassword.isEmpty {
-            error = "You can´t send an empty field"
-            alert = true
-        }
-        else if self.firstFieldPassword != self.secondFieldPassword {
-            error = "The passwords have to be the same"
-            alert = true
-        }
-        else if self.firstFieldPassword.count < 8 || self.secondFieldPassword.count < 8 {
-            error = "The password must have more than 8 characters"
-            alert = true
-        }
-        else if !self.email.contains("@") {
-            error = "The email is not valid"
-            alert = true
-        }
-        
-        else {
-            Auth.auth().createUser(withEmail: email, password: firstFieldPassword){ (response,
-                                                                       err) in
-                if err != nil{
-                    let errorMessage = err!.localizedDescription.description
+    func verify() {
+            var errorMessage = ""
+
+            if self.email.isEmpty || self.firstFieldPassword.isEmpty || self.secondFieldPassword.isEmpty {
+                errorMessage = "You can't have an empty field"
+            } else if self.firstFieldPassword != self.secondFieldPassword {
+                errorMessage = "The passwords have to be the same"
+            } else if self.firstFieldPassword.count < 8 || self.secondFieldPassword.count < 8 {
+                errorMessage = "The password must have more than 8 characters"
+            } else if !self.email.contains("@") && !self.email.contains(".") {
+                errorMessage = "The email is not valid"
+            }
+
+            if !errorMessage.isEmpty {
+                // Set the error message and alert status on the main thread
+                DispatchQueue.main.async {
                     self.error = errorMessage
                     self.alert = true
                 }
-                
-                else{
-                    print("register successfull")
-                    self.signInState = true
+            } else {
+                Auth.auth().createUser(withEmail: email, password: firstFieldPassword) { (response, err) in
+                    if err != nil {
+                        // Set the error message and alert status on the main thread
+                        DispatchQueue.main.async {
+                            let errorMessage = err!.localizedDescription.description
+                            self.error = errorMessage
+                            self.alert = true
+                        }
+                    } else {
+                        print("Register successful")
+                        // Set the sign-in state through the SwiftUI view update
+                        DispatchQueue.main.async {
+                            self.error = ""
+                            self.alert = false
+                            self.signInState = true
+                        }
+                    }
                 }
-                
             }
         }
-    }
     
     public func onNewCredential(validateFirstPassword: String, validateSecondPassword: String , validateEmail: String){
         firstFieldPassword = validateFirstPassword

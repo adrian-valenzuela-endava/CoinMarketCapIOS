@@ -13,6 +13,7 @@ struct SignInView: View {
     @State var color = Color.white
     @State var visible = false
     @State private var showAlert : Bool = false
+    @State private var error : String = ""
     @State private var firstPassword : String = ""
     @State private var secondPassword : String = ""
     @State private var email: String = ""
@@ -27,7 +28,7 @@ struct SignInView: View {
                             Button(action: {
                                 self.isLogInViewPresented.toggle()
                             }) {
-                                Text("back")
+                                Text("Back")
                                 .fontWeight(.bold)
                                 .foregroundColor(Color("MainColor"))
                                 .padding(.top)
@@ -111,8 +112,10 @@ struct SignInView: View {
                 }
             }
         }.onReceive(self.signInViewModel.$alert){alert in
-            print(alert)
             showAlert = alert
+        }
+        .onReceive(self.signInViewModel.$error){err in
+            error = err
         }
         .sheet(isPresented: $isLogInViewPresented) {
             LogInView()
