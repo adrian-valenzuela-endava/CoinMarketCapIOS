@@ -63,8 +63,15 @@ class LogInViewModel: ObservableObject{
                         self.isLoggedInogIn = true
                     }
                 }
-                
             }
+        }
+    }
+    
+    func sendPasswordResetEmail(for email: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            completion(error)
+            self.error = error!.localizedDescription.description
+            self.alert = true
         }
     }
     

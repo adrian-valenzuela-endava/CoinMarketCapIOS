@@ -79,6 +79,15 @@ struct LogInView: View {
                                     Spacer()
                                     Button (action:
                                                 {
+                                        loginViewModel.sendPasswordResetEmail(for: loginViewModel.email) { error in
+                                                if let error = error {
+                                                    // Handle the error (e.g., show an alert)
+                                                    print("Error sending password reset email: \(error.localizedDescription)")
+                                                } else {
+                                                    // Password reset email sent successfully, show a confirmation message
+                                                    print("Password reset email sent successfully.")
+                                                }
+                                            }
                                         
                                     }) {
                                         Text("Forgot password?")
