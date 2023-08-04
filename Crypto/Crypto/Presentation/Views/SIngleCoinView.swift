@@ -39,10 +39,11 @@ struct SIngleCoinView: View {
                     getBackgroundColor: { item in item.backgroundColor }
                 )
             }
-            .padding(.bottom, -200)
-            LineChartView(data: prices, title: "Last 24hs", legend: coinData.name, style: ChartStyle(backgroundColor: Color("MainView"), accentColor: Color.blue, secondGradientColor: .red, textColor: Color("MainView"), legendTextColor: Color.green, dropShadowColor:.yellow),form: ChartForm.extraLarge, rateValue: 0, dropShadow: false)
+            .padding(.bottom)
+            LineChartView(data: prices, title: "", legend: coinData.name, style: ChartStyle(backgroundColor: Color("MainView"), accentColor: Color.blue, secondGradientColor: .red, textColor: Color("MainView"), legendTextColor: Color.green, dropShadowColor:.yellow),form: ChartForm.extraLarge, rateValue: 0, dropShadow: false)
                 .padding(.bottom,300.0)
         }
+        .padding(.top,90)
         .onAppear{
             singleViewData.chargeCoinData(cryptocurrency: coinData)
         }
