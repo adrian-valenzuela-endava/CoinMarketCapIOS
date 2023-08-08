@@ -52,17 +52,21 @@ struct LogInView: View {
                                 
                             }
                             Form{
-                                TextField("Your email", text: $loginViewModel.email)
+                                TextField("Your email", text: $loginViewModel.state.email, onEditingChanged: { editing in
+                                    if !editing{
+                                        
+                                    }
+                                })
                                     .padding()
                                     .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
                                 
                                 HStack{
                                     VStack{
                                         if self.visible{
-                                            TextField("Your password", text: $loginViewModel.password)
+                                            TextField("Your password", text: $loginViewModel.state.password)
                                         }
                                         else{
-                                            SecureField("Your password", text: $loginViewModel.password)
+                                            SecureField("Your password", text: $loginViewModel.state.password)
                                         }
                                     }
                                     Button(action: {
@@ -111,18 +115,17 @@ struct LogInView: View {
                         EmptyView()
                     })
                 .hidden()
-            }.alert(isPresented: $showAlert) {
+            }
+            .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text(error)
                         .fontWeight(.bold)
                         .foregroundColor(Color("MainColor"))
                 )
             }
-            .onReceive(self.loginViewModel.$alert){alert in
-                showAlert = alert
-            }
-            .onReceive(self.loginViewModel.$error){err in
-                error = err
+            .onReceive(self.loginViewModel.$state){ state  in
+                showAlert = state.alert
+                error = state.error
             }
         }
     }
@@ -131,6 +134,14 @@ struct LogInView: View {
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
         LogInView()
+            .previewDisplayName("Initial")
+            .environmentObject(LogInViewModel(
+            initialState: LogInViewModel.initialState.clone(withIsLoggedIn: true)))
+        
+        LogInView()
+            .previewDisplayName("Error")
+            .environmentObject(LogInViewModel(
+            initialState: LogInViewModel.initialState.clone(withIsLoggedIn: false,withError: "preview error")))
     }
 }
 

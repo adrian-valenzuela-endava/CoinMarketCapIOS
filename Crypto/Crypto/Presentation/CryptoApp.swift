@@ -22,7 +22,7 @@ struct YourApp: App {
     var body: some Scene {
         WindowGroup {
             
-            if loginViewModel.isLoggedInogIn{
+            if loginViewModel.state.isLoggedIn{
                 MainView()
                     .environmentObject(mainViewModel)
             }else {

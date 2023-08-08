@@ -10,57 +10,46 @@ import SwiftUI
 import Firebase
 
 class LogInViewModel: ObservableObject{
-    @Published var isLoggedInogIn: Bool
-    @Published var password: String
-    @Published var email: String
-    @Published var error: String
-    @Published var alert: Bool
-    @Published var logInError: String
+    @Published var state: LoginState
     
-    init() {
-        isLoggedInogIn = false
-        password = ""
-        email = ""
-        error = ""
-        alert = false
-        logInError = ""
+    static let initialState = LoginState(isLoggedIn: false, password: "", email: "", error: "", alert: false, logInError: "")
+    
+    init(initialState: LoginState = LogInViewModel.initialState ){
+        state = initialState
     }
     
     func verify(){
         var errorMessage = ""
         
-        if self.email.isEmpty || self.password.isEmpty {
+        if self.state.email.isEmpty || self.state.password.isEmpty {
             errorMessage = "You can't have an empty field"
-        } else if !self.email.contains("@") && !self.email.contains(".") {
+        } else if !self.state.email.contains("@") && !self.state.email.contains(".") {
             errorMessage = "The email is not valid"
         }
         
         if !errorMessage.isEmpty {
             // Set the error message and alert status on the main thread
             DispatchQueue.main.async {
-                self.error = errorMessage
-                self.alert = true
+                self.state = self.state.clone(withError: errorMessage, withAlert: true)
             }
         }
         
         else {
-            Auth.auth().signIn(withEmail: email, password: password){ [self] (response,
+            Auth.auth().signIn(withEmail: state.email, password: state.password){ [self] (response,
                                                                               err) in
                 
                 if err != nil{
                     DispatchQueue.main.async {
                         let errorMessage = err!.localizedDescription.description
-                        self.error = errorMessage
-                        self.alert = true
+                        self.state.error = errorMessage
+                        self.state.alert = true
                     }
                 }
                 
                 else{
                     print("Login successfull")
                     DispatchQueue.main.async {
-                        self.error = ""
-                        self.alert = false
-                        self.isLoggedInogIn = true
+                        self.state = self.state.clone(withIsLoggedIn: true,withError: "", withAlert: false)
                     }
                 }
             }
@@ -70,8 +59,7 @@ class LogInViewModel: ObservableObject{
     func sendPasswordResetEmail(for email: String, completion: @escaping (Error?) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             completion(error)
-            self.error = error!.localizedDescription.description
-            self.alert = true
+            self.state = self.state.clone(withError: error!.localizedDescription.description, withAlert: true)
         }
     }
     
@@ -85,8 +73,4 @@ class LogInViewModel: ObservableObject{
         return dateString
     }
     
-    public func onNewCredential(validatePassword: String, validateEmail: String){
-        password = validatePassword
-        email = validateEmail
-    }
 }
