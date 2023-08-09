@@ -84,9 +84,9 @@ struct SignInView: View {
                                             .foregroundColor(Color("MainColor"))
                                     }
                                 }
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 4).stroke(secondPassword != "" ? Color("MainColor") : self.color, lineWidth: 2))
                             }
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 4).stroke(secondPassword != "" ? Color("MainColor") : self.color, lineWidth: 2))
                             HStack{
                                 Spacer()
                                 

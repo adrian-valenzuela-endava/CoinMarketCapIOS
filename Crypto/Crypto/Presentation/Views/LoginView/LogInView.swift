@@ -18,6 +18,8 @@ struct LogInView: View {
     @State private var password : String = ""
     @State private var email: String = ""
     @State private var isSignInViewPresented = false
+    @State private var isEmailValid: Bool = false
+    @State private var isPasswordValid: Bool = false
     
     var body: some View {
         NavigationView{
@@ -52,32 +54,35 @@ struct LogInView: View {
                                 
                             }
                             Form{
-                                TextField("Your email", text: $loginViewModel.state.email, onEditingChanged: { editing in
-                                    if !editing{
-                                        
-                                    }
-                                })
+                                Section{
+                                    TextField("Your email", text: $loginViewModel.state.email)
                                     .padding()
                                     .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
-                                
-                                HStack{
-                                    VStack{
-                                        if self.visible{
-                                            TextField("Your password", text: $loginViewModel.state.password)
-                                        }
-                                        else{
-                                            SecureField("Your password", text: $loginViewModel.state.password)
+                                    .onChange(of: loginViewModel.state.email){newValue in
+                                        isEmailValid = Validators.validateUsername(username: loginViewModel.state.email)
+                                    }
+                                    
+                                    HStack{
+                                        VStack{
+                                            if self.visible{
+                                                TextField("Your password", text: $loginViewModel.state.password)
+                                            }
+                                            else{
+                                                SecureField("Your password", text: $loginViewModel.state.password)
+                                            }
+                                        }.onChange(of: loginViewModel.state.password){newValue in
+                                            isPasswordValid = Validators.validatePassWord(password: loginViewModel.state.password)
+                                            }
+                                        Button(action: {
+                                            self.visible.toggle()
+                                        }){
+                                            Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
+                                                .foregroundColor(Color("MainColor"))
                                         }
                                     }
-                                    Button(action: {
-                                        self.visible.toggle()
-                                    }){
-                                        Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
-                                            .foregroundColor(Color("MainColor"))
-                                    }
+                                    .padding()
+                                    .background(RoundedRectangle(cornerRadius: 4).stroke(password != "" ? Color("MainColor") : self.color, lineWidth: 2))
                                 }
-                                .padding()
-                                .background(RoundedRectangle(cornerRadius: 4).stroke(password != "" ? Color("MainColor") : self.color, lineWidth: 2))
                                 
                                 HStack{
                                     NavigationLink(destination: ForgotPasswordView(forgotPasswordViewModel: ForgotPasswordViewModel())) {
@@ -136,12 +141,12 @@ struct LogInView_Previews: PreviewProvider {
         LogInView()
             .previewDisplayName("Initial")
             .environmentObject(LogInViewModel(
-            initialState: LogInViewModel.initialState.clone(withIsLoggedIn: true)))
+                initialState: LogInViewModel.initialState.clone(withIsLoggedIn: true)))
         
         LogInView()
             .previewDisplayName("Error")
             .environmentObject(LogInViewModel(
-            initialState: LogInViewModel.initialState.clone(withIsLoggedIn: false,withError: "preview error")))
+                initialState: LogInViewModel.initialState.clone(withIsLoggedIn: false,withError: "preview error")))
     }
 }
 
