@@ -35,6 +35,13 @@ struct Validators {
         }
         return true
     }
+    
+    static func validateLogInFields(username: String, password: String) -> Bool{
+        if !validatePassWord(password: password) || !validateUsername(username: username){
+            return false
+        }
+        return true
+    }
 }
 
 //else if self.state.firstFieldPassword != self.state.secondFieldPassword {

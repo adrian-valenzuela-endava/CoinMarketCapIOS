@@ -20,40 +20,26 @@ class LogInViewModel: ObservableObject{
     
     func verify(){
         var errorMessage = ""
-        
-        if self.state.email.isEmpty || self.state.password.isEmpty {
-            errorMessage = "You can't have an empty field"
-        } else if !self.state.email.contains("@") && !self.state.email.contains(".") {
-            errorMessage = "The email is not valid"
-        }
-        
-        if !errorMessage.isEmpty {
-            // Set the error message and alert status on the main thread
-            DispatchQueue.main.async {
-                self.state = self.state.clone(withError: errorMessage, withAlert: true)
-            }
-        }
-        
-        else {
-            Auth.auth().signIn(withEmail: state.email, password: state.password){ [self] (response,
-                                                                              err) in
-                
-                if err != nil{
-                    DispatchQueue.main.async {
-                        let errorMessage = err!.localizedDescription.description
-                        self.state.error = errorMessage
-                        self.state.alert = true
-                    }
+
+        Auth.auth().signIn(withEmail: state.email, password: state.password){ [self] (response,
+                                                                                      err) in
+            
+            if err != nil{
+                DispatchQueue.main.async {
+                    errorMessage = err!.localizedDescription.description
+                    self.state.error = errorMessage
+                    self.state.alert = true
                 }
-                
-                else{
-                    print("Login successfull")
-                    DispatchQueue.main.async {
-                        self.state = self.state.clone(withIsLoggedIn: true,withError: "", withAlert: false)
-                    }
+            }
+            
+            else{
+                print("Login successfull")
+                DispatchQueue.main.async {
+                    self.state = self.state.clone(withIsLoggedIn: true,withError: "", withAlert: false)
                 }
             }
         }
+        
     }
     
     func sendPasswordResetEmail(for email: String, completion: @escaping (Error?) -> Void) {

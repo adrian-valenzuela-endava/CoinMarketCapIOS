@@ -15,11 +15,9 @@ struct LogInView: View {
     @State var visible = false
     @State private var showAlert : Bool = false
     @State private var error : String = ""
-    @State private var password : String = ""
-    @State private var email: String = ""
+
     @State private var isSignInViewPresented = false
-    @State private var isEmailValid: Bool = false
-    @State private var isPasswordValid: Bool = false
+    @State private var fieldsValidated: Bool = true
     
     var body: some View {
         NavigationView{
@@ -57,10 +55,7 @@ struct LogInView: View {
                                 Section{
                                     TextField("Your email", text: $loginViewModel.state.email)
                                     .padding()
-                                    .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
-                                    .onChange(of: loginViewModel.state.email){newValue in
-                                        isEmailValid = Validators.validateUsername(username: loginViewModel.state.email)
-                                    }
+                                    .background(RoundedRectangle(cornerRadius: 4).stroke(loginViewModel.state.email != "" ? Color("MainColor") : self.color, lineWidth: 2))
                                     
                                     HStack{
                                         VStack{
@@ -70,9 +65,7 @@ struct LogInView: View {
                                             else{
                                                 SecureField("Your password", text: $loginViewModel.state.password)
                                             }
-                                        }.onChange(of: loginViewModel.state.password){newValue in
-                                            isPasswordValid = Validators.validatePassWord(password: loginViewModel.state.password)
-                                            }
+                                        }
                                         Button(action: {
                                             self.visible.toggle()
                                         }){
@@ -81,7 +74,7 @@ struct LogInView: View {
                                         }
                                     }
                                     .padding()
-                                    .background(RoundedRectangle(cornerRadius: 4).stroke(password != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                                    .background(RoundedRectangle(cornerRadius: 4).stroke(loginViewModel.state.password != "" ? Color("MainColor") : self.color, lineWidth: 2))
                                 }
                                 
                                 HStack{
@@ -98,10 +91,12 @@ struct LogInView: View {
                                     
                                     Button(action:  {
                                         self.loginViewModel.verify()
+                                        fieldsValidated = Validators.validateLogInFields(username: loginViewModel.state.email, password: loginViewModel.state.password)
                                     }
                                     ){
                                         Text("Login")
                                     }
+                                    //.disabled(!fieldsValidated)
                                     .padding(.horizontal, 20.0)
                                     .padding(.vertical,15)
                                     .foregroundColor(.white)
