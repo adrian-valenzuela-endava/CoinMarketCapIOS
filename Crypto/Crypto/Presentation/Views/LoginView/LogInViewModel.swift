@@ -12,29 +12,30 @@ import Firebase
 class LogInViewModel: ObservableObject{
     @Published var state: LoginState
     
-    static let initialState = LoginState(isLoggedIn: false, password: "", email: "", error: "", alert: false, logInError: "")
+    static let initialState = LoginState(isLoggedIn: false, password: "", email: "", error: "", message: "", alert: false, logInError: "")
     
     init(initialState: LoginState = LogInViewModel.initialState ){
         state = initialState
     }
     
-    func verify(){
-        var errorMessage = ""
+    func verify(email:String, password: String){
+        state.email = email
+        state.password = password
 
         Auth.auth().signIn(withEmail: state.email, password: state.password){ [self] (response,
                                                                                       err) in
             
             if err != nil{
                 DispatchQueue.main.async {
-                    errorMessage = err!.localizedDescription.description
-                    self.state.error = errorMessage
+                    self.state.error = err!.localizedDescription.description
                     self.state.alert = true
                 }
             }
             
             else{
-                print("Login successfull")
                 DispatchQueue.main.async {
+                    self.state.message = "Login successfull"
+                    self.state.alert = true
                     self.state = self.state.clone(withIsLoggedIn: true,withError: "", withAlert: false)
                 }
             }

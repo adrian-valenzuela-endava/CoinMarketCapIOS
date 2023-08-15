@@ -19,7 +19,7 @@ struct Validators {
     static func validatePassWord(password: String) -> Bool{
         if password.count == 0 {
             return false
-        }else if  password.count < 8 {
+        }else if  password.count < 6 {
             return false
         }
         return true

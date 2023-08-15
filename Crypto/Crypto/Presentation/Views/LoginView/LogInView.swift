@@ -15,9 +15,10 @@ struct LogInView: View {
     @State var visible = false
     @State private var showAlert : Bool = false
     @State private var error : String = ""
-
+    @State private var message : String = ""
     @State private var isSignInViewPresented = false
-    @State private var fieldsValidated: Bool = true
+    @State private var email = ""
+    @State private var password = ""
     
     var body: some View {
         NavigationView{
@@ -53,17 +54,17 @@ struct LogInView: View {
                             }
                             Form{
                                 Section{
-                                    TextField("Your email", text: $loginViewModel.state.email)
+                                    TextField("Your email", text: $email)
                                     .padding()
                                     .background(RoundedRectangle(cornerRadius: 4).stroke(loginViewModel.state.email != "" ? Color("MainColor") : self.color, lineWidth: 2))
                                     
                                     HStack{
                                         VStack{
                                             if self.visible{
-                                                TextField("Your password", text: $loginViewModel.state.password)
+                                                TextField("Your password", text: $password)
                                             }
                                             else{
-                                                SecureField("Your password", text: $loginViewModel.state.password)
+                                                SecureField("Your password", text: $password)
                                             }
                                         }
                                         Button(action: {
@@ -90,13 +91,20 @@ struct LogInView: View {
                                     Spacer()
                                     
                                     Button(action:  {
-                                        self.loginViewModel.verify()
-                                        fieldsValidated = Validators.validateLogInFields(username: loginViewModel.state.email, password: loginViewModel.state.password)
+                                        
+                                        let invalidEmail = Validators.validateUsername(username: email)
+                                        let invalidPassword = Validators.validatePassWord(password: password)
+                                        
+                                        if !invalidEmail || !invalidPassword {
+                                            error = "The email or password is not valid"
+                                            showAlert = true
+                                        } else {
+                                            self.loginViewModel.verify(email: email, password: password)
+                                        }
                                     }
                                     ){
                                         Text("Login")
                                     }
-                                    //.disabled(!fieldsValidated)
                                     .padding(.horizontal, 20.0)
                                     .padding(.vertical,15)
                                     .foregroundColor(.white)
@@ -116,16 +124,20 @@ struct LogInView: View {
                     })
                 .hidden()
             }
+            .onReceive(self.loginViewModel.$state){state in
+                showAlert = state.alert
+                message = state.error
+            }
+            .onReceive(self.loginViewModel.$state){state in
+                showAlert = state.alert
+                message = state.message
+            }
             .alert(isPresented: $showAlert) {
                 Alert(
-                    title: Text(error)
+                    title: Text(message)
                         .fontWeight(.bold)
                         .foregroundColor(Color("MainColor"))
                 )
-            }
-            .onReceive(self.loginViewModel.$state){ state  in
-                showAlert = state.alert
-                error = state.error
             }
         }
     }

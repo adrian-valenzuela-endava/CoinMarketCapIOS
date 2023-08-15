@@ -13,9 +13,9 @@ struct SignInView: View {
     @State var color = Color.white
     @State var visible = false
     @State private var showAlert : Bool = false
-    @State private var error : String = ""
-    @State private var firstPassword : String = ""
-    @State private var secondPassword : String = ""
+    @State private var message : String = ""
+    @State private var firstFieldPassword : String = ""
+    @State private var secondFieldPassword : String = ""
     @State private var email: String = ""
     @State private var isEmailValid: Bool = false
     @State private var isPasswordValid: Bool = false
@@ -39,8 +39,8 @@ struct SignInView: View {
                         }
                         Form{
                             Section{
-                                TextField("Your email", text: $signInViewModel.state.email, onEditingChanged: {editing in
-                                    self.isEmailValid = editing ? true : Validators.validateUsername(username: signInViewModel.state.email)
+                                TextField("Your email", text: $email, onEditingChanged: {editing in
+                                    self.isEmailValid = editing ? true : Validators.validateUsername(username: email)
                                     
                                 })
                                     .padding()
@@ -48,13 +48,10 @@ struct SignInView: View {
                                 HStack{
                                     VStack{
                                         if self.visible{
-                                            TextField("Your password", text: $signInViewModel.state.firstFieldPassword, onEditingChanged: {editing in
-                                                self.isPasswordValid = editing ? true : Validators.validatePassWord(password: signInViewModel.state.firstFieldPassword)
-                                                
-                                            })
+                                            TextField("Your password", text: $firstFieldPassword)
                                         }
                                         else{
-                                            SecureField("Your password", text: $signInViewModel.state.firstFieldPassword)
+                                            SecureField("Your password", text: $firstFieldPassword)
                                         }
                                     }
                                     Button(action: {
@@ -65,16 +62,14 @@ struct SignInView: View {
                                     }
                                 }
                                 .padding()
-                                .background(RoundedRectangle(cornerRadius: 4).stroke(firstPassword != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                                .background(RoundedRectangle(cornerRadius: 4).stroke(firstFieldPassword != "" ? Color("MainColor") : self.color, lineWidth: 2))
                                 HStack{
                                     VStack{
                                         if self.visible{
-                                            TextField("Repeat your password", text: $signInViewModel.state.secondFieldPassword, onEditingChanged: {editing in
-                                                self.isPasswordValid = editing ? true : Validators.validatePassWord(password: signInViewModel.state.secondFieldPassword)
-                                            })
+                                            TextField("Repeat your password", text: $secondFieldPassword)
                                         }
                                         else{
-                                            SecureField("Repeat your password", text: $signInViewModel.state.secondFieldPassword)
+                                            SecureField("Repeat your password", text: $secondFieldPassword)
                                         }
                                     }
                                     Button(action: {
@@ -85,13 +80,22 @@ struct SignInView: View {
                                     }
                                 }
                                 .padding()
-                                .background(RoundedRectangle(cornerRadius: 4).stroke(secondPassword != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                                .background(RoundedRectangle(cornerRadius: 4).stroke(secondFieldPassword != "" ? Color("MainColor") : self.color, lineWidth: 2))
                             }
                             HStack{
                                 Spacer()
                                 
                                 Button(action:  {
-                                    self.signInViewModel.verify()
+                                    let invalidEmail = Validators.validateUsername(username: email)
+                                    let passwordsAreEquals = Validators.validatePassWords(firstPassword: firstFieldPassword, secondPassword: secondFieldPassword)
+                                    
+                                    if !invalidEmail || !passwordsAreEquals{
+                                        message = "The email or password is not valid"
+                                        showAlert = true
+                                    }
+                                    else {
+                                        self.signInViewModel.verify(email: email, firstFieldPassword: firstFieldPassword, secondFieldPassword: secondFieldPassword)
+                                    }
                                 }
                                 ){
                                     Text("Sign In")
@@ -112,11 +116,15 @@ struct SignInView: View {
             }
         }.onReceive(self.signInViewModel.$state){state in
             showAlert = state.alert
-            error = state.error
+            message = state.error
+        }
+        .onReceive(self.signInViewModel.$state){state in
+            showAlert = state.alert
+            message = state.message
         }
         .alert(isPresented: $showAlert) {
             Alert(
-                title: Text(signInViewModel.state.error)
+                title: Text(message)
             )
         }
     }

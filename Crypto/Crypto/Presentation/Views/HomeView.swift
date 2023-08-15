@@ -17,8 +17,8 @@ struct HomeView: View {
                     .padding(50)
                 HomeViewTitle(text: "Implemented by ")
                 HStack{
-                    HomeViewTitle(text: "Cristian Torrado").foregroundColor(Color("MainPageBackgroudColor"))
-                    HomeViewTitle(text: ", 2022")
+                    HomeViewTitle(text: "Nicolas Marchioli").foregroundColor(Color("MainPageBackgroudColor"))
+                    HomeViewTitle(text: ", 2023")
                 }
                 .padding([.bottom],30)
                 HStack{
