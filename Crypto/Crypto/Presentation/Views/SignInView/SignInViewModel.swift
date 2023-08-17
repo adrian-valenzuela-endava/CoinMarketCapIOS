@@ -28,6 +28,7 @@ class SignInViewModel: ObservableObject{
                 // Set the error message and alert status on the main thread
                 DispatchQueue.main.async {
                     self.state.error = err!.localizedDescription.description
+                    self.state.message = self.state.error
                     self.state.alert = true
                 }
             } else {

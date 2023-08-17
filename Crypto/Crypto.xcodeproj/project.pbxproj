@@ -15,6 +15,8 @@
 		52C2BB562A1EBBBB005E3F99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C2BB552A1EBBBB005E3F99 /* ContentView.swift */; };
 		52C2BB582A1EBBBD005E3F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C2BB572A1EBBBD005E3F99 /* Assets.xcassets */; };
 		52C2BB5B2A1EBBBD005E3F99 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C2BB5A2A1EBBBD005E3F99 /* Preview Assets.xcassets */; };
+		52C9D8902A8D284400027FEF /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C9D88F2A8D284400027FEF /* AuthUseCase.swift */; };
+		52C9D8922A8D286700027FEF /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C9D8912A8D286700027FEF /* AuthRepository.swift */; };
 		52CDD62F2A5DD17C00FE1FCF /* SingleCoinChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CDD62E2A5DD17C00FE1FCF /* SingleCoinChip.swift */; };
 		52D6B1CF2A546BC20006DDAD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 52D6B1CE2A546BC20006DDAD /* FirebaseAnalytics */; };
 		52D6B1D12A546BC20006DDAD /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 52D6B1D02A546BC20006DDAD /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -87,6 +89,8 @@
 		52C2BB552A1EBBBB005E3F99 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		52C2BB572A1EBBBD005E3F99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52C2BB5A2A1EBBBD005E3F99 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		52C9D88F2A8D284400027FEF /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
+		52C9D8912A8D286700027FEF /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		52CDD62E2A5DD17C00FE1FCF /* SingleCoinChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCoinChip.swift; sourceTree = "<group>"; };
 		52D6B2062A5492350006DDAD /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		52D6B2082A5496F50006DDAD /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
@@ -223,6 +227,8 @@
 		52C2BB522A1EBBBB005E3F99 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
+				52C9D88E2A8D281200027FEF /* UseCases */,
+				52C9D88D2A8D27E900027FEF /* Repository */,
 				52E1D5562A71687F0084A825 /* Colours.xcassets */,
 				52CDD62D2A5DD14D00FE1FCF /* Widgets */,
 				52D6B20A2A54A12D0006DDAD /* GoogleService-Info.plist */,
@@ -241,6 +247,22 @@
 				52C2BB5A2A1EBBBD005E3F99 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		52C9D88D2A8D27E900027FEF /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				52C9D8912A8D286700027FEF /* AuthRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		52C9D88E2A8D281200027FEF /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				52C9D88F2A8D284400027FEF /* AuthUseCase.swift */,
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 		52CDD62D2A5DD14D00FE1FCF /* Widgets */ = {
@@ -449,10 +471,12 @@
 				52E16FEB2A744A0400E1BAA5 /* ContentViewModel.swift in Sources */,
 				52FC973E2A664C3E0031217C /* Platform.swift in Sources */,
 				528A9A9E2A8283E7003FB91C /* SignInState.swift in Sources */,
+				52C9D8902A8D284400027FEF /* AuthUseCase.swift in Sources */,
 				52E34DB22A7C25C300205EE0 /* ForgotPasswordView.swift in Sources */,
 				52E3AE622A37DCA200213BF1 /* SingleCoinViewModel.swift in Sources */,
 				52E3AE5E2A356F3700213BF1 /* Amount.swift in Sources */,
 				52E3AE502A2960EE00213BF1 /* IconView.swift in Sources */,
+				52C9D8922A8D286700027FEF /* AuthRepository.swift in Sources */,
 				52E328082A40A60B006F8146 /* ErrorViewModel.swift in Sources */,
 				52D6B2092A5496F50006DDAD /* SignInViewModel.swift in Sources */,
 				52E1D5552A7167CC0084A825 /* RatePercentajeChip.swift in Sources */,

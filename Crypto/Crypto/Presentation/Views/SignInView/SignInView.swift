@@ -39,10 +39,7 @@ struct SignInView: View {
                         }
                         Form{
                             Section{
-                                TextField("Your email", text: $email, onEditingChanged: {editing in
-                                    self.isEmailValid = editing ? true : Validators.validateUsername(username: email)
-                                    
-                                })
+                                TextField("Your email", text: $email)
                                     .padding()
                                     .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
                                 HStack{
@@ -115,10 +112,6 @@ struct SignInView: View {
                 }
             }
         }.onReceive(self.signInViewModel.$state){state in
-            showAlert = state.alert
-            message = state.error
-        }
-        .onReceive(self.signInViewModel.$state){state in
             showAlert = state.alert
             message = state.message
         }

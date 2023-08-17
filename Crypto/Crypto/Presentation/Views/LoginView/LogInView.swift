@@ -56,7 +56,7 @@ struct LogInView: View {
                                 Section{
                                     TextField("Your email", text: $email)
                                     .padding()
-                                    .background(RoundedRectangle(cornerRadius: 4).stroke(loginViewModel.state.email != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                                    .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
                                     
                                     HStack{
                                         VStack{
@@ -75,7 +75,7 @@ struct LogInView: View {
                                         }
                                     }
                                     .padding()
-                                    .background(RoundedRectangle(cornerRadius: 4).stroke(loginViewModel.state.password != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                                    .background(RoundedRectangle(cornerRadius: 4).stroke(password != "" ? Color("MainColor") : self.color, lineWidth: 2))
                                 }
                                 
                                 HStack{
@@ -96,10 +96,10 @@ struct LogInView: View {
                                         let invalidPassword = Validators.validatePassWord(password: password)
                                         
                                         if !invalidEmail || !invalidPassword {
-                                            error = "The email or password is not valid"
+                                            message = "The email or password is not valid"
                                             showAlert = true
                                         } else {
-                                            self.loginViewModel.verify(email: email, password: password)
+                                            self.loginViewModel.verifyLogin(email: email, password: password)
                                         }
                                     }
                                     ){
@@ -123,10 +123,6 @@ struct LogInView: View {
                         EmptyView()
                     })
                 .hidden()
-            }
-            .onReceive(self.loginViewModel.$state){state in
-                showAlert = state.alert
-                message = state.error
             }
             .onReceive(self.loginViewModel.$state){state in
                 showAlert = state.alert

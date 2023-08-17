@@ -18,7 +18,7 @@ class LogInViewModel: ObservableObject{
         state = initialState
     }
     
-    func verify(email:String, password: String){
+    func verifyLogin(email:String, password: String){
         state.email = email
         state.password = password
 
@@ -28,6 +28,7 @@ class LogInViewModel: ObservableObject{
             if err != nil{
                 DispatchQueue.main.async {
                     self.state.error = err!.localizedDescription.description
+                    self.state.message = self.state.error
                     self.state.alert = true
                 }
             }
