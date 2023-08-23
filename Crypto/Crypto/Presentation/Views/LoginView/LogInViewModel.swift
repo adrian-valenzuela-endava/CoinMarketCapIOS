@@ -12,9 +12,12 @@ import Firebase
 class LogInViewModel: ObservableObject{
     @Published var state: LoginState
     
+    private let authUseCase: AuthUseCase
+    
     static let initialState = LoginState(isLoggedIn: false, password: "", email: "", error: "", message: "", alert: false, logInError: "")
     
-    init(initialState: LoginState = LogInViewModel.initialState ){
+    init(authUseCase: AuthUseCase, initialState: LoginState = LogInViewModel.initialState ){
+        self.authUseCase = authUseCase
         state = initialState
     }
     
@@ -34,10 +37,18 @@ class LogInViewModel: ObservableObject{
             }
             
             else{
-                DispatchQueue.main.async {
-                    self.state.message = "Login successfull"
-                    self.state.alert = true
-                    self.state = self.state.clone(withIsLoggedIn: true,withError: "", withAlert: false)
+                authUseCase.logIn(email: state.email, password: state.password){ [weak self] result in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success:
+                            self?.state.message = "Login successfull"
+                            self?.state.alert = true
+                            self?.state = (self?.state.clone(withIsLoggedIn: true, withError: "", withAlert: false))!
+                        case .failure(let error):
+                            self?.state.message = error.localizedDescription
+                            self?.state.alert = true
+                        }
+                    }
                 }
             }
         }
