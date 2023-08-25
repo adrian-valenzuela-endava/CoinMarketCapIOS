@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import Combine
 
 
 protocol CoinMarketCapApiProtocol {
@@ -16,6 +17,12 @@ protocol CoinMarketCapApiProtocol {
 }
 
 class FirebaseAuth: AuthRepository{
+    var state : LoginState
+    
+    init(state: LoginState) {
+        self.state = state
+    }
+    
     func signIn(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> Void) {
         
     }
@@ -25,26 +32,17 @@ class FirebaseAuth: AuthRepository{
     }
     
     
-    func logIn(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func logIn(email: String, password: String) -> AnyPublisher<Bool, Error>   {
         
-        Auth.auth().signIn(withEmail: email, password: password){ [self] (response,
-                                                                                      err) in
-            
-            if err != nil{
-                DispatchQueue.main.async {
-                    self.error = err!.localizedDescription.description
-                    self.message = self.state.error
-                    self.alert = true
+        return Future<Bool, Error> { promise in
+                Auth.auth().signIn(withEmail: email, password: password) { (response, err) in
+                    if let error = err {
+                        promise(.failure(error))
+                    } else {
+                        promise(.success(true)) // or .success(false) if login is unsuccessful
+                    }
                 }
             }
-            
-            else{
-                DispatchQueue.main.async {
-                    self.message = "Login successfull"
-                    self.alert = true
-                    self.state = self.state.clone(withIsLoggedIn: true,withError: "", withAlert: false)
-                }
-            }
-        }
+            .eraseToAnyPublisher()
     }
 }
