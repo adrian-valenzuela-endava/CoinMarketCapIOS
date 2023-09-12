@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Firebase
 
 
 struct LogInView: View {
@@ -55,8 +56,8 @@ struct LogInView: View {
                             Form{
                                 Section{
                                     TextField("Your email", text: $email)
-                                    .padding()
-                                    .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
+                                        .padding()
+                                        .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
                                     
                                     HStack{
                                         VStack{
@@ -99,7 +100,7 @@ struct LogInView: View {
                                             message = "The email or password is not valid"
                                             showAlert = true
                                         } else {
-                                            self.loginViewModel.verifyLogin(email: email, password: password)
+                                            loginViewModel.verifyLogin(email: email, password: password)
                                         }
                                     }
                                     ){
@@ -124,9 +125,9 @@ struct LogInView: View {
                     })
                 .hidden()
             }
-            .onReceive(self.loginViewModel.$state){state in
-                showAlert = state.alert
-                message = state.message
+            .onReceive(self.loginViewModel.$state) { newState in
+                showAlert = newState.alert
+                message = newState.message
             }
             .alert(isPresented: $showAlert) {
                 Alert(
@@ -144,12 +145,12 @@ struct LogInView_Previews: PreviewProvider {
         LogInView()
             .previewDisplayName("Initial")
             .environmentObject(LogInViewModel(
-                initialState: LogInViewModel.initialState.clone(withIsLoggedIn: true)))
+                authUseCase: AuthUseCase.self as! AuthUseCase, initialState: LogInViewModel.initialState.clone(withIsLoggedIn: true)))
         
         LogInView()
             .previewDisplayName("Error")
             .environmentObject(LogInViewModel(
-                initialState: LogInViewModel.initialState.clone(withIsLoggedIn: false,withError: "preview error")))
+                authUseCase: AuthUseCase.self as! AuthUseCase, initialState: LogInViewModel.initialState.clone(withIsLoggedIn: false,withError: "preview error")))
     }
 }
 

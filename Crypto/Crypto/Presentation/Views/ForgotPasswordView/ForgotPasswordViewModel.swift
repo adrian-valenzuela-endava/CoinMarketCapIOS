@@ -1,33 +1,31 @@
 //
-//  SignInViewModel.swift
+//  ForgotPasswordViewModel.swift
 //  Crypto
 //
-//  Created by Orlando Nicolas Marchioli on 04/07/2023.
+//  Created by Orlando Nicolas Marchioli on 03/08/2023.
 //
 
 import Foundation
-import SwiftUI
 import Firebase
 import Combine
 
-class SignInViewModel: ObservableObject{
-    @Published var state: SignInState
+class ForgotPasswordViewModel: ObservableObject{
+    @Published var state: ForgotPasswordState
     
     private let authUseCase : AuthUseCase
     private var cancellables = Set<AnyCancellable>()
     
-    static let initialState = SignInState(firstFieldPassword: "", secondFieldPassword: "", email: "", status: false , error: "", message: "", alert: false, signInState: false)
+    static let initialState = ForgotPasswordState(email: "", status: false, error: "", message: "", alert: false, forgotPasswordState: false)
     
-    init(authUseCase: AuthUseCase , initialState: SignInState = SignInViewModel.initialState ){
+    init(authUseCase: AuthUseCase , initialState: ForgotPasswordState = ForgotPasswordViewModel.initialState ){
         self.authUseCase = authUseCase
         state = initialState
     }
     
-    func verify(email: String, firstFieldPassword: String, secondFieldPassword: String) {
+    func restorePassword(email: String){
         state.email = email
-        state.firstFieldPassword = firstFieldPassword
         
-        authUseCase.signIn(email: self.state.email, password: self.state.firstFieldPassword)
+        authUseCase.resetPassword(email: self.state.email)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .finished:
@@ -40,10 +38,11 @@ class SignInViewModel: ObservableObject{
             }, receiveValue: { [weak self] success in
                 if success {
                     DispatchQueue.main.async {
-                        self?.state = (self?.state.clone( withMessage: "Sign In Success", withAlert: true))!
+                        self?.state = (self?.state.clone(withMessage: "Email sent", withAlert: true))!
                     }
                 }
             })
             .store(in: &cancellables)
     }
+    
 }

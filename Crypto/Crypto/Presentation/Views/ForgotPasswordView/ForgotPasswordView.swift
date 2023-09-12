@@ -32,14 +32,20 @@ struct ForgotPasswordView: View {
                                 .cornerRadius(15)
                         }
                         Form{
-                            TextField("Your email", text: $forgotPasswordViewModel.email)
+                            TextField("Your email", text: $forgotPasswordViewModel.state.email)
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? Color("MainColor") : self.color, lineWidth: 2))
                             HStack{
                                 Spacer()
                                 
                                 Button(action:  {
-                                    self.forgotPasswordViewModel.verify()
+                                    let invalidEmail = Validators.validateUsername(username: email)
+                                    if !invalidEmail {
+                                        alertMessage = "The email not valid"
+                                        showAlert = true
+                                    } else {
+                                        forgotPasswordViewModel.restorePassword(email: forgotPasswordViewModel.state.email)
+                                    }
                                 }
                                 ){
                                     Text("Send email")
@@ -59,15 +65,13 @@ struct ForgotPasswordView: View {
                 }
             }
         }
-        .onReceive(self.forgotPasswordViewModel.$alertMessage){msg in
-            alertMessage = msg
-        }
-        .onReceive(self.forgotPasswordViewModel.$alert){alert in
-            showAlert = alert
+        .onReceive(self.forgotPasswordViewModel.$state){newState in
+            alertMessage = newState.message
+            showAlert = newState.alert
         }
         .alert(isPresented: $showAlert) {
             Alert(
-                title: Text(forgotPasswordViewModel.alertMessage)
+                title: Text(forgotPasswordViewModel.state.message)
             )
         }
     }
@@ -75,6 +79,6 @@ struct ForgotPasswordView: View {
 
 struct ForgotPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        ForgotPasswordView(forgotPasswordViewModel: ForgotPasswordViewModel())
+        ForgotPasswordView(forgotPasswordViewModel: ForgotPasswordViewModel(authUseCase: AuthUseCase()))
     }
 }

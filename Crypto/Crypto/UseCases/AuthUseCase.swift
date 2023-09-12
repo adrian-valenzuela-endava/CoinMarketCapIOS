@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 protocol AuthUseCase {
-    func signIn(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> Void)
-    func logIn(email: String, password: String) -> AnyPublisher<Bool, Error>
-    func resetPassword(email: String, completion: @escaping (Result<Bool, Error>) -> Void)
+    func signIn(email: String, password: String) -> AnyPublisher<Bool, CryptoErrors>
+    func logIn(email: String, password: String) -> AnyPublisher<Bool, CryptoErrors>
+    func resetPassword(email: String) -> AnyPublisher<Bool, CryptoErrors>
 }
 
 class DefaultAuthUseCase: AuthUseCase {
@@ -22,28 +22,30 @@ class DefaultAuthUseCase: AuthUseCase {
         self.authRepository = authRepository
     }
     
-    func signIn(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> Void) {
-        authRepository.signIn(email: email, password: password) { result in
-
+    func signIn(email: String, password: String) -> AnyPublisher<Bool, CryptoErrors> {
+        return authRepository.signIn(email: email, password: password).map{result in
+            return result
+        }.mapError{err in
+            return err
         }
+        .eraseToAnyPublisher()
     }
     
-    func logIn(email: String, password: String) -> AnyPublisher<Bool, Error>  {
-        return Future<Bool, Error> { promise in
-            authRepository.logIn(email: email, password: password) { result in
-                switch result {
-                case .success(let value):
-                    promise(.success(value))
-                case .failure(let error):
-                    promise(.failure(error))
-                }
-            }
+    func logIn(email: String, password: String) -> AnyPublisher<Bool, CryptoErrors>  {
+        return authRepository.logIn(email: email, password: password).map{result in
+            return result
+        }.mapError{err in
+            return err
         }
+        .eraseToAnyPublisher()
     }
     
-    func resetPassword(email: String, completion: @escaping (Result<Bool, Error>) -> Void) {
-        authRepository.resetPassword(email: email) { result in
-
+    func resetPassword(email: String) -> AnyPublisher<Bool, CryptoErrors> {
+        return authRepository.resetPassword(email: email).map{result in
+            return result
+        }.mapError{err in
+            return err
         }
+        .eraseToAnyPublisher()
     }
 }

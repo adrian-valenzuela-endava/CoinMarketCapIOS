@@ -7,12 +7,13 @@
 
 import SwiftUI
 import FirebaseCore
+import Firebase
 
 
 @main
 struct YourApp: App {
     @StateObject var mainViewModel = MainViewModel()
-    @StateObject var loginViewModel = LogInViewModel()
+    @StateObject var loginViewModel = LogInViewModel(authUseCase: DefaultAuthUseCase(authRepository: FirebaseAuth(firebaseAuth: Auth.auth())))
 
     init(){
         FirebaseApp.configure()

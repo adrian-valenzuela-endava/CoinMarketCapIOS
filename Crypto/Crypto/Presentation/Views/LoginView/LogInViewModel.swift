@@ -13,7 +13,8 @@ import Combine
 class LogInViewModel: ObservableObject{
     @Published var state: LoginState
     
-    private let authUseCase: AuthUseCase
+    private let authUseCase : AuthUseCase
+    private var cancellables = Set<AnyCancellable>()
     
     static let initialState = LoginState(isLoggedIn: false, password: "", email: "", error: "", message: "", alert: false, logInError: "")
     
@@ -26,21 +27,26 @@ class LogInViewModel: ObservableObject{
         state.email = email
         state.password = password
         
-        authUseCase.logIn(email: state.email, password: state.password)
-            .sink(receiveCompletion: { [weak self] completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    self?.state = (self?.state.clone(withIsLoggedIn: false, withError: error.localizedDescription, withAlert: true))!
-                }
-            }, receiveValue: { [weak self] success in
-                if success {
-                    self?.state = (self?.state.clone(withIsLoggedIn: true, withError: "", withAlert: true))!
-                }
-            })
+        authUseCase.logIn(email: self.state.email, password: self.state.password)
+                    .sink(receiveCompletion: { [weak self] completion in
+                        switch completion {
+                        case .finished:
+                            break
+                        case .failure(let error):
+                            DispatchQueue.main.async {
+                                self?.state = (self?.state.clone(withIsLoggedIn: false, withError: error.localizedDescription, withAlert: true))!
+                            }
+                        }
+                    }, receiveValue: { [weak self] success in
+                        if success {
+                            DispatchQueue.main.async {
+                                self?.state = (self?.state.clone(withIsLoggedIn: true, withMessage: "Login Success", withAlert: true))!
+                            }
+                        }
+                    })
+                    .store(in: &cancellables)
     }
-
+    
     
     func sendPasswordResetEmail(for email: String, completion: @escaping (Error?) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in

@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		522A12872AAFF8360070764D /* ForgotPasswordState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522A12862AAFF8360070764D /* ForgotPasswordState.swift */; };
 		528A9A982A827024003FB91C /* CoinMarketCapApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A9A972A827024003FB91C /* CoinMarketCapApi.swift */; };
 		528A9A9B2A827A36003FB91C /* LoginState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A9A9A2A827A36003FB91C /* LoginState.swift */; };
 		528A9A9E2A8283E7003FB91C /* SignInState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A9A9D2A8283E7003FB91C /* SignInState.swift */; };
 		528A9AA12A8292D1003FB91C /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A9AA02A8292D1003FB91C /* Validators.swift */; };
+		52A9E2A42AA7B5E200FB3EA4 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9E2A32AA7B5E200FB3EA4 /* Errors.swift */; };
 		52C2BB542A1EBBBB005E3F99 /* CryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C2BB532A1EBBBB005E3F99 /* CryptoApp.swift */; };
 		52C2BB562A1EBBBB005E3F99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C2BB552A1EBBBB005E3F99 /* ContentView.swift */; };
 		52C2BB582A1EBBBD005E3F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C2BB572A1EBBBD005E3F99 /* Assets.xcassets */; };
@@ -80,10 +82,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		522A12862AAFF8360070764D /* ForgotPasswordState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordState.swift; sourceTree = "<group>"; };
 		528A9A972A827024003FB91C /* CoinMarketCapApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinMarketCapApi.swift; sourceTree = "<group>"; };
 		528A9A9A2A827A36003FB91C /* LoginState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginState.swift; sourceTree = "<group>"; };
 		528A9A9D2A8283E7003FB91C /* SignInState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInState.swift; sourceTree = "<group>"; };
 		528A9AA02A8292D1003FB91C /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		52A9E2A32AA7B5E200FB3EA4 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		52C2BB502A1EBBBB005E3F99 /* Crypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52C2BB532A1EBBBB005E3F99 /* CryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoApp.swift; sourceTree = "<group>"; };
 		52C2BB552A1EBBBB005E3F99 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -164,6 +168,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		522A12852AAFF4BE0070764D /* ForgotPasswordView */ = {
+			isa = PBXGroup;
+			children = (
+				52E34DB12A7C25C300205EE0 /* ForgotPasswordView.swift */,
+				52E34DB32A7C25D200205EE0 /* ForgotPasswordViewModel.swift */,
+				522A12862AAFF8360070764D /* ForgotPasswordState.swift */,
+			);
+			path = ForgotPasswordView;
+			sourceTree = "<group>";
+		};
 		528A9A952A826F9E003FB91C /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +327,7 @@
 				52FC97432A664CD40031217C /* CryptocurrencyResponse.swift */,
 				52E1D5582A7168A60084A825 /* RateData.swift */,
 				52E34DBC2A7D498B00205EE0 /* SelectionButtonData.swift */,
+				52A9E2A32AA7B5E200FB3EA4 /* Errors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -320,6 +335,7 @@
 		52E3AE5F2A37DC3700213BF1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				522A12852AAFF4BE0070764D /* ForgotPasswordView */,
 				528A9A9C2A8283B9003FB91C /* SignInView */,
 				528A9A992A827A0D003FB91C /* LoginView */,
 				52E34DB52A7D480D00205EE0 /* MainView */,
@@ -328,7 +344,6 @@
 				52E3AE552A2D511600213BF1 /* SIngleCoinView.swift */,
 				52E328052A40A4EF006F8146 /* ErrorView.swift */,
 				52FC97312A6624660031217C /* CoinListView.swift */,
-				52E34DB12A7C25C300205EE0 /* ForgotPasswordView.swift */,
 				52E34DBA2A7D492B00205EE0 /* HomeView.swift */,
 				52E34DC02A7D562500205EE0 /* ProfileView.swift */,
 				52E34DC42A7D68F800205EE0 /* CryptoLogoView.swift */,
@@ -343,7 +358,6 @@
 				52E328072A40A60B006F8146 /* ErrorViewModel.swift */,
 				52FC97332A6624920031217C /* CoinListViewModel.swift */,
 				52E16FEA2A744A0400E1BAA5 /* ContentViewModel.swift */,
-				52E34DB32A7C25D200205EE0 /* ForgotPasswordViewModel.swift */,
 				52E34DC22A7D5AEF00205EE0 /* MainViewModel.swift */,
 			);
 			path = ViewModels;
@@ -462,6 +476,7 @@
 				52FC97342A6624920031217C /* CoinListViewModel.swift in Sources */,
 				52E78EDA2A3A09F900DF35BA /* LogInViewModel.swift in Sources */,
 				52C2BB562A1EBBBB005E3F99 /* ContentView.swift in Sources */,
+				52A9E2A42AA7B5E200FB3EA4 /* Errors.swift in Sources */,
 				52CDD62F2A5DD17C00FE1FCF /* SingleCoinChip.swift in Sources */,
 				528A9AA12A8292D1003FB91C /* Validators.swift in Sources */,
 				52E34DB42A7C25D200205EE0 /* ForgotPasswordViewModel.swift in Sources */,
@@ -471,6 +486,7 @@
 				52E16FEB2A744A0400E1BAA5 /* ContentViewModel.swift in Sources */,
 				52FC973E2A664C3E0031217C /* Platform.swift in Sources */,
 				528A9A9E2A8283E7003FB91C /* SignInState.swift in Sources */,
+				522A12872AAFF8360070764D /* ForgotPasswordState.swift in Sources */,
 				52C9D8902A8D284400027FEF /* AuthUseCase.swift in Sources */,
 				52E34DB22A7C25C300205EE0 /* ForgotPasswordView.swift in Sources */,
 				52E3AE622A37DCA200213BF1 /* SingleCoinViewModel.swift in Sources */,
