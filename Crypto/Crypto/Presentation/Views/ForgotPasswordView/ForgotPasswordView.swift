@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ForgotPasswordView: View {
     @ObservedObject var forgotPasswordViewModel : ForgotPasswordViewModel
@@ -39,7 +40,7 @@ struct ForgotPasswordView: View {
                                 Spacer()
                                 
                                 Button(action:  {
-                                    let invalidEmail = Validators.validateUsername(username: email)
+                                    let invalidEmail = Validators.validateUsername(username: forgotPasswordViewModel.state.email)
                                     if !invalidEmail {
                                         alertMessage = "The email not valid"
                                         showAlert = true
@@ -71,7 +72,9 @@ struct ForgotPasswordView: View {
         }
         .alert(isPresented: $showAlert) {
             Alert(
-                title: Text(forgotPasswordViewModel.state.message)
+                title: Text(alertMessage)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color("MainColor"))
             )
         }
     }
@@ -79,6 +82,6 @@ struct ForgotPasswordView: View {
 
 struct ForgotPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        ForgotPasswordView(forgotPasswordViewModel: ForgotPasswordViewModel(authUseCase: AuthUseCase()))
+        ForgotPasswordView(forgotPasswordViewModel: ForgotPasswordViewModel(authUseCase: DefaultAuthUseCase(authRepository: FirebaseAuth(firebaseAuth: Auth.auth()))))
     }
 }

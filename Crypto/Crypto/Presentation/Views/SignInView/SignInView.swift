@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Firebase
 
 struct SignInView: View {
     @StateObject var signInViewModel : SignInViewModel
@@ -125,6 +126,6 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView(signInViewModel: SignInViewModel())
+        SignInView(signInViewModel: SignInViewModel(authUseCase: DefaultAuthUseCase(authRepository: FirebaseAuth(firebaseAuth: Auth.auth()))))
     }
 }

@@ -80,7 +80,7 @@ struct LogInView: View {
                                 }
                                 
                                 HStack{
-                                    NavigationLink(destination: ForgotPasswordView(forgotPasswordViewModel: ForgotPasswordViewModel())) {
+                                    NavigationLink(destination: ForgotPasswordView(forgotPasswordViewModel: ForgotPasswordViewModel(authUseCase: DefaultAuthUseCase(authRepository: FirebaseAuth(firebaseAuth: Auth.auth()))))) {
                                         HStack{
                                             Text("Forgot password?")
                                                 .fontWeight(.bold)
@@ -118,7 +118,7 @@ struct LogInView: View {
                     }
                 }
                 NavigationLink(
-                    destination: SignInView(signInViewModel: SignInViewModel()),
+                    destination: SignInView(signInViewModel: SignInViewModel(authUseCase: DefaultAuthUseCase(authRepository: FirebaseAuth(firebaseAuth: Auth.auth())))),
                     isActive: $isSignInViewPresented,
                     label: {
                         EmptyView()
