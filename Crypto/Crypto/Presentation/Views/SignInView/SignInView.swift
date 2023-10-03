@@ -92,7 +92,7 @@ struct SignInView: View {
                                         showAlert = true
                                     }
                                     else {
-                                        self.signInViewModel.verify(email: email, firstFieldPassword: firstFieldPassword, secondFieldPassword: secondFieldPassword)
+                                        self.signInViewModel.verifySignIn(email: email, firstFieldPassword: firstFieldPassword, secondFieldPassword: secondFieldPassword)
                                     }
                                 }
                                 ){

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CoinListView: View {
-    @ObservedObject var coinListViewModel = CoinListViewModel()
+    @ObservedObject var coinListViewModel = CoinListViewModel(coinFetchUseCase: DefaultCoinFetchUseCase(coinRepository: CoinMarketApiFetch(coinApi: CoinMarketCapApiProtocol())))
     
     var body: some View {
         NavigationView {

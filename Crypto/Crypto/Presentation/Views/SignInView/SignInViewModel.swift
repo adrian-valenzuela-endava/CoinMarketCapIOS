@@ -23,7 +23,7 @@ class SignInViewModel: ObservableObject{
         state = initialState
     }
     
-    func verify(email: String, firstFieldPassword: String, secondFieldPassword: String) {
+    func verifySignIn(email: String, firstFieldPassword: String, secondFieldPassword: String) {
         state.email = email
         state.firstFieldPassword = firstFieldPassword
         
