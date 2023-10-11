@@ -35,7 +35,9 @@ class CoinListViewModel: ObservableObject{
                     //self.state = self.state.clone(withIsProgress: false, withError: error)
                 }
             },  receiveValue: { cryptocurrencies in
-                self.state = self.state.clone(withIsProgress: false, withCryptoCurrencies: cryptocurrencies)
+                DispatchQueue.main.async {
+                    self.state = self.state.clone(withIsProgress: false, withCryptoCurrencies: cryptocurrencies)
+                }
             })
             .store(in: &cancellables)
     }

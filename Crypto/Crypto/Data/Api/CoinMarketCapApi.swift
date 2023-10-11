@@ -31,6 +31,7 @@ class CoinMarketCapApiProtocol {
                 DispatchQueue.main.async {
                     self.cryptocurrencies = response.data
                 }
+                completion(response.data, nil)
             } catch {
                 print("Error decoding data: \(error.localizedDescription)")
             }
