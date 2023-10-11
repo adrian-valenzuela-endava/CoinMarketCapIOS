@@ -81,6 +81,7 @@
 		52FC97422A664C990031217C /* QuoteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC97412A664C990031217C /* QuoteDetail.swift */; };
 		52FC97442A664CD40031217C /* CryptocurrencyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC97432A664CD40031217C /* CryptocurrencyResponse.swift */; };
 		52FC97492A6E38B40031217C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 52FC97482A6E38B40031217C /* SwiftUICharts */; };
+		65D9579B2AD724D5007254EF /* CoinListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D9579A2AD724D5007254EF /* CoinListState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +132,7 @@
 		52FC973F2A664C710031217C /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		52FC97412A664C990031217C /* QuoteDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteDetail.swift; sourceTree = "<group>"; };
 		52FC97432A664CD40031217C /* CryptocurrencyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptocurrencyResponse.swift; sourceTree = "<group>"; };
+		65D9579A2AD724D5007254EF /* CoinListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			children = (
 				52FC97312A6624660031217C /* CoinListView.swift */,
 				52FC97332A6624920031217C /* CoinListViewModel.swift */,
+				65D9579A2AD724D5007254EF /* CoinListState.swift */,
 			);
 			path = CoinListView;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				52E34DC52A7D68F800205EE0 /* CryptoLogoView.swift in Sources */,
 				52FC973C2A664AEE0031217C /* Cryptocurrency.swift in Sources */,
 				52D6B2072A5492350006DDAD /* SignInView.swift in Sources */,
+				65D9579B2AD724D5007254EF /* CoinListState.swift in Sources */,
 				52E34DC32A7D5AEF00205EE0 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,30 +10,32 @@ import SwiftUI
 import Combine
 
 class CoinListViewModel: ObservableObject{
-    @Published var cryptocurrencies: [Cryptocurrency] = []
+    @Published var state: CoinListState
+    static let defaultState = CoinListState(isProgress: false,
+                                            cryptoCurrencies: [])
     
     private let coinFetchUseCase : CoinFetchUseCase
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellables: Set<AnyCancellable> = []
     
-    init(coinFetchUseCase: CoinFetchUseCase){
+    init(initialState: CoinListState = defaultState, coinFetchUseCase: CoinFetchUseCase){
+        self.state = initialState
         self.coinFetchUseCase = coinFetchUseCase
     }
     
     func fetchCryptocurrencyData() {
+        state = state.clone(withIsProgress: true)
         coinFetchUseCase.getCryptoCurrencies()
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .finished:
                     break
                 case .failure(let error):
-                    DispatchQueue.main.async {
-                        
-                    }
+                    break
+                    // TODO: IMPLEMENT ERROR HANDLING ALSO USING STATE (add a error: Error value to the state and update its status)
+                    //self.state = self.state.clone(withIsProgress: false, withError: error)
                 }
-            },  receiveValue: { [weak self] cryptocurrencies in
-                DispatchQueue.main.async {
-                    self?.cryptocurrencies = cryptocurrencies
-                }
+            },  receiveValue: { cryptocurrencies in
+                self.state = self.state.clone(withIsProgress: false, withCryptoCurrencies: cryptocurrencies)
             })
             .store(in: &cancellables)
     }
