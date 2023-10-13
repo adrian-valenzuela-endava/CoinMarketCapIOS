@@ -7,12 +7,13 @@
 
 import SwiftUI
 import FirebaseCore
+import Firebase
 
 
 @main
 struct YourApp: App {
-    @StateObject var contentViewModel = CoinListViewModel()
-    @StateObject var loginViewModel = LogInViewModel()
+    @StateObject var mainViewModel = MainViewModel()
+    @StateObject var loginViewModel = LogInViewModel(authUseCase: DefaultAuthUseCase(authRepository: FirebaseAuth(firebaseAuth: Auth.auth())))
 
     init(){
         FirebaseApp.configure()
@@ -22,9 +23,9 @@ struct YourApp: App {
     var body: some Scene {
         WindowGroup {
             
-            if loginViewModel.isLoggedInogIn{
-                ContentView()
-                    .environmentObject(contentViewModel)
+            if loginViewModel.state.isLoggedIn{
+                MainView()
+                    .environmentObject(mainViewModel)
             }else {
                 LogInView()
                     .environmentObject(loginViewModel)

@@ -11,7 +11,7 @@ struct IconView: View {
     var body: some View {
         Image("Icon")
             .resizable()
-            .frame(width: 120,height: 120)
+            .frame(width: 90,height: 90)
             .clipShape(Circle())
             .overlay(Circle().stroke(Color.white, lineWidth: 1))
             .shadow(radius: 10)

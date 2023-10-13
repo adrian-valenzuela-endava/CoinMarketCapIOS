@@ -32,14 +32,16 @@ struct SingleCoin<T>: View {
                 .shadow(radius: 10)
             VStack(alignment: .leading) {
                 Text(getName(item))
+                    .foregroundColor(Color("ARSChipColor"))
                     .font(.headline)
                 Text(getSymbol(item))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Color("NameSlugColor"))
             }
             
             Spacer()
             
             Text("USD Price: \(getQuote(item).USD.price, specifier: "%.1f")")
+                .foregroundColor(Color("ARSChipColor"))
         }
         .frame( height: 60)
         .padding(10)
