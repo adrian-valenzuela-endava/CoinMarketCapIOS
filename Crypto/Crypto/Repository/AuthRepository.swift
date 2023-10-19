@@ -15,13 +15,28 @@ protocol AuthRepository{
     func logIn(email: String, password: String) -> AnyPublisher<Bool, CryptoErrors>
     
     func resetPassword(email: String) -> AnyPublisher<Bool, CryptoErrors>
+    
+    func logOut() -> AnyPublisher<Bool, CryptoErrors>
 }
 
 class FirebaseAuth: AuthRepository{
+    
     private var firebaseAuth: Auth
     
     init(firebaseAuth: Auth){
         self.firebaseAuth = firebaseAuth
+    }
+    
+    func logOut() -> AnyPublisher<Bool, CryptoErrors> {
+        return Future<Bool, CryptoErrors> { promise in
+            do {
+                try self.firebaseAuth.signOut()
+                promise(.success(true))
+            } catch {
+                promise(.failure(CryptoErrors.logOutError))
+            }
+        }
+        .eraseToAnyPublisher()
     }
     
     func signIn(email: String, password: String) -> AnyPublisher<Bool, CryptoErrors> {

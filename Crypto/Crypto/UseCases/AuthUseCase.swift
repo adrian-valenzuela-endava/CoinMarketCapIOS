@@ -12,14 +12,24 @@ protocol AuthUseCase {
     func signIn(email: String, password: String) -> AnyPublisher<Bool, CryptoErrors>
     func logIn(email: String, password: String) -> AnyPublisher<Bool, CryptoErrors>
     func resetPassword(email: String) -> AnyPublisher<Bool, CryptoErrors>
+    func logOut() -> AnyPublisher<Bool, CryptoErrors>
 }
 
 class DefaultAuthUseCase: AuthUseCase {
-    
+        
     private let authRepository: AuthRepository
     
     init(authRepository: AuthRepository) {
         self.authRepository = authRepository
+    }
+    
+    func logOut() -> AnyPublisher<Bool, CryptoErrors> {
+        return authRepository.logOut().map{result in
+            return result
+        }.mapError{err in
+            return err
+        }
+        .eraseToAnyPublisher()
     }
     
     func signIn(email: String, password: String) -> AnyPublisher<Bool, CryptoErrors> {
@@ -48,4 +58,6 @@ class DefaultAuthUseCase: AuthUseCase {
         }
         .eraseToAnyPublisher()
     }
+    
+    
 }

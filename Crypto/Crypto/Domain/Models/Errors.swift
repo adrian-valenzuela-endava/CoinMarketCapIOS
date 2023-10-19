@@ -11,4 +11,5 @@ enum CryptoErrors: Error{
     case badCredentials
     case newUserError
     case resetPasswordError
+    case logOutError
 }

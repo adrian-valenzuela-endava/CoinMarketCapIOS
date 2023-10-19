@@ -10,6 +10,7 @@
 		522A12872AAFF8360070764D /* ForgotPasswordState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522A12862AAFF8360070764D /* ForgotPasswordState.swift */; };
 		522A128A2AB9F0F80070764D /* CoinRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522A12892AB9F0F80070764D /* CoinRepository.swift */; };
 		522A128C2ABCF6BB0070764D /* CoinFetchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522A128B2ABCF6BB0070764D /* CoinFetchUseCase.swift */; };
+		522A12902AD999D10070764D /* MainViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522A128F2AD999D10070764D /* MainViewState.swift */; };
 		528A9A982A827024003FB91C /* CoinMarketCapApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A9A972A827024003FB91C /* CoinMarketCapApi.swift */; };
 		528A9A9B2A827A36003FB91C /* LoginState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A9A9A2A827A36003FB91C /* LoginState.swift */; };
 		528A9A9E2A8283E7003FB91C /* SignInState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A9A9D2A8283E7003FB91C /* SignInState.swift */; };
@@ -88,6 +89,7 @@
 		522A12862AAFF8360070764D /* ForgotPasswordState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordState.swift; sourceTree = "<group>"; };
 		522A12892AB9F0F80070764D /* CoinRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRepository.swift; sourceTree = "<group>"; };
 		522A128B2ABCF6BB0070764D /* CoinFetchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinFetchUseCase.swift; sourceTree = "<group>"; };
+		522A128F2AD999D10070764D /* MainViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewState.swift; sourceTree = "<group>"; };
 		528A9A972A827024003FB91C /* CoinMarketCapApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinMarketCapApi.swift; sourceTree = "<group>"; };
 		528A9A9A2A827A36003FB91C /* LoginState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginState.swift; sourceTree = "<group>"; };
 		528A9A9D2A8283E7003FB91C /* SignInState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInState.swift; sourceTree = "<group>"; };
@@ -117,7 +119,7 @@
 		52E34DBC2A7D498B00205EE0 /* SelectionButtonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionButtonData.swift; sourceTree = "<group>"; };
 		52E34DBE2A7D49B600205EE0 /* SimpleSelectionChips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSelectionChips.swift; sourceTree = "<group>"; };
 		52E34DC02A7D562500205EE0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		52E34DC22A7D5AEF00205EE0 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		52E34DC22A7D5AEF00205EE0 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewModel.swift; path = ../../ViewModels/MainViewModel.swift; sourceTree = "<group>"; };
 		52E34DC42A7D68F800205EE0 /* CryptoLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoLogoView.swift; sourceTree = "<group>"; };
 		52E3AE4F2A2960EE00213BF1 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		52E3AE552A2D511600213BF1 /* SIngleCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIngleCoinView.swift; sourceTree = "<group>"; };
@@ -322,6 +324,8 @@
 			isa = PBXGroup;
 			children = (
 				52E34DB62A7D482900205EE0 /* MainView.swift */,
+				52E34DC22A7D5AEF00205EE0 /* MainViewModel.swift */,
+				522A128F2AD999D10070764D /* MainViewState.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -375,7 +379,6 @@
 				52E3AE612A37DCA200213BF1 /* SingleCoinViewModel.swift */,
 				52E328072A40A60B006F8146 /* ErrorViewModel.swift */,
 				52E16FEA2A744A0400E1BAA5 /* ContentViewModel.swift */,
-				52E34DC22A7D5AEF00205EE0 /* MainViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52E34DBB2A7D492B00205EE0 /* HomeView.swift in Sources */,
+				522A12902AD999D10070764D /* MainViewState.swift in Sources */,
 				52E78ED82A3A09D800DF35BA /* LogInView.swift in Sources */,
 				52E34DB72A7D482900205EE0 /* MainView.swift in Sources */,
 				52E3AE562A2D511600213BF1 /* SIngleCoinView.swift in Sources */,
