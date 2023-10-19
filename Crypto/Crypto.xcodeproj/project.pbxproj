@@ -83,6 +83,8 @@
 		52FC97442A664CD40031217C /* CryptocurrencyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC97432A664CD40031217C /* CryptocurrencyResponse.swift */; };
 		52FC97492A6E38B40031217C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 52FC97482A6E38B40031217C /* SwiftUICharts */; };
 		65D9579B2AD724D5007254EF /* CoinListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D9579A2AD724D5007254EF /* CoinListState.swift */; };
+		DBD960202AE1BC8C00CE7DED /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD9601F2AE1BC8C00CE7DED /* NavigationManager.swift */; };
+		DBD960222AE1BCB200CE7DED /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD960212AE1BCB200CE7DED /* NavigationState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,6 +137,8 @@
 		52FC97412A664C990031217C /* QuoteDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteDetail.swift; sourceTree = "<group>"; };
 		52FC97432A664CD40031217C /* CryptocurrencyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptocurrencyResponse.swift; sourceTree = "<group>"; };
 		65D9579A2AD724D5007254EF /* CoinListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListState.swift; sourceTree = "<group>"; };
+		DBD9601F2AE1BC8C00CE7DED /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		DBD960212AE1BCB200CE7DED /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,8 +263,6 @@
 		52C2BB522A1EBBBB005E3F99 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
-				52C9D88E2A8D281200027FEF /* UseCases */,
-				52C9D88D2A8D27E900027FEF /* Repository */,
 				52E1D5562A71687F0084A825 /* Colours.xcassets */,
 				52CDD62D2A5DD14D00FE1FCF /* Widgets */,
 				52D6B20A2A54A12D0006DDAD /* GoogleService-Info.plist */,
@@ -312,6 +314,7 @@
 		52D6B1C22A4F2BE30006DDAD /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				DBD9601E2AE1BC4600CE7DED /* NavigationManager */,
 				528A9A9F2A8292A1003FB91C /* Validators */,
 				52E3AE5F2A37DC3700213BF1 /* Views */,
 				52E3AE602A37DC6200213BF1 /* ViewModels */,
@@ -333,6 +336,8 @@
 		52E3AE592A356EBF00213BF1 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				52C9D88D2A8D27E900027FEF /* Repository */,
+				52C9D88E2A8D281200027FEF /* UseCases */,
 				52E3AE5A2A356ECD00213BF1 /* Models */,
 			);
 			path = Domain;
@@ -381,6 +386,15 @@
 				52E16FEA2A744A0400E1BAA5 /* ContentViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DBD9601E2AE1BC4600CE7DED /* NavigationManager */ = {
+			isa = PBXGroup;
+			children = (
+				DBD9601F2AE1BC8C00CE7DED /* NavigationManager.swift */,
+				DBD960212AE1BCB200CE7DED /* NavigationState.swift */,
+			);
+			path = NavigationManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,6 +532,7 @@
 				52E328082A40A60B006F8146 /* ErrorViewModel.swift in Sources */,
 				52D6B2092A5496F50006DDAD /* SignInViewModel.swift in Sources */,
 				52E1D5552A7167CC0084A825 /* RatePercentajeChip.swift in Sources */,
+				DBD960202AE1BC8C00CE7DED /* NavigationManager.swift in Sources */,
 				52E34DBF2A7D49B600205EE0 /* SimpleSelectionChips.swift in Sources */,
 				52E34DBD2A7D498B00205EE0 /* SelectionButtonData.swift in Sources */,
 				52E34DC12A7D562500205EE0 /* ProfileView.swift in Sources */,
@@ -525,6 +540,7 @@
 				52C2BB542A1EBBBB005E3F99 /* CryptoApp.swift in Sources */,
 				528A9A982A827024003FB91C /* CoinMarketCapApi.swift in Sources */,
 				52E328062A40A4EF006F8146 /* ErrorView.swift in Sources */,
+				DBD960222AE1BCB200CE7DED /* NavigationState.swift in Sources */,
 				522A128C2ABCF6BB0070764D /* CoinFetchUseCase.swift in Sources */,
 				52FC97322A6624670031217C /* CoinListView.swift in Sources */,
 				52FC97422A664C990031217C /* QuoteDetail.swift in Sources */,
@@ -749,7 +765,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				minimumVersion = 10.0.0;
 			};
 		};
 		52FC97472A6E38B40031217C /* XCRemoteSwiftPackageReference "ChartView" */ = {

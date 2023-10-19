@@ -10,7 +10,12 @@ import SwiftUI
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var mainViewModel: MainViewModel
+
+    private var mainViewModel: MainViewModel
+
+    init(mainViewModel: MainViewModel = MainViewModel()) {
+        self.mainViewModel = mainViewModel
+    }
     
     var body: some View {
         ZStack{
@@ -54,6 +59,10 @@ struct MainView: View {
                     .padding([.bottom],-50)
                 }
             }.accentColor(Color("MainPageBackgroudColor"))
+        }.onReceive(mainViewModel.$state){state in
+            if(state.isLogout){
+                NavigationManager.shared().onSessionLose()
+            }
         }
     }
 

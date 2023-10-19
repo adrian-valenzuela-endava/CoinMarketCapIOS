@@ -12,8 +12,9 @@ import Firebase
 
 @main
 struct YourApp: App {
+    // TODO : Refactor like the LoginViewModel dependency injection
     @StateObject var mainViewModel = MainViewModel(authUseCase: DefaultAuthUseCase(authRepository: FirebaseAuth(firebaseAuth: Auth.auth())))
-    @StateObject var loginViewModel = LogInViewModel(authUseCase: DefaultAuthUseCase(authRepository: FirebaseAuth(firebaseAuth: Auth.auth())))
+    @StateObject var navigationManger = NavigationManager.shared()
     @State var loginApprobed = false
     @State var logOutApprobed = false
     
@@ -24,14 +25,18 @@ struct YourApp: App {
     
     var body: some Scene {
         WindowGroup {
-            
-            if loginViewModel.state.isLoggedIn && !mainViewModel.state.isLogout{
-                MainView()
-                    .environmentObject(mainViewModel)
-            }
-            else{
-                LogInView()
-                    .environmentObject(loginViewModel)
+            ZStack{
+                switch navigationManger.state{
+                case .login:
+                    LogInView()
+                case .main:
+                    MainView()
+                        .environmentObject(mainViewModel)
+                case .splash:
+                    Text("Splash")
+                }
+            }.onAppear{
+                navigationManger.onAppInit()
             }
         }
     }

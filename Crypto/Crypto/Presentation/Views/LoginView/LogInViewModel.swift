@@ -18,7 +18,7 @@ class LogInViewModel: ObservableObject{
     
     static let initialState = LoginState(isLoggedIn: false, password: "", email: "", error: "", message: "", alert: false, logInError: "")
     
-    init(authUseCase: AuthUseCase, initialState: LoginState = LogInViewModel.initialState ){
+    init(authUseCase: AuthUseCase = DefaultAuthUseCase(), initialState: LoginState = LogInViewModel.initialState ){
         self.authUseCase = authUseCase
         state = initialState
     }

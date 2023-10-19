@@ -11,16 +11,22 @@ import Firebase
 
 
 struct LogInView: View {
-    @EnvironmentObject var loginViewModel: LogInViewModel
-    @State var color = Color.white
-    @State var visible = false
+    @State private var color = Color.white
+    @State private var visible = false
     @State private var showAlert : Bool = false
     @State private var error : String = ""
     @State private var message : String = ""
     @State private var isSignInViewPresented = false
     @State private var email = ""
     @State private var password = ""
-    
+    @ObservedObject private var loginViewModel: LogInViewModel
+
+
+    init(loginViewModel: LogInViewModel = LogInViewModel()) {
+        self.loginViewModel = loginViewModel
+    }
+
+
     var body: some View {
         NavigationView{
             ZStack{
@@ -128,6 +134,9 @@ struct LogInView: View {
             .onReceive(self.loginViewModel.$state) { newState in
                 showAlert = newState.alert
                 message = newState.message
+                if(newState.isLoggedIn){
+                    NavigationManager.shared().onNewSession()
+                }
             }
             .alert(isPresented: $showAlert) {
                 Alert(

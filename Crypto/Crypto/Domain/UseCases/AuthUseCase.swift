@@ -13,13 +13,14 @@ protocol AuthUseCase {
     func logIn(email: String, password: String) -> AnyPublisher<Bool, CryptoErrors>
     func resetPassword(email: String) -> AnyPublisher<Bool, CryptoErrors>
     func logOut() -> AnyPublisher<Bool, CryptoErrors>
+    func hasUserSession() -> AnyPublisher<Bool, CryptoErrors>
 }
 
 class DefaultAuthUseCase: AuthUseCase {
         
     private let authRepository: AuthRepository
     
-    init(authRepository: AuthRepository) {
+    init(authRepository: AuthRepository = FirebaseAuth()) {
         self.authRepository = authRepository
     }
     
@@ -58,6 +59,16 @@ class DefaultAuthUseCase: AuthUseCase {
         }
         .eraseToAnyPublisher()
     }
-    
+
+    func hasUserSession() -> AnyPublisher<Bool, CryptoErrors>{
+        authRepository.hasUserSession()
+        .map{result in
+            return result
+        }.mapError{err in
+            return err
+        }
+        .eraseToAnyPublisher()
+    }
+
     
 }

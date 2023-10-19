@@ -15,7 +15,7 @@ class MainViewModel: ObservableObject{
     
     private var cancellables: Set<AnyCancellable> = []
     
-    init(initialState: MainViewState = defaultState,authUseCase: AuthUseCase) {
+    init(initialState: MainViewState = defaultState,authUseCase: AuthUseCase = DefaultAuthUseCase()) {
         self.state = initialState
         self.authUseCase = authUseCase
     }

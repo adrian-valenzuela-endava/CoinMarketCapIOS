@@ -11,19 +11,17 @@ import Firebase
 
 protocol AuthRepository{
     func signIn(email: String, password: String) -> AnyPublisher<Bool, CryptoErrors>
-    
     func logIn(email: String, password: String) -> AnyPublisher<Bool, CryptoErrors>
-    
     func resetPassword(email: String) -> AnyPublisher<Bool, CryptoErrors>
-    
     func logOut() -> AnyPublisher<Bool, CryptoErrors>
+    func hasUserSession() -> AnyPublisher<Bool, CryptoErrors>
 }
 
 class FirebaseAuth: AuthRepository{
     
     private var firebaseAuth: Auth
     
-    init(firebaseAuth: Auth){
+    init(firebaseAuth: Auth = Auth.auth()){
         self.firebaseAuth = firebaseAuth
     }
     
@@ -72,6 +70,13 @@ class FirebaseAuth: AuthRepository{
                 }
                 promise(.failure(.badCredentials))
             }
+        }
+        .eraseToAnyPublisher()
+    }
+
+    func hasUserSession() -> AnyPublisher<Bool, CryptoErrors>   {
+        return Future<Bool, CryptoErrors> { promise in
+            promise(.success(self.firebaseAuth.currentUser != nil))
         }
         .eraseToAnyPublisher()
     }
