@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520701542AE83BC5007BA2CA /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520701532AE83BC5007BA2CA /* SpinnerView.swift */; };
 		522A12872AAFF8360070764D /* ForgotPasswordState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522A12862AAFF8360070764D /* ForgotPasswordState.swift */; };
 		522A128A2AB9F0F80070764D /* CoinRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522A12892AB9F0F80070764D /* CoinRepository.swift */; };
 		522A128C2ABCF6BB0070764D /* CoinFetchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522A128B2ABCF6BB0070764D /* CoinFetchUseCase.swift */; };
@@ -88,6 +89,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		520701532AE83BC5007BA2CA /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		522A12862AAFF8360070764D /* ForgotPasswordState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordState.swift; sourceTree = "<group>"; };
 		522A12892AB9F0F80070764D /* CoinRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRepository.swift; sourceTree = "<group>"; };
 		522A128B2ABCF6BB0070764D /* CoinFetchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinFetchUseCase.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				52E34DBA2A7D492B00205EE0 /* HomeView.swift */,
 				52E34DC02A7D562500205EE0 /* ProfileView.swift */,
 				52E34DC42A7D68F800205EE0 /* CryptoLogoView.swift */,
+				520701532AE83BC5007BA2CA /* SpinnerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				52E3AE5E2A356F3700213BF1 /* Amount.swift in Sources */,
 				52E3AE502A2960EE00213BF1 /* IconView.swift in Sources */,
 				52C9D8922A8D286700027FEF /* AuthRepository.swift in Sources */,
+				520701542AE83BC5007BA2CA /* SpinnerView.swift in Sources */,
 				52E328082A40A60B006F8146 /* ErrorViewModel.swift in Sources */,
 				52D6B2092A5496F50006DDAD /* SignInViewModel.swift in Sources */,
 				52E1D5552A7167CC0084A825 /* RatePercentajeChip.swift in Sources */,

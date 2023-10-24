@@ -12,24 +12,29 @@ struct CoinListView: View {
     @State private var shouldShowProgressAlert: Bool = false
     
     var body: some View {
-        NavigationView {
-            List(coinListViewModel.state.cryptoCurrencies, id: \.id) { cryptocurrency in
-                NavigationLink(destination: SIngleCoinView( coinData: cryptocurrency, rateData: RateData(image: "", rate: 0, backgroundColor: ""), prices: [])) {
-                    HStack{
-                        SingleCoin<Cryptocurrency>(
-                            item: cryptocurrency,
-                            getName: { item in item.name },
-                            getSymbol: { item in item.symbol },
-                            getSlug: { item in item.slug },
-                            getQuote: { item in item.quote }
-                        )
+        ZStack{
+            Spacer()
+            if(coinListViewModel.state.isProgress != true){
+                NavigationView {
+                    List(coinListViewModel.state.cryptoCurrencies, id: \.id) { cryptocurrency in
+                        NavigationLink(destination: SIngleCoinView( coinData: cryptocurrency, rateData: RateData(image: "", rate: 0, backgroundColor: ""), prices: [])) {
+                            HStack{
+                                SingleCoin<Cryptocurrency>(
+                                    item: cryptocurrency,
+                                    getName: { item in item.name },
+                                    getSymbol: { item in item.symbol },
+                                    getSlug: { item in item.slug },
+                                    getQuote: { item in item.quote }
+                                )
+                            }
+                        }
                     }
+                    .navigationBarTitle("Cryptocurrencies")
                 }
             }
-            .navigationBarTitle("Cryptocurrencies")
-        }
-        .overlay {
-            // TODO: IMPLEMENT LOADING PROGRESS. USE $shouldShowProgressAlert TO DEFINE IF IT SHOULD BE VISIBLE OR NOT.
+            else{
+                SpinnerView()
+            }
         }
         .onAppear {
             coinListViewModel.fetchCryptocurrencyData()
