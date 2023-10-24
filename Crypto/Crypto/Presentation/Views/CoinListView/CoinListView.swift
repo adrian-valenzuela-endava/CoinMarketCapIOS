@@ -10,13 +10,14 @@ import SwiftUI
 struct CoinListView: View {
     @ObservedObject var coinListViewModel = CoinListViewModel(coinFetchUseCase: DefaultCoinFetchUseCase(coinRepository: CoinMarketApiFetch(coinApi: CoinMarketCapApiProtocol())))
     @State private var shouldShowProgressAlert: Bool = false
+    @State private var coins: [Cryptocurrency] = []
     
     var body: some View {
         ZStack{
             Spacer()
-            if(coinListViewModel.state.isProgress != true){
+            if(shouldShowProgressAlert != true){
                 NavigationView {
-                    List(coinListViewModel.state.cryptoCurrencies, id: \.id) { cryptocurrency in
+                    List(coins, id: \.id) { cryptocurrency in
                         NavigationLink(destination: SIngleCoinView( coinData: cryptocurrency, rateData: RateData(image: "", rate: 0, backgroundColor: ""), prices: [])) {
                             HStack{
                                 SingleCoin<Cryptocurrency>(
@@ -41,6 +42,7 @@ struct CoinListView: View {
         }
         .onReceive(coinListViewModel.$state) { state in
             shouldShowProgressAlert = state.isProgress
+            coins = state.cryptoCurrencies
             // TODO: IMPLEMENT HERE THE ERROR HANDLING IN CASE state.error IS TRUE
         }
     }
