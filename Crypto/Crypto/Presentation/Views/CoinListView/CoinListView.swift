@@ -10,32 +10,39 @@ import SwiftUI
 struct CoinListView: View {
     @ObservedObject var coinListViewModel = CoinListViewModel(coinFetchUseCase: DefaultCoinFetchUseCase(coinRepository: CoinMarketApiFetch(coinApi: CoinMarketCapApiProtocol())))
     @State private var shouldShowProgressAlert: Bool = false
+    @State private var coins: [Cryptocurrency] = []
     
     var body: some View {
-        NavigationView {
-            List(coinListViewModel.state.cryptoCurrencies, id: \.id) { cryptocurrency in
-                NavigationLink(destination: SIngleCoinView( coinData: cryptocurrency, rateData: RateData(image: "", rate: 0, backgroundColor: ""), prices: [])) {
-                    HStack{
-                        SingleCoin<Cryptocurrency>(
-                            item: cryptocurrency,
-                            getName: { item in item.name },
-                            getSymbol: { item in item.symbol },
-                            getSlug: { item in item.slug },
-                            getQuote: { item in item.quote }
-                        )
+        ZStack{
+            Spacer()
+            if(shouldShowProgressAlert != true){
+                NavigationView {
+                    List(coins, id: \.id) { cryptocurrency in
+                        NavigationLink(destination: SIngleCoinView( coinData: cryptocurrency, rateData: RateData(image: "", rate: 0, backgroundColor: ""), prices: [])) {
+                            HStack{
+                                SingleCoin<Cryptocurrency>(
+                                    item: cryptocurrency,
+                                    getName: { item in item.name },
+                                    getSymbol: { item in item.symbol },
+                                    getSlug: { item in item.slug },
+                                    getQuote: { item in item.quote }
+                                )
+                            }
+                        }
                     }
+                    .navigationBarTitle("Cryptocurrencies")
                 }
             }
-            .navigationBarTitle("Cryptocurrencies")
-        }
-        .overlay {
-            // TODO: IMPLEMENT LOADING PROGRESS. USE $shouldShowProgressAlert TO DEFINE IF IT SHOULD BE VISIBLE OR NOT.
+            else{
+                SpinnerView()
+            }
         }
         .onAppear {
             coinListViewModel.fetchCryptocurrencyData()
         }
         .onReceive(coinListViewModel.$state) { state in
             shouldShowProgressAlert = state.isProgress
+            coins = state.cryptoCurrencies
             // TODO: IMPLEMENT HERE THE ERROR HANDLING IN CASE state.error IS TRUE
         }
     }

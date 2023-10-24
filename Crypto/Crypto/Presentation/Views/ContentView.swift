@@ -26,7 +26,7 @@ struct ContentView: View {
                             .animation(.easeIn, value: 0.7)
                     }
                     .padding(.top,50)
-                    
+                    Spacer()
                     CoinListView()
                     Spacer()
                 }
