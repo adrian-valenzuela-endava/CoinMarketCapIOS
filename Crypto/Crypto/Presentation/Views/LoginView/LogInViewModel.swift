@@ -34,7 +34,7 @@ class LogInViewModel: ObservableObject{
                             break
                         case .failure(let error):
                             DispatchQueue.main.async {
-                                self?.state = (self?.state.clone(withIsLoggedIn: false, withError: error.localizedDescription, withAlert: true))!
+                                self?.state = (self?.state.clone(withIsLoggedIn: false,withMessage: "email or password invalid", withAlert: true))!
                             }
                         }
                     }, receiveValue: { [weak self] success in
