@@ -8,13 +8,53 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @ObservedObject var profileViewModel: ProfileViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            Color("MainViewBackgroundColor")
+                .edgesIgnoringSafeArea(.horizontal)
+            VStack(){
+                Image("profile")
+                    .resizable()
+                    .frame(width: 80, height: 80)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.white, lineWidth: 1))
+                    .padding(.top, 60)
+                
+                Text("Orlando Nicolas Marchioli")
+                    .padding(.top, 40)
+                    .font(.headline)
+                Text("Developer")
+                    .padding(.top, 40)
+                    .font(.headline)
+                Text("CABA, Buenos Aires, Argentina")
+                    .padding(.top, 40)
+                    .font(.headline)
+                Spacer()
+                HStack{
+                    Spacer()
+                    Link(destination:URL(string: "https://github.com/OrlandoNicolasMarchioli/SwiftFundamentals")!)
+                    {
+                        SelectedChipButton<SelectionButtonData>(item: SelectionButtonData(label: "View in Github", letterColor: "ARSChipColor",backgroundColor: "ChipSelectedBackgroundColor")){SelectedChipButton in "View in Github"} getLetterColor: { SelectionButtonData in
+                            "ARSChipColor"} getBackgroundColor: { SelectionButtonData in
+                                "ChipSelectedBackgroundColor"
+                            } onChipTapped: {
+                                profileViewModel.openGitHubRepository()
+                            }
+                    }
+                    Spacer()
+                }
+                Spacer()
+            }
+            Spacer()
+            
+        }
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(profileViewModel: ProfileViewModel())
     }
 }

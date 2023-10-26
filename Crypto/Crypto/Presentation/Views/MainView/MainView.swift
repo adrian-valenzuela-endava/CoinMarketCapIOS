@@ -49,7 +49,7 @@ struct MainView: View {
                                 Text("Market")
                                 
                             }
-                        ProfileView()
+                        ProfileView(profileViewModel: ProfileViewModel())
                             .tabItem{
                                 Image(systemName: "person")
                                 Text("Profile")
