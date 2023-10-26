@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var homeViewModel = HomeViewModel()
+    @State private var isDarkMode = false
+    
     var body: some View {
         ZStack(){
             Color("MainViewBackgroundColor")
@@ -31,18 +34,27 @@ struct HomeView: View {
                         "ARSChipColor"} getBackgroundColor: { SelectionButtonData in
                             "ChipSelectedBackgroundColor"
                         } onChipTapped: {
-                            Void.self
+                            homeViewModel.toggleDarkMode()
                         }
                     
                     UnselectedChipButton<SelectionButtonData>(item: SelectionButtonData(label: "Dark Theme", letterColor: "ARSChipColor",backgroundColor: "ChipSelectedBackgroundColor")){SelectedChipButton in "Dark Theme"} getLetterColor: { SelectionButtonData in
                         "ChipUnselectedBorder"} getBackgroundColor: { SelectionButtonData in
                             "ChipSelectedBackgroundColor"
                         } onChipTapped: {
-                            Void.self
+                            homeViewModel.toggleDarkMode()
                         }
                 }
                 .padding([.bottom],90)
                 .frame(maxHeight: .infinity)
+            }.onChange(of: isDarkMode) { newValue in
+                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                    if let window = windowScene.windows.first {
+                        window.overrideUserInterfaceStyle = newValue ? .dark : .light
+                    }
+                }
+            }
+            .onReceive(homeViewModel.$isDarkMode){mode in
+                self.isDarkMode = mode
             }
         }
     }
