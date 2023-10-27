@@ -34,14 +34,14 @@ struct HomeView: View {
                         "ARSChipColor"} getBackgroundColor: { SelectionButtonData in
                             "ChipSelectedBackgroundColor"
                         } onChipTapped: {
-                            homeViewModel.toggleDarkMode()
+                            homeViewModel.toggleMode(mode:"ligthMode")
                         }
                     
                     UnselectedChipButton<SelectionButtonData>(item: SelectionButtonData(label: "Dark Theme", letterColor: "ARSChipColor",backgroundColor: "ChipSelectedBackgroundColor")){SelectedChipButton in "Dark Theme"} getLetterColor: { SelectionButtonData in
                         "ChipUnselectedBorder"} getBackgroundColor: { SelectionButtonData in
                             "ChipSelectedBackgroundColor"
                         } onChipTapped: {
-                            homeViewModel.toggleDarkMode()
+                            homeViewModel.toggleMode(mode:"darkMode")
                         }
                 }
                 .padding([.bottom],90)

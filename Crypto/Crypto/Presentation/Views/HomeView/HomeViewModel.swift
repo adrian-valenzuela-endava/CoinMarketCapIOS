@@ -12,8 +12,13 @@ class HomeViewModel: ObservableObject{
     @Environment(\.colorScheme) var colorScheme
     @Published var isDarkMode = false
     
-    func toggleDarkMode(){
-        self.isDarkMode.toggle()
+    func toggleMode(mode: String){
+        if(mode == "ligthMode"){
+            self.isDarkMode = false
+        }
+        else{
+            self.isDarkMode = true
+        }
     }
     
 }
