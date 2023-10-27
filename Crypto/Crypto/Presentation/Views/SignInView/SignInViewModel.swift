@@ -28,13 +28,13 @@ class SignInViewModel: ObservableObject{
         state.firstFieldPassword = firstFieldPassword
         
         authUseCase.signIn(email: self.state.email, password: self.state.firstFieldPassword)
-            .sink(receiveCompletion: { [weak self] completion in
+            .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
                     break
                 case .failure(let error):
                     DispatchQueue.main.async {
-                        self?.state = (self?.state.clone( withError: error.localizedDescription, withAlert: true))!
+                        self.state = (self.state.clone( withMessage: "The email is alrerady in use", withAlert: true))
                     }
                 }
             }, receiveValue: { [weak self] success in

@@ -24,13 +24,14 @@ struct ProfileView: View {
                 
                 Text("Orlando Nicolas Marchioli")
                     .padding(.top, 40)
-                    .font(.headline)
+                    .font(.title2)
+                    .bold()
                 Text("Developer")
                     .padding(.top, 40)
-                    .font(.headline)
+                    .font(.title2)
                 Text("CABA, Buenos Aires, Argentina")
                     .padding(.top, 40)
-                    .font(.headline)
+                    .font(.title2)
                 Spacer()
                 HStack{
                     Spacer()
