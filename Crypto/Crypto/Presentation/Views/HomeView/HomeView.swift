@@ -9,7 +9,14 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var homeViewModel = HomeViewModel()
-    @State private var isDarkMode = false
+    @Environment(\.colorScheme) var colorScheme
+    @State private var isDarkMode: Bool
+    init(isDarkMode: Bool) {
+        _isDarkMode = State(initialValue: UITraitCollection().userInterfaceStyle == .dark)
+        if (colorScheme == .dark){
+            _isDarkMode = State(initialValue: true)
+        }
+    }
     
     var body: some View {
         ZStack(){
@@ -34,14 +41,14 @@ struct HomeView: View {
                         "ARSChipColor"} getBackgroundColor: { SelectionButtonData in
                             "ChipSelectedBackgroundColor"
                         } onChipTapped: {
-                            homeViewModel.toggleDarkMode()
+                            homeViewModel.toggleMode(mode: EnvironmentMode.ligthMode)
                         }
                     
                     UnselectedChipButton<SelectionButtonData>(item: SelectionButtonData(label: "Dark Theme", letterColor: "ARSChipColor",backgroundColor: "ChipSelectedBackgroundColor")){SelectedChipButton in "Dark Theme"} getLetterColor: { SelectionButtonData in
                         "ChipUnselectedBorder"} getBackgroundColor: { SelectionButtonData in
                             "ChipSelectedBackgroundColor"
                         } onChipTapped: {
-                            homeViewModel.toggleDarkMode()
+                            homeViewModel.toggleMode(mode: EnvironmentMode.darkMode)
                         }
                 }
                 .padding([.bottom],90)
@@ -74,7 +81,7 @@ struct HomeViewTitle: View{
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(isDarkMode: false)
     }
 }
 

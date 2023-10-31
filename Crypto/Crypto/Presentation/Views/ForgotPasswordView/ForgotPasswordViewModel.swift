@@ -38,7 +38,7 @@ class ForgotPasswordViewModel: ObservableObject{
             }, receiveValue: { [weak self] success in
                 if success {
                     DispatchQueue.main.async {
-                        self?.state = (self?.state.clone(withMessage: "Email sent", withAlert: true))!
+                        self?.state = (self?.state.clone(withMessage: LoginResponse.emailSent.rawValue, withAlert: true))!
                     }
                 }
             })

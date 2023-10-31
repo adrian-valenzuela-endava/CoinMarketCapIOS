@@ -38,7 +38,7 @@ struct MainView: View {
                     .padding(.trailing, 6.0)
 
                     TabView{
-                        HomeView()
+                        HomeView(isDarkMode: false)
                             .tabItem{
                                 Image(systemName: "house")
                                 Text("Home")

@@ -12,7 +12,7 @@ import Combine
 class CoinListViewModel: ObservableObject{
     @Published var state: CoinListState
     static let defaultState = CoinListState(isProgress: false,
-                                            cryptoCurrencies: [])
+                                            cryptoCurrencies: [],hasError: false)
     
     private let coinFetchUseCase : CoinFetchUseCase
     private var cancellables: Set<AnyCancellable> = []
@@ -30,13 +30,13 @@ class CoinListViewModel: ObservableObject{
                 case .finished:
                     break
                 case .failure(let error):
-                    break
-                    // TODO: IMPLEMENT ERROR HANDLING ALSO USING STATE (add a error: Error value to the state and update its status)
-                    //self.state = self.state.clone(withIsProgress: false, withError: error)
+                    DispatchQueue.main.async {
+                        self?.state = (self?.state.clone(withHasError: true))!
+                    }
                 }
             },  receiveValue: { cryptocurrencies in
                 DispatchQueue.main.async {
-                    self.state = self.state.clone(withIsProgress: false, withCryptoCurrencies: cryptocurrencies)
+                    self.state = self.state.clone(withIsProgress: false, withCryptoCurrencies: cryptocurrencies, withHasError: false)
                 }
             })
             .store(in: &cancellables)

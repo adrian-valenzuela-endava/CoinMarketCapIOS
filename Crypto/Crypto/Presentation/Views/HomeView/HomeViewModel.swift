@@ -9,11 +9,15 @@ import Foundation
 import SwiftUI
 
 class HomeViewModel: ObservableObject{
-    @Environment(\.colorScheme) var colorScheme
     @Published var isDarkMode = false
     
-    func toggleDarkMode(){
-        self.isDarkMode.toggle()
+    func toggleMode(mode: EnvironmentMode){
+        switch mode {
+        case .ligthMode:
+            self.isDarkMode = false
+        case .darkMode:
+            self.isDarkMode = true
+        }
     }
     
 }

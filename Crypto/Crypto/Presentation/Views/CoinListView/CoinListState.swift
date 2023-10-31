@@ -10,10 +10,11 @@ import Foundation
 struct CoinListState {
     let isProgress: Bool
     let cryptoCurrencies: [Cryptocurrency]
+    let hasError: Bool
 
     func clone(withIsProgress: Bool? = nil,
-               withCryptoCurrencies: [Cryptocurrency]? = nil) -> CoinListState {
+               withCryptoCurrencies: [Cryptocurrency]? = nil, withHasError: Bool? = nil) -> CoinListState {
         return CoinListState(isProgress: withIsProgress ?? isProgress,
-                             cryptoCurrencies: withCryptoCurrencies ?? self.cryptoCurrencies)
+                             cryptoCurrencies: withCryptoCurrencies ?? self.cryptoCurrencies, hasError: withHasError ?? self.hasError)
     }
 }

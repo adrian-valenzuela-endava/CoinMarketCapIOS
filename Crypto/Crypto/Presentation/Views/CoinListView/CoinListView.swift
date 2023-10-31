@@ -11,30 +11,35 @@ struct CoinListView: View {
     @ObservedObject var coinListViewModel = CoinListViewModel(coinFetchUseCase: DefaultCoinFetchUseCase(coinRepository: CoinMarketApiFetch(coinApi: CoinMarketCapApiProtocol())))
     @State private var shouldShowProgressAlert: Bool = false
     @State private var coins: [Cryptocurrency] = []
+    @State private var fetchError: Bool = true
     
     var body: some View {
         ZStack{
             Spacer()
-            if(shouldShowProgressAlert != true){
-                NavigationView {
-                    List(coins, id: \.id) { cryptocurrency in
-                        NavigationLink(destination: SIngleCoinView( coinData: cryptocurrency, rateData: RateData(image: "", rate: 0, backgroundColor: ""), prices: [])) {
-                            HStack{
-                                SingleCoin<Cryptocurrency>(
-                                    item: cryptocurrency,
-                                    getName: { item in item.name },
-                                    getSymbol: { item in item.symbol },
-                                    getSlug: { item in item.slug },
-                                    getQuote: { item in item.quote }
-                                )
+            if(!fetchError){
+                if(shouldShowProgressAlert != true){
+                    NavigationView {
+                        List(coins, id: \.id) { cryptocurrency in
+                            NavigationLink(destination: SIngleCoinView( coinData: cryptocurrency, rateData: RateData(image: "", rate: 0, backgroundColor: ""), prices: [])) {
+                                HStack{
+                                    SingleCoin<Cryptocurrency>(
+                                        item: cryptocurrency,
+                                        getName: { item in item.name },
+                                        getSymbol: { item in item.symbol },
+                                        getSlug: { item in item.slug },
+                                        getQuote: { item in item.quote }
+                                    )
+                                }
                             }
                         }
+                        .navigationBarTitle("Cryptocurrencies")
                     }
-                    .navigationBarTitle("Cryptocurrencies")
                 }
-            }
-            else{
-                SpinnerView()
+                else{
+                    SpinnerView()
+                }
+            }else{
+                CryptoServiceFailView()
             }
         }
         .onAppear {
@@ -43,7 +48,7 @@ struct CoinListView: View {
         .onReceive(coinListViewModel.$state) { state in
             shouldShowProgressAlert = state.isProgress
             coins = state.cryptoCurrencies
-            // TODO: IMPLEMENT HERE THE ERROR HANDLING IN CASE state.error IS TRUE
+            fetchError = state.hasError
         }
     }
 }
