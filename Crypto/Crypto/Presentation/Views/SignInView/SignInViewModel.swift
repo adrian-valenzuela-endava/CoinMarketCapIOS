@@ -34,13 +34,13 @@ class SignInViewModel: ObservableObject{
                     break
                 case .failure(let error):
                     DispatchQueue.main.async {
-                        self.state = (self.state.clone( withMessage: "The email is alrerady in use", withAlert: true))
+                        self.state = (self.state.clone( withMessage: LoginResponse.emailAlreadyInUse.rawValue, withAlert: true))
                     }
                 }
             }, receiveValue: { [weak self] success in
                 if success {
                     DispatchQueue.main.async {
-                        self?.state = (self?.state.clone( withMessage: "Sign In Success", withAlert: true))!
+                        self?.state = (self?.state.clone( withMessage: LoginResponse.signInSuccess.rawValue, withAlert: true))!
                     }
                 }
             })

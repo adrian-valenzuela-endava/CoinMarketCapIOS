@@ -49,7 +49,6 @@ struct CoinListView: View {
             shouldShowProgressAlert = state.isProgress
             coins = state.cryptoCurrencies
             fetchError = state.hasError
-            // TODO: IMPLEMENT HERE THE ERROR HANDLING IN CASE state.error IS TRUE
         }
     }
 }
