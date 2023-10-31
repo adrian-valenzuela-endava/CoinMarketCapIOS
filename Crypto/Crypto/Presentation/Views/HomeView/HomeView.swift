@@ -12,7 +12,7 @@ struct HomeView: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var isDarkMode: Bool
     init(isDarkMode: Bool) {
-        _isDarkMode = State(initialValue: false)
+        _isDarkMode = State(initialValue: UITraitCollection().userInterfaceStyle == .dark)
         if (colorScheme == .dark){
             _isDarkMode = State(initialValue: true)
         }
