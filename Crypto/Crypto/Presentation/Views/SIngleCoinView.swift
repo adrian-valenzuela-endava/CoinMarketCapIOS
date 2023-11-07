@@ -13,7 +13,9 @@ struct SIngleCoinView: View {
     @State var coinData : Cryptocurrency
     @State var rateData : RateData
     @State var prices :[Double]
-    
+    var onBackButtonPressed: (() -> Void)?
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     var body: some View {
         VStack(alignment: .center){
             HStack(alignment: .center){
@@ -26,7 +28,8 @@ struct SIngleCoinView: View {
                     .fontWeight(.bold)
                     .foregroundColor(Color("MainColor"))
                     .padding(.leading)
-            }.padding(.top)
+            }
+            .padding(.top)
             HStack(alignment: .center){
                 Text("Last 24hs rate")
                     .font(.title)
@@ -43,6 +46,17 @@ struct SIngleCoinView: View {
             LineChartView(data: prices, title: "", legend: coinData.name, style: ChartStyle(backgroundColor: Color("MainView"), accentColor: Color.blue, secondGradientColor: .red, textColor: Color("MainView"), legendTextColor: Color.green, dropShadowColor:.yellow),form: ChartForm.extraLarge, rateValue: 0, dropShadow: false)
                 .padding(.bottom,300.0)
         }
+        .navigationBarBackButtonHidden()
+        .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(action: {
+                            onBackButtonPressed?()
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Label("Back", systemImage: "chevron.left")
+                        }
+                    }
+                }
         .padding(.top,90)
         .onAppear{
             singleViewData.chargeCoinData(cryptocurrency: coinData)

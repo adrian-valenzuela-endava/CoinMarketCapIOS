@@ -12,15 +12,17 @@ struct CoinListView: View {
     @State private var shouldShowProgressAlert: Bool = false
     @State private var coins: [Cryptocurrency] = []
     @State private var fetchError: Bool = true
+    @State private var shouldToNavigateToCoinScreen: Bool = false
     
     var body: some View {
         ZStack{
             Spacer()
             if(!fetchError){
                 if(shouldShowProgressAlert != true){
-                    NavigationView {
                         List(coins, id: \.id) { cryptocurrency in
-                            NavigationLink(destination: SIngleCoinView( coinData: cryptocurrency, rateData: RateData(image: "", rate: 0, backgroundColor: ""), prices: [])) {
+                            Button(action: {
+                                coinListViewModel.onCoinSelected(cryptocurrency: cryptocurrency)
+                            }, label: {
                                 HStack{
                                     SingleCoin<Cryptocurrency>(
                                         item: cryptocurrency,
@@ -30,9 +32,8 @@ struct CoinListView: View {
                                         getQuote: { item in item.quote }
                                     )
                                 }
-                            }
-                        }
-                        .navigationBarTitle("Cryptocurrencies")
+                            })
+                       
                     }
                 }
                 else{
@@ -42,6 +43,15 @@ struct CoinListView: View {
                 CryptoServiceFailView()
             }
         }
+        .navigationDestination(isPresented: $shouldToNavigateToCoinScreen, destination: {
+            if let cryptoCurrencySelected = coinListViewModel.state.cryptoCurrencySelected{
+                SIngleCoinView( coinData: cryptoCurrencySelected, rateData: RateData(image: "", rate: 0, backgroundColor: ""), prices: [], onBackButtonPressed: {
+                    coinListViewModel.onReturnFromCryptocurrencyDetailPage()
+                })
+            }
+           
+        })
+        .navigationBarTitle("Cryptocurrencies")
         .onAppear {
             coinListViewModel.fetchCryptocurrencyData()
         }
@@ -49,6 +59,7 @@ struct CoinListView: View {
             shouldShowProgressAlert = state.isProgress
             coins = state.cryptoCurrencies
             fetchError = state.hasError
+            shouldToNavigateToCoinScreen = state.shouldToNavigateToCoinScreen
         }
     }
 }

@@ -20,49 +20,51 @@ struct HomeView: View {
     
     var body: some View {
         ZStack(){
-            Color("MainViewBackgroundColor")
-                .edgesIgnoringSafeArea(.horizontal)
-            VStack(alignment: .center){
-                Image("HomeImage")
-                    .padding(50)
-                HomeViewTitle(text: "Implemented by ")
-                HStack{
-                    HomeViewTitle(text: "Nicolas Marchioli").foregroundColor(Color("MainPageBackgroudColor"))
-                    HomeViewTitle(text: ", 2023")
-                }
-                .padding([.bottom],30)
-                HStack{
+            GeometryReader{_ in 
+                VStack(alignment: .center){
+                    Image("HomeImage")
+                        .padding(50)
+                    HomeViewTitle(text: "Implemented by ")
+                    HStack{
+                        HomeViewTitle(text: "Nicolas Marchioli").foregroundColor(Color("MainPageBackgroudColor"))
+                        HomeViewTitle(text: ", 2023")
+                    }
+                    .padding([.bottom],30)
+                    HStack{
+                        
+                    }
+                    .padding(.bottom)
                     
-                }
-                .padding(.bottom)
-                
-                HStack(spacing : 35){
-                    SelectedChipButton<SelectionButtonData>(item: SelectionButtonData(label: "Light Theme", letterColor: "ARSChipColor",backgroundColor: "ChipSelectedBackgroundColor")){SelectedChipButton in "Light Theme"} getLetterColor: { SelectionButtonData in
-                        "ARSChipColor"} getBackgroundColor: { SelectionButtonData in
-                            "ChipSelectedBackgroundColor"
-                        } onChipTapped: {
-                            homeViewModel.toggleMode(mode: EnvironmentMode.ligthMode)
+                    HStack(spacing : 35){
+                        SelectedChipButton<SelectionButtonData>(item: SelectionButtonData(label: "Light Theme", letterColor: "ARSChipColor",backgroundColor: "ChipSelectedBackgroundColor")){SelectedChipButton in "Light Theme"} getLetterColor: { SelectionButtonData in
+                            "ARSChipColor"} getBackgroundColor: { SelectionButtonData in
+                                "ChipSelectedBackgroundColor"
+                            } onChipTapped: {
+                                homeViewModel.toggleMode(mode: EnvironmentMode.ligthMode)
+                            }
+                        
+                        UnselectedChipButton<SelectionButtonData>(item: SelectionButtonData(label: "Dark Theme", letterColor: "ARSChipColor",backgroundColor: "ChipSelectedBackgroundColor")){SelectedChipButton in "Dark Theme"} getLetterColor: { SelectionButtonData in
+                            "ChipUnselectedBorder"} getBackgroundColor: { SelectionButtonData in
+                                "ChipSelectedBackgroundColor"
+                            } onChipTapped: {
+                                homeViewModel.toggleMode(mode: EnvironmentMode.darkMode)
+                            }
+                    }
+                    }
+                    .padding([.bottom],90)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color("MainViewBackgroundColor")) // Background color
+                    .edgesIgnoringSafeArea(.all)
+                }.onChange(of: isDarkMode) { newValue in
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                        if let window = windowScene.windows.first {
+                            window.overrideUserInterfaceStyle = newValue ? .dark : .light
                         }
-                    
-                    UnselectedChipButton<SelectionButtonData>(item: SelectionButtonData(label: "Dark Theme", letterColor: "ARSChipColor",backgroundColor: "ChipSelectedBackgroundColor")){SelectedChipButton in "Dark Theme"} getLetterColor: { SelectionButtonData in
-                        "ChipUnselectedBorder"} getBackgroundColor: { SelectionButtonData in
-                            "ChipSelectedBackgroundColor"
-                        } onChipTapped: {
-                            homeViewModel.toggleMode(mode: EnvironmentMode.darkMode)
-                        }
-                }
-                .padding([.bottom],90)
-                .frame(maxHeight: .infinity)
-            }.onChange(of: isDarkMode) { newValue in
-                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                    if let window = windowScene.windows.first {
-                        window.overrideUserInterfaceStyle = newValue ? .dark : .light
                     }
                 }
-            }
-            .onReceive(homeViewModel.$isDarkMode){mode in
-                self.isDarkMode = mode
-            }
+                .onReceive(homeViewModel.$isDarkMode){mode in
+                    self.isDarkMode = mode
+                }
         }
     }
 }

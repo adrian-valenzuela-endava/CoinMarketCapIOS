@@ -12,17 +12,12 @@ struct ContentView: View {
     @EnvironmentObject var contentViewModel: ContentViewModel
     
     var body: some View {
-        ZStack{
-            NavigationView{
-                VStack(){
-                    Spacer()
-                    CoinListView()
-                    Spacer()
-                }
-                
-            }
-            .navigationBarTitle(Text("Dashboard"))
+        
+        VStack(){
+            CoinListView()
         }
+        
+        
     }
 }
 

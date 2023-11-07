@@ -12,7 +12,8 @@ import Combine
 class CoinListViewModel: ObservableObject{
     @Published var state: CoinListState
     static let defaultState = CoinListState(isProgress: false,
-                                            cryptoCurrencies: [],hasError: false)
+                                            cryptoCurrencies: [],
+                                            hasError: false, cryptoCurrencySelected: nil, shouldToNavigateToCoinScreen: false)
     
     private let coinFetchUseCase : CoinFetchUseCase
     private var cancellables: Set<AnyCancellable> = []
@@ -40,6 +41,14 @@ class CoinListViewModel: ObservableObject{
                 }
             })
             .store(in: &cancellables)
+    }
+    
+    func onCoinSelected(cryptocurrency: Cryptocurrency){
+        state = state.clone(withcryptoCurrencySelected: cryptocurrency, withShouldToNavigateToCoinScreen: true)
+    }
+    
+    func onReturnFromCryptocurrencyDetailPage(){
+        state = state.clone(withcryptoCurrencySelected: nil, withShouldToNavigateToCoinScreen: false)
     }
     
 }
