@@ -20,7 +20,7 @@ struct HomeView: View {
     
     var body: some View {
         ZStack(){
-            GeometryReader{_ in 
+            ScrollView{
                 VStack(alignment: .center){
                     Image("HomeImage")
                         .padding(50)
@@ -50,28 +50,31 @@ struct HomeView: View {
                                 homeViewModel.toggleMode(mode: EnvironmentMode.darkMode)
                             }
                     }
-                    }
-                    .padding([.bottom],90)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color("MainViewBackgroundColor")) // Background color
-                    .edgesIgnoringSafeArea(.all)
-                }.onChange(of: isDarkMode) { newValue in
-                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                        if let window = windowScene.windows.first {
-                            window.overrideUserInterfaceStyle = newValue ? .dark : .light
-                        }
+                }
+                .padding([.bottom],90)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color("MainViewBackgroundColor")) // Background color
+                .edgesIgnoringSafeArea(.all)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color("MainViewBackgroundColor"))
+            .onChange(of: isDarkMode) { newValue in
+                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                    if let window = windowScene.windows.first {
+                        window.overrideUserInterfaceStyle = newValue ? .dark : .light
                     }
                 }
-                .onReceive(homeViewModel.$isDarkMode){mode in
-                    self.isDarkMode = mode
-                }
+            }
+            .onReceive(homeViewModel.$isDarkMode){mode in
+                self.isDarkMode = mode
+            }
         }
     }
 }
 
 struct HomeViewTitle: View{
     var text: String
-
+    
     var body: some View {
         Text(text)
             .font(.custom("Mulish-SemiBold",fixedSize: 25))
