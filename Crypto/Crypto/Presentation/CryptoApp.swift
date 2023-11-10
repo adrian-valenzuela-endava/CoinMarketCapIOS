@@ -33,7 +33,7 @@ struct YourApp: App {
                     MainView()
                         .environmentObject(mainViewModel)
                 case .splash:
-                    Text("Splash")
+                    SplashScreenView()
                 }
             }.onAppear{
                 navigationManger.onAppInit()
