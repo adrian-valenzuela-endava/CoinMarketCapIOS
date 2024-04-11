@@ -3,10 +3,24 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		459325B02BB1C43A0021EFCE /* KmpCmcClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459325AF2BB1C43A0021EFCE /* KmpCmcClient.swift */; };
+		459325B22BB1CC110021EFCE /* KmpCoinRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459325B12BB1CC110021EFCE /* KmpCoinRepository.swift */; };
+		459325B42BB1D9330021EFCE /* KmpCoinFetchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459325B32BB1D9330021EFCE /* KmpCoinFetchUseCase.swift */; };
+		459325B72BB1F8210021EFCE /* CryptoCurrencyUiConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459325B62BB1F8210021EFCE /* CryptoCurrencyUiConverter.swift */; };
+		459325B92BB1F8C30021EFCE /* QuoteUiConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459325B82BB1F8C30021EFCE /* QuoteUiConverter.swift */; };
+		459325BC2BB1FA530021EFCE /* KotlinDoubleExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459325BB2BB1FA530021EFCE /* KotlinDoubleExt.swift */; };
+		459325BE2BB1FADC0021EFCE /* KotlinIntExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459325BD2BB1FADC0021EFCE /* KotlinIntExt.swift */; };
+		45A7F7042BC5A27A008E4611 /* CmcApi in Frameworks */ = {isa = PBXBuildFile; productRef = 45A7F7032BC5A27A008E4611 /* CmcApi */; };
+		45CF65D92BBF359D007DCD0B /* CmcApi in Frameworks */ = {isa = PBXBuildFile; productRef = 45CF65D82BBF359D007DCD0B /* CmcApi */; };
+		45CF65DF2BBF3AF3007DCD0B /* CmcApi in Frameworks */ = {isa = PBXBuildFile; productRef = 45CF65DE2BBF3AF3007DCD0B /* CmcApi */; };
+		45CF65E22BBF3B5F007DCD0B /* CmcApi in Frameworks */ = {isa = PBXBuildFile; productRef = 45CF65E12BBF3B5F007DCD0B /* CmcApi */; };
+		45CF65E52BBF3B96007DCD0B /* CmcApi in Frameworks */ = {isa = PBXBuildFile; productRef = 45CF65E42BBF3B96007DCD0B /* CmcApi */; };
+		45CF65E82BC04CDC007DCD0B /* CmcApi in Frameworks */ = {isa = PBXBuildFile; productRef = 45CF65E72BC04CDC007DCD0B /* CmcApi */; };
+		45CF65EA2BC05109007DCD0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45CF65E92BC05109007DCD0B /* GoogleService-Info.plist */; };
 		520701542AE83BC5007BA2CA /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520701532AE83BC5007BA2CA /* SpinnerView.swift */; };
 		522A12872AAFF8360070764D /* ForgotPasswordState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522A12862AAFF8360070764D /* ForgotPasswordState.swift */; };
 		522A128A2AB9F0F80070764D /* CoinRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522A12892AB9F0F80070764D /* CoinRepository.swift */; };
@@ -55,7 +69,6 @@
 		52D6B2032A546BC40006DDAD /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 52D6B2022A546BC40006DDAD /* FirebaseStorageCombine-Community */; };
 		52D6B2072A5492350006DDAD /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6B2062A5492350006DDAD /* SignInView.swift */; };
 		52D6B2092A5496F50006DDAD /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6B2082A5496F50006DDAD /* SignInViewModel.swift */; };
-		52D6B20B2A54A12D0006DDAD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52D6B20A2A54A12D0006DDAD /* GoogleService-Info.plist */; };
 		52E16FEB2A744A0400E1BAA5 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E16FEA2A744A0400E1BAA5 /* ContentViewModel.swift */; };
 		52E1D5552A7167CC0084A825 /* RatePercentajeChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E1D5542A7167CC0084A825 /* RatePercentajeChip.swift */; };
 		52E1D5572A71687F0084A825 /* Colours.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E1D5562A71687F0084A825 /* Colours.xcassets */; };
@@ -86,7 +99,7 @@
 		52FC97342A6624920031217C /* CoinListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC97332A6624920031217C /* CoinListViewModel.swift */; };
 		52FC973C2A664AEE0031217C /* Cryptocurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC973B2A664AEE0031217C /* Cryptocurrency.swift */; };
 		52FC973E2A664C3E0031217C /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC973D2A664C3E0031217C /* Platform.swift */; };
-		52FC97402A664C710031217C /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC973F2A664C710031217C /* Quote.swift */; };
+		52FC97402A664C710031217C /* QuoteUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC973F2A664C710031217C /* QuoteUi.swift */; };
 		52FC97422A664C990031217C /* QuoteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC97412A664C990031217C /* QuoteDetail.swift */; };
 		52FC97442A664CD40031217C /* CryptocurrencyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC97432A664CD40031217C /* CryptocurrencyResponse.swift */; };
 		52FC97492A6E38B40031217C /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 52FC97482A6E38B40031217C /* SwiftUICharts */; };
@@ -95,7 +108,28 @@
 		DBD960222AE1BCB200CE7DED /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD960212AE1BCB200CE7DED /* NavigationState.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		45CF65C82BB46008007DCD0B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		459325AF2BB1C43A0021EFCE /* KmpCmcClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KmpCmcClient.swift; sourceTree = "<group>"; };
+		459325B12BB1CC110021EFCE /* KmpCoinRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KmpCoinRepository.swift; sourceTree = "<group>"; };
+		459325B32BB1D9330021EFCE /* KmpCoinFetchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KmpCoinFetchUseCase.swift; sourceTree = "<group>"; };
+		459325B62BB1F8210021EFCE /* CryptoCurrencyUiConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyUiConverter.swift; sourceTree = "<group>"; };
+		459325B82BB1F8C30021EFCE /* QuoteUiConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteUiConverter.swift; sourceTree = "<group>"; };
+		459325BB2BB1FA530021EFCE /* KotlinDoubleExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotlinDoubleExt.swift; sourceTree = "<group>"; };
+		459325BD2BB1FADC0021EFCE /* KotlinIntExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotlinIntExt.swift; sourceTree = "<group>"; };
+		45CF65E92BC05109007DCD0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		520701532AE83BC5007BA2CA /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		522A12862AAFF8360070764D /* ForgotPasswordState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordState.swift; sourceTree = "<group>"; };
 		522A12892AB9F0F80070764D /* CoinRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRepository.swift; sourceTree = "<group>"; };
@@ -118,7 +152,6 @@
 		52CDD62E2A5DD17C00FE1FCF /* SingleCoinChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCoinChip.swift; sourceTree = "<group>"; };
 		52D6B2062A5492350006DDAD /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		52D6B2082A5496F50006DDAD /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
-		52D6B20A2A54A12D0006DDAD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52E16FEA2A744A0400E1BAA5 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		52E1D5542A7167CC0084A825 /* RatePercentajeChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatePercentajeChip.swift; sourceTree = "<group>"; };
 		52E1D5562A71687F0084A825 /* Colours.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colours.xcassets; path = ../../../CryptoChallenge/CriptoCurrencyChallnge/CryptoService/Assets/Colours.xcassets; sourceTree = "<group>"; };
@@ -149,7 +182,7 @@
 		52FC97332A6624920031217C /* CoinListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewModel.swift; sourceTree = "<group>"; };
 		52FC973B2A664AEE0031217C /* Cryptocurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cryptocurrency.swift; sourceTree = "<group>"; };
 		52FC973D2A664C3E0031217C /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
-		52FC973F2A664C710031217C /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		52FC973F2A664C710031217C /* QuoteUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteUi.swift; sourceTree = "<group>"; };
 		52FC97412A664C990031217C /* QuoteDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteDetail.swift; sourceTree = "<group>"; };
 		52FC97432A664CD40031217C /* CryptocurrencyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptocurrencyResponse.swift; sourceTree = "<group>"; };
 		65D9579A2AD724D5007254EF /* CoinListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListState.swift; sourceTree = "<group>"; };
@@ -166,21 +199,27 @@
 				52FC97492A6E38B40031217C /* SwiftUICharts in Frameworks */,
 				52D6B1EF2A546BC30006DDAD /* FirebaseFunctionsCombine-Community in Frameworks */,
 				52D6B1E72A546BC30006DDAD /* FirebaseFirestore in Frameworks */,
+				45CF65D92BBF359D007DCD0B /* CmcApi in Frameworks */,
 				52D6B1D32A546BC20006DDAD /* FirebaseAnalyticsSwift in Frameworks */,
 				52D6B1CF2A546BC20006DDAD /* FirebaseAnalytics in Frameworks */,
 				52D6B1D12A546BC20006DDAD /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				52D6B1F72A546BC30006DDAD /* FirebaseMLModelDownloader in Frameworks */,
 				52D6B1EB2A546BC30006DDAD /* FirebaseFirestoreSwift in Frameworks */,
 				52D6B1D72A546BC20006DDAD /* FirebaseAppCheck in Frameworks */,
+				45A7F7042BC5A27A008E4611 /* CmcApi in Frameworks */,
 				52D6B1D52A546BC20006DDAD /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				52D6B1DB2A546BC20006DDAD /* FirebaseAuth in Frameworks */,
 				52D6B1DF2A546BC20006DDAD /* FirebaseCrashlytics in Frameworks */,
 				52D6B1FF2A546BC40006DDAD /* FirebaseRemoteConfigSwift in Frameworks */,
 				52D6B1F12A546BC30006DDAD /* FirebaseInAppMessaging-Beta in Frameworks */,
 				52D6B1E32A546BC20006DDAD /* FirebaseDatabaseSwift in Frameworks */,
+				45CF65DF2BBF3AF3007DCD0B /* CmcApi in Frameworks */,
 				52D6B1ED2A546BC30006DDAD /* FirebaseFunctions in Frameworks */,
 				52D6B2032A546BC40006DDAD /* FirebaseStorageCombine-Community in Frameworks */,
 				52D6B1FD2A546BC40006DDAD /* FirebaseRemoteConfig in Frameworks */,
+				45CF65E22BBF3B5F007DCD0B /* CmcApi in Frameworks */,
+				45CF65E52BBF3B96007DCD0B /* CmcApi in Frameworks */,
+				45CF65E82BC04CDC007DCD0B /* CmcApi in Frameworks */,
 				52D6B1D92A546BC20006DDAD /* FirebaseAppDistribution-Beta in Frameworks */,
 				52D6B1DD2A546BC20006DDAD /* FirebaseAuthCombine-Community in Frameworks */,
 				52D6B1FB2A546BC40006DDAD /* FirebasePerformance in Frameworks */,
@@ -196,6 +235,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		459325B52BB1F7F90021EFCE /* Converters */ = {
+			isa = PBXGroup;
+			children = (
+				459325B62BB1F8210021EFCE /* CryptoCurrencyUiConverter.swift */,
+				459325B82BB1F8C30021EFCE /* QuoteUiConverter.swift */,
+			);
+			path = Converters;
+			sourceTree = "<group>";
+		};
+		459325BA2BB1FA2C0021EFCE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				459325BB2BB1FA530021EFCE /* KotlinDoubleExt.swift */,
+				459325BD2BB1FADC0021EFCE /* KotlinIntExt.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		459325BF2BB459570021EFCE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		522A12852AAFF4BE0070764D /* ForgotPasswordView */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				528A9A972A827024003FB91C /* CoinMarketCapApi.swift */,
+				459325AF2BB1C43A0021EFCE /* KmpCmcClient.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -275,6 +340,7 @@
 			children = (
 				52C2BB522A1EBBBB005E3F99 /* Crypto */,
 				52C2BB512A1EBBBB005E3F99 /* Products */,
+				459325BF2BB459570021EFCE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -289,9 +355,10 @@
 		52C2BB522A1EBBBB005E3F99 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
+				45CF65E92BC05109007DCD0B /* GoogleService-Info.plist */,
+				459325BA2BB1FA2C0021EFCE /* Extensions */,
 				52E1D5562A71687F0084A825 /* Colours.xcassets */,
 				52CDD62D2A5DD14D00FE1FCF /* Widgets */,
-				52D6B20A2A54A12D0006DDAD /* GoogleService-Info.plist */,
 				52D6B1C22A4F2BE30006DDAD /* Presentation */,
 				52E3AE592A356EBF00213BF1 /* Domain */,
 				528A9A952A826F9E003FB91C /* Data */,
@@ -314,6 +381,7 @@
 			children = (
 				52C9D8912A8D286700027FEF /* AuthRepository.swift */,
 				522A12892AB9F0F80070764D /* CoinRepository.swift */,
+				459325B12BB1CC110021EFCE /* KmpCoinRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -321,8 +389,10 @@
 		52C9D88E2A8D281200027FEF /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				459325B52BB1F7F90021EFCE /* Converters */,
 				52C9D88F2A8D284400027FEF /* AuthUseCase.swift */,
 				522A128B2ABCF6BB0070764D /* CoinFetchUseCase.swift */,
+				459325B32BB1D9330021EFCE /* KmpCoinFetchUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -379,7 +449,7 @@
 				52E3AE5D2A356F3700213BF1 /* Amount.swift */,
 				52FC973B2A664AEE0031217C /* Cryptocurrency.swift */,
 				52FC973D2A664C3E0031217C /* Platform.swift */,
-				52FC973F2A664C710031217C /* Quote.swift */,
+				52FC973F2A664C710031217C /* QuoteUi.swift */,
 				52FC97412A664C990031217C /* QuoteDetail.swift */,
 				52FC97432A664CD40031217C /* CryptocurrencyResponse.swift */,
 				52E1D5582A7168A60084A825 /* RateData.swift */,
@@ -455,6 +525,7 @@
 				52C2BB4C2A1EBBBB005E3F99 /* Sources */,
 				52C2BB4D2A1EBBBB005E3F99 /* Frameworks */,
 				52C2BB4E2A1EBBBB005E3F99 /* Resources */,
+				45CF65C82BB46008007DCD0B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -490,6 +561,12 @@
 				52D6B2002A546BC40006DDAD /* FirebaseStorage */,
 				52D6B2022A546BC40006DDAD /* FirebaseStorageCombine-Community */,
 				52FC97482A6E38B40031217C /* SwiftUICharts */,
+				45CF65D82BBF359D007DCD0B /* CmcApi */,
+				45CF65DE2BBF3AF3007DCD0B /* CmcApi */,
+				45CF65E12BBF3B5F007DCD0B /* CmcApi */,
+				45CF65E42BBF3B96007DCD0B /* CmcApi */,
+				45CF65E72BC04CDC007DCD0B /* CmcApi */,
+				45A7F7032BC5A27A008E4611 /* CmcApi */,
 			);
 			productName = Crypto;
 			productReference = 52C2BB502A1EBBBB005E3F99 /* Crypto.app */;
@@ -503,7 +580,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					52C2BB4F2A1EBBBB005E3F99 = {
 						CreatedOnToolsVersion = 14.0.1;
@@ -522,6 +599,7 @@
 			packageReferences = (
 				52D6B1CD2A546BC20006DDAD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				52FC97472A6E38B40031217C /* XCRemoteSwiftPackageReference "ChartView" */,
+				45A7F7022BC5A27A008E4611 /* XCLocalSwiftPackageReference "../../../.m2/repository/com/adrian/cmc-api-iOS" */,
 			);
 			productRefGroup = 52C2BB512A1EBBBB005E3F99 /* Products */;
 			projectDirPath = "";
@@ -538,8 +616,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				52C2BB5B2A1EBBBD005E3F99 /* Preview Assets.xcassets in Resources */,
+				45CF65EA2BC05109007DCD0B /* GoogleService-Info.plist in Resources */,
 				52C2BB582A1EBBBD005E3F99 /* Assets.xcassets in Resources */,
-				52D6B20B2A54A12D0006DDAD /* GoogleService-Info.plist in Resources */,
 				52E1D5572A71687F0084A825 /* Colours.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,17 +634,21 @@
 				522A12902AD999D10070764D /* MainViewState.swift in Sources */,
 				52E78ED82A3A09D800DF35BA /* LogInView.swift in Sources */,
 				52E34DB72A7D482900205EE0 /* MainView.swift in Sources */,
+				459325B92BB1F8C30021EFCE /* QuoteUiConverter.swift in Sources */,
+				459325B02BB1C43A0021EFCE /* KmpCmcClient.swift in Sources */,
 				52E3AE562A2D511600213BF1 /* SIngleCoinView.swift in Sources */,
 				52FC97342A6624920031217C /* CoinListViewModel.swift in Sources */,
 				52FB1CFC2AF179A400B6C5C6 /* LoginResponse.swift in Sources */,
 				52E78EDA2A3A09F900DF35BA /* LogInViewModel.swift in Sources */,
 				52C2BB562A1EBBBB005E3F99 /* ContentView.swift in Sources */,
+				459325B22BB1CC110021EFCE /* KmpCoinRepository.swift in Sources */,
+				459325BE2BB1FADC0021EFCE /* KotlinIntExt.swift in Sources */,
 				52A9E2A42AA7B5E200FB3EA4 /* Errors.swift in Sources */,
 				52CDD62F2A5DD17C00FE1FCF /* SingleCoinChip.swift in Sources */,
 				522A128A2AB9F0F80070764D /* CoinRepository.swift in Sources */,
 				528A9AA12A8292D1003FB91C /* Validators.swift in Sources */,
 				52E34DB42A7C25D200205EE0 /* ForgotPasswordViewModel.swift in Sources */,
-				52FC97402A664C710031217C /* Quote.swift in Sources */,
+				52FC97402A664C710031217C /* QuoteUi.swift in Sources */,
 				52E1D5592A7168A60084A825 /* RateData.swift in Sources */,
 				528A9A9B2A827A36003FB91C /* LoginState.swift in Sources */,
 				52E16FEB2A744A0400E1BAA5 /* ContentViewModel.swift in Sources */,
@@ -575,6 +657,7 @@
 				522A12872AAFF8360070764D /* ForgotPasswordState.swift in Sources */,
 				52C9D8902A8D284400027FEF /* AuthUseCase.swift in Sources */,
 				52E34DB22A7C25C300205EE0 /* ForgotPasswordView.swift in Sources */,
+				459325B72BB1F8210021EFCE /* CryptoCurrencyUiConverter.swift in Sources */,
 				52E3AE622A37DCA200213BF1 /* SingleCoinViewModel.swift in Sources */,
 				52F4AF102AEABF190016594B /* HomeViewModel.swift in Sources */,
 				52E3AE5E2A356F3700213BF1 /* Amount.swift in Sources */,
@@ -583,6 +666,7 @@
 				52FB1CFA2AF174C100B6C5C6 /* CustomFonts.swift in Sources */,
 				520701542AE83BC5007BA2CA /* SpinnerView.swift in Sources */,
 				52E328082A40A60B006F8146 /* ErrorViewModel.swift in Sources */,
+				459325B42BB1D9330021EFCE /* KmpCoinFetchUseCase.swift in Sources */,
 				52D6B2092A5496F50006DDAD /* SignInViewModel.swift in Sources */,
 				52E1D5552A7167CC0084A825 /* RatePercentajeChip.swift in Sources */,
 				52FB1CF72AEC37F000B6C5C6 /* CryptoServiceFailView.swift in Sources */,
@@ -591,6 +675,7 @@
 				DBD960202AE1BC8C00CE7DED /* NavigationManager.swift in Sources */,
 				52E34DBF2A7D49B600205EE0 /* SimpleSelectionChips.swift in Sources */,
 				52E34DBD2A7D498B00205EE0 /* SelectionButtonData.swift in Sources */,
+				459325BC2BB1FA530021EFCE /* KotlinDoubleExt.swift in Sources */,
 				52E34DC12A7D562500205EE0 /* ProfileView.swift in Sources */,
 				52FC97442A664CD40031217C /* CryptocurrencyResponse.swift in Sources */,
 				52C2BB542A1EBBBB005E3F99 /* CryptoApp.swift in Sources */,
@@ -647,6 +732,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -708,6 +795,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -739,7 +828,6 @@
 				DEVELOPMENT_TEAM = 37CGX9JX84;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Crypto/GoogleService-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Crypto;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -773,7 +861,6 @@
 				DEVELOPMENT_TEAM = 37CGX9JX84;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Crypto/GoogleService-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Crypto;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -819,6 +906,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		45A7F7022BC5A27A008E4611 /* XCLocalSwiftPackageReference "../../../.m2/repository/com/adrian/cmc-api-iOS" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../../.m2/repository/com/adrian/cmc-api-iOS";
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		52D6B1CD2A546BC20006DDAD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -839,6 +933,30 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		45A7F7032BC5A27A008E4611 /* CmcApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CmcApi;
+		};
+		45CF65D82BBF359D007DCD0B /* CmcApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CmcApi;
+		};
+		45CF65DE2BBF3AF3007DCD0B /* CmcApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CmcApi;
+		};
+		45CF65E12BBF3B5F007DCD0B /* CmcApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CmcApi;
+		};
+		45CF65E42BBF3B96007DCD0B /* CmcApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CmcApi;
+		};
+		45CF65E72BC04CDC007DCD0B /* CmcApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CmcApi;
+		};
 		52D6B1CE2A546BC20006DDAD /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 52D6B1CD2A546BC20006DDAD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

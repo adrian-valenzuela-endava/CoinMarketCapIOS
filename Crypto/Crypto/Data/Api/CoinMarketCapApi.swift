@@ -13,7 +13,7 @@ import Combine
 class CoinMarketCapApiProtocol {
     
     var cryptocurrencies: [Cryptocurrency] = []
-    
+    		
     func fetchCryptocurrencyData(completion: @escaping ([Cryptocurrency]?, Error?) -> Void)  {
         guard let url = URL(string: "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=3b94c36c-e5a0-4adb-9593-5b4e00c693c9") else {
             return

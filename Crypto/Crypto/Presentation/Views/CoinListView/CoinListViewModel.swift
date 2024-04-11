@@ -16,16 +16,19 @@ class CoinListViewModel: ObservableObject{
                                             hasError: false, cryptoCurrencySelected: nil, shouldToNavigateToCoinScreen: false)
     
     private let coinFetchUseCase : CoinFetchUseCase
+    private let kmpCoinFetchUseCase : KmpCoinFetchUseCase
+    
     private var cancellables: Set<AnyCancellable> = []
     
     init(initialState: CoinListState = defaultState, coinFetchUseCase: CoinFetchUseCase){
         self.state = initialState
         self.coinFetchUseCase = coinFetchUseCase
+        self.kmpCoinFetchUseCase = KmpCoinFetchUseCase()
     }
     
     func fetchCryptocurrencyData() {
         state = state.clone(withIsProgress: true)
-        coinFetchUseCase.getCryptoCurrencies()
+        kmpCoinFetchUseCase.execute()
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .finished:

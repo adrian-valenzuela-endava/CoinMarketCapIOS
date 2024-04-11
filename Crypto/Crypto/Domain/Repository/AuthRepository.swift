@@ -65,6 +65,9 @@ class FirebaseAuth: AuthRepository{
         return Future<Bool, CryptoErrors> { promise in
             self.firebaseAuth.signIn(withEmail: email, password: password) { (response, err) in
                 guard let _  = err else {
+                    // This is temporal, afterwards it's going to be cleaner
+                    // let authToken: String = response?.user.uid
+                    KmpCmcClient.shared.setAuthToken("")
                     promise(.success(true))
                     return
                 }

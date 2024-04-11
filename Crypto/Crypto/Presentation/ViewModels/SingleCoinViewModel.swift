@@ -15,7 +15,7 @@ class SingleCoinViewModel: ObservableObject{
     @Published var prices: [Double]
     
     init() {
-        coinValues = Cryptocurrency(id: 0, name: "", symbol: "", slug: "", quote: Quote(USD: QuoteDetail(price: 0, volume_24h: 0, volume_change_24h: 0, percent_change_1h: 0, percent_change_24h: 0, percent_change_7d: 0, market_cap: 0, market_cap_dominance: 0, fully_diluted_market_cap: 0, last_updated: "")))
+        coinValues = Cryptocurrency(id: 0, name: "", symbol: "", slug: "", quote: QuoteUi(USD: QuoteDetail(price: 0, volume_24h: 0, volume_change_24h: 0, percent_change_1h: 0, percent_change_24h: 0, percent_change_7d: 0, market_cap: 0, market_cap_dominance: 0, fully_diluted_market_cap: 0, last_updated: "")))
         singleCoinValues = []
         prices = []
         rateData = RateData(image: "", rate: 0.0, backgroundColor: "")

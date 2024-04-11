@@ -12,5 +12,5 @@ struct Cryptocurrency: Codable {
     let name: String
     let symbol: String
     let slug: String
-    let quote: Quote
+    let quote: QuoteUi
 }

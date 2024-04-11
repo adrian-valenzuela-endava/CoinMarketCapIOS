@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Quote: Codable {
+struct QuoteUi: Codable {
     let USD: QuoteDetail
 }

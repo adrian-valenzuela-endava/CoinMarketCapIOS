@@ -20,7 +20,7 @@ struct SingleCoin<T>: View {
     let getName: ((T) -> String)
     let getSymbol: ((T) -> String)
     let getSlug: ((T) -> String)
-    let getQuote: ((T) -> Quote)
+    let getQuote: ((T) -> QuoteUi)
 
     var body: some View {
         HStack {

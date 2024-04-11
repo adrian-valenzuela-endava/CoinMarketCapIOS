@@ -71,6 +71,6 @@ struct SIngleCoinView: View {
 
 struct SIngleCoinView_Previews: PreviewProvider {
     static var previews: some View {
-        SIngleCoinView(coinData: Cryptocurrency(id: 0, name: "", symbol: "", slug: "", quote: Quote(USD: QuoteDetail(price: 0, volume_24h: 0, volume_change_24h: 0, percent_change_1h: 0, percent_change_24h: 0, percent_change_7d: 0, market_cap: 0, market_cap_dominance: 0, fully_diluted_market_cap: 0, last_updated: ""))), rateData: RateData(image: "", rate: 0.0, backgroundColor: ""), prices: [1.0])
+        SIngleCoinView(coinData: Cryptocurrency(id: 0, name: "", symbol: "", slug: "", quote: QuoteUi(USD: QuoteDetail(price: 0, volume_24h: 0, volume_change_24h: 0, percent_change_1h: 0, percent_change_24h: 0, percent_change_7d: 0, market_cap: 0, market_cap_dominance: 0, fully_diluted_market_cap: 0, last_updated: ""))), rateData: RateData(image: "", rate: 0.0, backgroundColor: ""), prices: [1.0])
     }
 }
